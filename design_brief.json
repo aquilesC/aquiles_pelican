@@ -1,0 +1,205 @@
+{
+    "project": {
+      "name": "Personal Editorial Website - GatesNotes Inspired",
+      "goal": "A personal publishing platform combining essays, book reviews, and featured causes. Optimized for reading comfort, storytelling, and newsletter growth.",
+      "source_reference": "https://www.gatesnotes.com/"
+    },
+    "brand": {
+      "tone": ["calm", "optimistic", "rational", "human"],
+      "voice": ["first-person", "educational", "reflective"],
+      "imagery": ["portraits of the author", "editorial photography", "simple illustrations"],
+      "logoTreatment": "Minimal logo in header; optional handwritten signature in footer."
+    },
+    "palette": {
+      "background": "#FFFFFF",
+      "textPrimary": "#111111",
+      "textSecondary": "#4A4A4A",
+      "accent": "#1E88E5",
+      "accentAlt": "#0D47A1",
+      "mutedBg": "#F5F7FA",
+      "border": "#E6E9EF",
+      "status": { "info": "#1E88E5", "success": "#2E7D32", "warning": "#ED6C02" },
+      "notes": "Blue serves as main accent; abundant whitespace; high contrast AA/AAA."
+    },
+    "typography": {
+      "scale": { "h1": 40, "h2": 32, "h3": 26, "h4": 22, "body": 18, "small": 16, "overline": 12 },
+      "heading": { "family": "serif or humanist sans", "weight": 700, "tracking": -0.5 },
+      "body": { "family": "neutral sans", "weight": 400, "leading": 1.6 },
+      "special": { "quote": { "style": "display serif italic", "size": 26 } }
+    },
+    "layout": {
+      "grid": { "columns": 12, "gutter": 24, "maxWidth": 1200 },
+      "spacing": { "xxs": 4, "xs": 8, "sm": 12, "md": 16, "lg": 24, "xl": 32, "xxl": 48 },
+      "breakpoints": { "sm": 640, "md": 768, "lg": 1024, "xl": 1280 }
+    },
+    "navigation": {
+      "primary": [
+        { "label": "Work", "href": "/work" },
+        { "label": "Meet Bill", "href": "/meet-bill" },
+        { "label": "Books", "href": "/books" },
+        { "label": "Heroes", "href": "/heroes" }
+      ],
+      "utilities": [
+        { "label": "Search", "icon": "search", "action": "open-modal" },
+        { "label": "Newsletter", "action": "open-signup" },
+        { "label": "Account", "action": "open-login" }
+      ],
+      "behavior": { "sticky": true, "collapse": "hamburger on md-" }
+    },
+    "home": {
+      "sections": [
+        {
+          "type": "heroFeature",
+          "props": {
+            "kicker": "IN DEPTH",
+            "title": "Main featured story headline",
+            "dek": "Concise subtitle summarizing the topic or question explored",
+            "media": { "type": "videoOrImage", "ratio": "16:9" },
+            "cta": { "label": "Read more", "style": "primary" }
+          }
+        },
+        {
+          "type": "topicNavigator",
+          "props": {
+            "title": "Explore my work",
+            "topics": [
+              "Save lives",
+              "Accelerate energy innovation",
+              "Provide quality education",
+              "Cure Alzheimer’s"
+            ],
+            "layout": "cards or chips with image + label"
+          }
+        },
+        {
+          "type": "promoPanel",
+          "props": {
+            "title": "Meet Bill / Books",
+            "items": [
+              { "title": "Source Code", "media": "video poster", "cta": "Read" },
+              { "title": "Reading lists", "cta": "Explore" }
+            ]
+          }
+        },
+        {
+          "type": "inDepthCards",
+          "props": {
+            "cards": [
+              { "kicker": "IN DEPTH", "title": "Three tough truths about climate", "media": "image/video", "tag": "Climate" },
+              { "kicker": "IN DEPTH", "title": "The future of energy is subatomic", "media": "image/video", "tag": "Energy" }
+            ],
+            "grid": "2up/3up responsive"
+          }
+        },
+        {
+          "type": "newsletterCTA",
+          "props": {
+            "heading": "Become an Insider",
+            "copy": "Subscribe to receive stories, insights, and updates.",
+            "fields": ["email", "firstName", "lastName", "password"],
+            "legalLinks": ["/privacy", "/terms"],
+            "variant": "modal + inline"
+          }
+        }
+      ]
+    },
+    "pageTypes": {
+      "topicIndex": {
+        "url": "/work/:topic",
+        "hero": { "title": "Topic name", "dek": "Brief intro paragraph", "media": "hero image" },
+        "filters": ["subtopics", "year", "mediaType"],
+        "feed": { "layout": "masonry cards", "pagination": "cursor" }
+      },
+      "article": {
+        "structure": {
+          "hero": { "media": "image/video", "caption": true, "credit": true },
+          "meta": { "author": "Bill Gates", "date": "ISO", "readingTime": "minutes", "tags": ["Topic", "Series"] },
+          "body": [
+            "intro paragraph",
+            "subhead blocks",
+            "pullQuote",
+            "inlineMedia",
+            "calloutLinks"
+          ],
+          "endCTA": ["newsletter", "relatedPosts", "bookPromo"]
+        },
+        "typography": { "maxLineLength": 72, "dropcaps": false, "imageWidth": "full/bleed on xl" },
+        "share": ["twitter", "linkedin", "facebook", "copyLink"]
+      },
+      "booksIndex": {
+        "hero": { "title": "Books I’m Reading" },
+        "filters": ["category", "year", "rating"],
+        "card": { "cover": true, "title": true, "author": true, "tags": true }
+      },
+      "bookReview": {
+        "fields": ["cover", "title", "author", "rating", "whyItMatters", "summary", "favoriteQuotes", "linkToBuy"],
+        "related": "reading lists"
+      },
+      "about": {
+        "blocks": ["bio", "timeline", "podcasts", "gamesILove", "familyAndFriends"]
+      }
+    },
+    "components": {
+      "Header": {
+        "elements": ["logo", "primaryNav", "utilities", "menuDrawer"],
+        "states": ["default", "scrolled", "mobileExpanded"]
+      },
+      "Footer": {
+        "elements": ["quickLinks", "socialIcons", "legal", "signatureMark"],
+        "notes": "Institutional tone, with links to foundation, privacy, and contact pages."
+      },
+      "Card.Article": {
+        "props": { "kicker": "string", "title": "string", "excerpt": "string", "media": "image/video", "tag": "string" },
+        "hover": "subtle elevation + underline on title"
+      },
+      "Card.Topic": { "props": { "title": "string", "media": "image", "cta": "Explore" } },
+      "Newsletter.Modal": {
+        "fields": ["email", "firstName", "lastName", "password"],
+        "validation": { "email": "required", "passwordMin": 7 },
+        "privacy": ["/privacy", "/terms"]
+      },
+      "Search.Modal": {
+        "presetQueries": ["Microsoft", "Reading lists"],
+        "resultItem": { "title": "string", "kicker": "topic", "date": "ISO" }
+      },
+      "Auth.Modal": { "states": ["login", "signup", "reset"], "messages": ["errors", "success"] },
+      "Quote.Block": { "variant": "pull-quote", "decoration": "quotation marks or em dash", "source": "optional" }
+    },
+    "interactions": {
+      "linksUnderlineOnHover": true,
+      "focusStatesVisible": true,
+      "reducedMotionSupport": true,
+      "video": { "posterFallback": true, "controls": "play/pause", "caption": true },
+      "lazyLoadMedia": true
+    },
+    "contentModel": {
+      "Taxonomies": ["Topic", "Series", "MediaType"],
+      "Collections": {
+        "posts": {
+          "fields": ["title", "slug", "dek", "bodyRichText", "heroMedia", "topic", "tags", "series", "publishDate", "readingTime", "cta"],
+          "seo": ["metaTitle", "metaDescription", "openGraph"]
+        },
+        "books": {
+          "fields": ["title", "author", "coverImage", "category", "rating", "summary", "reviewUrl", "buyLinks"]
+        },
+        "heroes": { "fields": ["name", "bio", "photo", "links"] }
+      }
+    },
+    "accessibility": {
+      "colorContrast": "AA minimum (AAA preferred for text)",
+      "hitTargets": "44x44px minimum",
+      "keyboardNav": true,
+      "ariaLandmarks": ["header", "nav", "main", "complementary", "footer"],
+      "altTextPolicy": "required for all editorial images"
+    },
+    "seo": {
+      "structuredData": ["Article", "BreadcrumbList", "Book"],
+      "metaDefaults": { "titleSuffix": " | GatesNotes-Inspired", "socialImage": "1200x630" },
+      "sitemap": true
+    },
+    "legal": {
+      "links": ["/privacy", "/terms", "/contact"],
+      "newsletterConsent": "Explicit consent checkbox and link to privacy policy."
+    }
+  }
+  

@@ -1,0 +1,6 @@
+pelican
+markdown
+jinja2
+typogrify
+beautifulsoup4
+

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
+
+{% block description %}{{ article.summary|striptags|truncate(160) }}{% endblock %}
+
+{% block content %}
+  <article class="py-xxl">
+    <!-- Hero Image -->
+    {% if article.hero_image %}
+    <div class="max-w-full mb-xxl">
+      <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-auto" />
+      {% if article.hero_caption %}
+      <p class="text-small text-text-secondary text-center mt-sm">{{ article.hero_caption }}</p>
+      {% endif %}
+    </div>
+    {% endif %}
+
+    <div class="max-w-content mx-auto px-lg">
+      <!-- Article Header -->
+      <header class="mb-xxl">
+        {% if article.category %}
+        <span class="text-overline text-accent uppercase tracking-wider mb-md inline-block">{{ article.category }}</span>
+        {% endif %}
+        <h1 class="text-h1 mb-md">{{ article.title }}</h1>
+        
+        {% if article.summary %}
+        <p class="text-h4 text-text-secondary mb-lg">{{ article.summary }}</p>
+        {% endif %}
+        
+        <!-- Meta Information -->
+        <div class="flex flex-wrap items-center gap-md text-small text-text-secondary">
+          <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+          {% if article.readingtime %}
+          <span>•</span>
+          <span>{{ article.readingtime }} min read</span>
+          {% endif %}
+          {% if article.author %}
+          <span>•</span>
+          <span>By {{ article.author }}</span>
+          {% endif %}
+        </div>
+        
+        <!-- Tags -->
+        {% if article.tags %}
+        <div class="flex flex-wrap gap-xs mt-md">
+          {% for tag in article.tags %}
+          <a href="{{ SITEURL }}/{{ tag.url }}" class="text-overline text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">
+            #{{ tag.name }}
+          </a>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </header>
+
+      <!-- Article Content -->
+      <div class="article-content">
+        {{ article.content }}
+      </div>
+
+      <!-- Share Buttons -->
+      <div class="mt-xxl pt-xl border-t border-border">
+        <h3 class="text-h4 mb-md">Share this article</h3>
+        <div class="flex gap-md">
+          <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url }}&text={{ article.title|urlencode }}" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="btn btn-secondary">
+            Twitter
+          </a>
+          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             class="btn btn-secondary">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock %}
+

@@ -1,0 +1,168 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+{% endblock %}
+
+{% block content %}
+  <!-- Full-Screen Hero Section with 3D Particles -->
+  <section class="hero-section relative h-screen w-full overflow-hidden bg-[#0a0a0a] -mt-24">
+    <canvas id="particle-canvas" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="relative z-10 h-full flex items-center justify-center pt-24">
+      <div class="max-w-content mx-auto px-lg text-center">
+        <h1 class="text-h1 md:text-6xl lg:text-7xl mb-lg font-heading text-white drop-shadow-lg">
+          Welcome to {{ SITENAME }}
+        </h1>
+        <p class="text-body md:text-xl text-gray-300 mb-xxl max-w-2xl mx-auto drop-shadow-md">
+          Exploring ideas, sharing insights, and building the future
+        </p>
+        {% if articles %}
+          {% set featured = articles[0] %}
+          <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary text-lg px-xxl py-lg shadow-lg">
+            Read Latest
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-xl left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
+      <svg class="w-6 h-6 text-white opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="about-section relative py-xxl overflow-hidden">
+    <div class="max-w-content mx-auto px-lg">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-xxl items-center">
+        <!-- Photo Column -->
+        <div class="order-2 md:order-1">
+          <div class="relative">
+            <div class="aspect-square rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-accent to-accent-alt">
+              <img src="{{ SITEURL }}/images/profile.jpg" 
+                   alt="{{ AUTHOR }}" 
+                   class="w-full h-full object-cover"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+              <div class="w-full h-full bg-gradient-to-br from-accent to-accent-alt flex items-center justify-center text-white text-h2 font-heading" style="display: none;">
+                {{ SITENAME[0] }}
+              </div>
+            </div>
+            <!-- Decorative ring -->
+            <div class="absolute -inset-4 rounded-full border-2 border-accent/20 animate-pulse"></div>
+          </div>
+        </div>
+        
+        <!-- Text Column -->
+        <div class="order-1 md:order-2">
+          <h2 class="text-h2 md:text-h1 mb-lg font-heading">About Me</h2>
+          <div class="prose prose-lg max-w-none">
+            <p class="text-body text-text-secondary mb-md">
+              Welcome to my corner of the web. I'm a passionate developer, thinker, and creator who loves exploring the intersection of technology, design, and human experience.
+            </p>
+            <p class="text-body text-text-secondary mb-md">
+              Through this site, I share my thoughts on software development, creative projects, and the ideas that shape our digital world. Whether it's writing about code, discussing design principles, or reflecting on the tech industry, I aim to contribute meaningful insights to the conversation.
+            </p>
+            <p class="text-body text-text-secondary mb-lg">
+              When I'm not coding or writing, you'll find me exploring new technologies, reading, or working on side projects that push the boundaries of what's possible.
+            </p>
+            <a href="{{ SITEURL }}/work/" class="btn btn-primary">
+              Learn more about my work
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hero Feature Section -->
+  {% if articles %}
+    {% set featured = articles[0] %}
+    <section class="bg-muted-bg py-xxl">
+      <div class="max-w-content mx-auto px-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
+          <div>
+            <span class="text-overline text-accent uppercase tracking-wider mb-md inline-block">Featured</span>
+            <h2 class="text-h1 mb-md">{{ featured.title }}</h2>
+            {% if featured.summary %}
+            <p class="text-body text-text-secondary mb-lg">{{ featured.summary }}</p>
+            {% endif %}
+            <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary">
+              Read more
+            </a>
+          </div>
+          {% if featured.hero_image %}
+          <div class="rounded-lg overflow-hidden">
+            <img src="{{ SITEURL }}/{{ featured.hero_image }}" alt="{{ featured.title }}" class="w-full h-auto" />
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  <!-- Articles Grid -->
+  {% if articles %}
+  <section class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <h2 class="text-h2 mb-xxl">Recent Articles</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+        {% for article in articles[1:7] %}
+        <article class="bg-background border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex">
+          {% if article.hero_image %}
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full object-cover" />
+          </div>
+          {% endif %}
+          <div class="p-lg flex flex-col flex-grow">
+            {% if article.category %}
+            <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
+            {% endif %}
+            <h3 class="text-h4 mb-sm">
+              <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
+                {{ article.title }}
+              </a>
+            </h3>
+            {% if article.summary %}
+            <p class="text-small text-text-secondary mb-md">{{ article.summary|truncate(120) }}</p>
+            {% endif %}
+            <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary mt-auto">
+              {{ article.locale_date }}
+            </time>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      
+      {% if articles|length > 7 %}
+      <div class="mt-xxl text-center">
+        <a href="{{ SITEURL }}/articles/" class="btn btn-secondary">
+          View all articles
+        </a>
+      </div>
+      {% endif %}
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Work Experience Preview -->
+  <section class="bg-muted-bg py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <h2 class="text-h2 mb-xxl">Work Experience</h2>
+      <div class="prose prose-lg max-w-none">
+        <p class="text-body text-text-secondary mb-lg">
+          Explore my professional journey, projects, and contributions to the tech industry.
+        </p>
+        <a href="{{ SITEURL }}/work/" class="btn btn-primary">
+          Learn more
+        </a>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block extra_scripts %}
+  <script src="{{ SITEURL }}/theme/js/particles.js"></script>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block title %}Articles | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <div class="pt-xxl md:pt-[80px] pb-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <header class="mb-xxl">
+        <h1 class="text-h1 mb-md">Articles</h1>
+        <p class="text-body text-text-secondary">Essays, thoughts, and insights</p>
+      </header>
+
+      {% if articles %}
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+        {% for article in articles %}
+        <article class="card card-hover">
+          {% if article.hero_image %}
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
+          </div>
+          {% endif %}
+          <div class="p-lg">
+            {% if article.category %}
+            <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
+            {% endif %}
+            <h2 class="text-h4 mb-sm">
+              <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
+                {{ article.title }}
+              </a>
+            </h2>
+            {% if article.summary %}
+            <p class="text-small text-text-secondary mb-md">{{ article.summary|truncate(120) }}</p>
+            {% endif %}
+            <div class="mb-md">
+              <a href="{{ SITEURL }}/{{ article.url }}" class="text-body text-accent hover:text-accentAlt hover:underline underline-offset-4 transition-colors font-medium">
+                Read more →
+              </a>
+            </div>
+            <div class="flex items-center justify-between">
+              <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary">
+                {{ article.locale_date }}
+              </time>
+              {% if article.readingtime %}
+              <span class="text-overline text-text-secondary">{{ article.readingtime }} min</span>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if articles_page.has_other_pages() %}
+      <nav class="mt-xxl flex justify-center gap-md" aria-label="Pagination">
+        {% if articles_page.has_previous() %}
+        <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="btn btn-secondary">
+          Previous
+        </a>
+        {% endif %}
+        {% if articles_page.has_next() %}
+        <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="btn btn-secondary">
+          Next
+        </a>
+        {% endif %}
+      </nav>
+      {% endif %}
+      {% else %}
+      <p class="text-body text-text-secondary">No articles yet. Check back soon!</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

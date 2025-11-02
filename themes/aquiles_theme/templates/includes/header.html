@@ -1,0 +1,111 @@
+<header id="header" class="header-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="max-w-content mx-auto px-lg py-md" aria-label="Main navigation">
+    <div class="flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="{{ SITEURL }}/" class="text-h3 font-heading text-text-primary hover:text-accent transition-colors">
+          {{ SITENAME }}
+        </a>
+      </div>
+      
+      <!-- Primary Navigation -->
+      <div class="hidden md:flex items-center space-x-lg">
+        <a href="{{ SITEURL }}/work/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
+          Work
+        </a>
+        <a href="{{ SITEURL }}/articles/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
+          Articles
+        </a>
+        <a href="{{ SITEURL }}/contact/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
+          Contact
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-button" 
+              class="md:hidden p-xs focus:outline-none focus:ring-2 focus:ring-accent rounded"
+              aria-label="Toggle menu"
+              aria-expanded="false">
+        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden mt-md pb-md">
+      <nav class="flex flex-col space-y-md" aria-label="Mobile navigation">
+        <a href="{{ SITEURL }}/work/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
+          Work
+        </a>
+        <a href="{{ SITEURL }}/articles/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
+          Articles
+        </a>
+        <a href="{{ SITEURL }}/contact/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
+          Contact
+        </a>
+      </nav>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', function() {
+    const menuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+    const closeIcon = document.getElementById('close-icon');
+    
+    if (menuButton) {
+      menuButton.addEventListener('click', function() {
+        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
+        menuButton.setAttribute('aria-expanded', !isExpanded);
+        mobileMenu.classList.toggle('hidden');
+        menuIcon.classList.toggle('hidden');
+        closeIcon.classList.toggle('hidden');
+      });
+    }
+
+    // Navbar scroll effect (frosted glass)
+    const header = document.getElementById('header');
+    const currentPath = window.location.pathname;
+    
+    // Check if we're on an articles page (archives or individual article)
+    const isArticlesPage = currentPath.startsWith('/articles') || currentPath === '/articles';
+    
+    function updateNavbar() {
+      const scrollY = window.scrollY || window.pageYOffset;
+      
+      // On articles pages, always show frosted glass (no scroll requirement)
+      if (isArticlesPage) {
+        header.classList.add('scrolled');
+      } else {
+        // On other pages, only show after scrolling
+        if (scrollY > 100) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+      }
+    }
+
+    // Throttle scroll events for better performance (only needed on non-articles pages)
+    if (!isArticlesPage) {
+      let ticking = false;
+      window.addEventListener('scroll', function() {
+        if (!ticking) {
+          window.requestAnimationFrame(function() {
+            updateNavbar();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+    }
+    
+    // Initial check
+    updateNavbar();
+  });
+</script>

@@ -1,0 +1,50 @@
+# Netlify configuration for Pelican static site generator
+[build]
+  command = "pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py"
+  publish = "output"
+
+[build.environment]
+  PYTHON_VERSION = "3.11"
+  NODE_VERSION = "20"
+  NPM_FLAGS = "--prefer-offline --no-audit"
+
+# Build settings for different contexts
+[context.production]
+  command = "pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py"
+
+[context.deploy-preview]
+  command = "pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s pelicanconf.py"
+
+[context.branch-deploy]
+  command = "pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s pelicanconf.py"
+
+# Headers for better caching and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/theme/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/theme/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Redirects (if needed)
+# [[redirects]]
+#   from = "/old-path"
+#   to = "/new-path"
+#   status = 301
+

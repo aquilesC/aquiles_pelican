@@ -1,0 +1,35 @@
+# Project Context
+
+## Project Type
+Static website built with Pelican (Python static site generator) and TailwindCSS.
+
+## Design System
+- Reference: `design_brief.json` for all design specifications
+- Color palette: Blue accent (#1E88E5), high contrast AA/AAA
+- Typography: Serif headings, neutral sans body (18px base, 1.6 leading)
+- Layout: 12-column grid, max-width 1200px, responsive breakpoints
+- Spacing: 4px (xxs) to 48px (xxl) scale
+
+## Code Style
+- Python: Follow PEP 8
+- Jinja2 templates: Use 2-space indentation
+- HTML: Semantic HTML5, accessibility-first
+- CSS: TailwindCSS utility classes, custom config for design tokens
+
+## Key Components
+- Header: Sticky navigation with logo, primary nav, utilities
+- Footer: Quick links, social icons, legal, signature
+- Article cards: Kicker, title, excerpt, media, tag
+- Forms: Netlify Forms compatible (netlify attribute)
+
+## Content Structure
+- Articles: Markdown files in `content/articles/`
+- Pages: Markdown files in `content/pages/`
+- Work experience: Custom page type
+- Contact form: HTML form with Netlify attributes
+
+## Important Files
+- `pelicanconf.py`: Main Pelican configuration
+- `tailwind.config.js`: TailwindCSS design tokens
+- `themes/aquiles_theme/`: Custom theme templates
+

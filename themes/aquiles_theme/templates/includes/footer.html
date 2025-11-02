@@ -1,0 +1,45 @@
+<footer id="footer" class="bg-muted-bg border-t border-border mt-xxl">
+  <div class="max-w-content mx-auto px-lg py-xxl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+      <!-- Quick Links -->
+      <div>
+        <h3 class="text-h4 mb-md">Quick Links</h3>
+        <ul class="space-y-xs">
+          <li><a href="{{ SITEURL }}/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Home</a></li>
+          <li><a href="{{ SITEURL }}/articles/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Articles</a></li>
+          <li><a href="{{ SITEURL }}/work/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Work</a></li>
+          <li><a href="{{ SITEURL }}/contact/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Contact</a></li>
+        </ul>
+      </div>
+      
+      <!-- Social Links (if configured) -->
+      <div>
+        <h3 class="text-h4 mb-md">Connect</h3>
+        <ul class="space-y-xs">
+          {% if TWITTER_USERNAME %}
+          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Twitter</a></li>
+          {% endif %}
+          {% if GITHUB_USERNAME %}
+          <li><a href="https://github.com/{{ GITHUB_USERNAME }}" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">GitHub</a></li>
+          {% endif %}
+        </ul>
+      </div>
+      
+      <!-- Legal -->
+      <div>
+        <h3 class="text-h4 mb-md">Legal</h3>
+        <ul class="space-y-xs">
+          <li><a href="{{ SITEURL }}/privacy/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Privacy</a></li>
+          <li><a href="{{ SITEURL }}/terms/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="mt-xxl pt-xl border-t border-border text-center">
+      <p class="text-small text-text-secondary">
+        &copy; 2024 {{ AUTHOR }}. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
+

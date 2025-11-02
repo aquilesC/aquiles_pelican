@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}Contact | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <div class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <header class="mb-xxl">
+        <h1 class="text-h1 mb-md">Get in Touch</h1>
+        <p class="text-body text-text-secondary">Have a question or want to collaborate? Send me a message.</p>
+      </header>
+
+      <div class="max-w-2xl">
+        <!-- Netlify Form -->
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-lg">
+          <!-- Honeypot field for spam protection -->
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="hidden">
+            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+          </p>
+
+          <!-- Name -->
+          <div>
+            <label for="name" class="block text-body mb-xs font-medium">Name <span class="text-accent">*</span></label>
+            <input 
+              type="text" 
+              id="name" 
+              name="name" 
+              required
+              class="w-full px-md py-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-body"
+              minlength="2"
+            />
+          </div>
+
+          <!-- Email -->
+          <div>
+            <label for="email" class="block text-body mb-xs font-medium">Email <span class="text-accent">*</span></label>
+            <input 
+              type="email" 
+              id="email" 
+              name="email" 
+              required
+              class="w-full px-md py-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-body"
+            />
+          </div>
+
+          <!-- Subject -->
+          <div>
+            <label for="subject" class="block text-body mb-xs font-medium">Subject <span class="text-accent">*</span></label>
+            <input 
+              type="text" 
+              id="subject" 
+              name="subject" 
+              required
+              class="w-full px-md py-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-body"
+              minlength="3"
+            />
+          </div>
+
+          <!-- Message -->
+          <div>
+            <label for="message" class="block text-body mb-xs font-medium">Message <span class="text-accent">*</span></label>
+            <textarea 
+              id="message" 
+              name="message" 
+              required
+              rows="6"
+              class="w-full px-md py-sm border border-border rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent text-body resize-y"
+              minlength="10"
+            ></textarea>
+          </div>
+
+          <!-- Submit Button -->
+          <div>
+            <button type="submit" class="btn btn-primary">
+              Send Message
+            </button>
+          </div>
+
+          <!-- Success Message (will be shown by Netlify after submission) -->
+          <div class="hidden" id="form-success">
+            <p class="text-body text-status-success">Thank you! Your message has been sent. I'll get back to you soon.</p>
+          </div>
+        </form>
+
+        <!-- Additional Contact Info -->
+        <div class="mt-xxl pt-xl border-t border-border">
+          <h2 class="text-h3 mb-lg">Other Ways to Reach Me</h2>
+          <div class="space-y-md text-body text-text-secondary">
+            {% if TWITTER_USERNAME %}
+            <p>
+              <strong>Twitter:</strong> 
+              <a href="https://twitter.com/{{ TWITTER_USERNAME }}" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+                @{{ TWITTER_USERNAME }}
+              </a>
+            </p>
+            {% endif %}
+            {% if GITHUB_USERNAME %}
+            <p>
+              <strong>GitHub:</strong> 
+              <a href="https://github.com/{{ GITHUB_USERNAME }}" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+                {{ GITHUB_USERNAME }}
+              </a>
+            </p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

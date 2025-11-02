@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Work Experience | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <div class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <header class="mb-xxl">
+        <h1 class="text-h1 mb-md">Work Experience</h1>
+        <p class="text-body text-text-secondary">A summary of my professional journey and projects</p>
+      </header>
+
+      <div class="article-content">
+        {{ page.content }}
+      </div>
+
+      <!-- Work Timeline Section -->
+      <section class="mt-xxl">
+        <h2 class="text-h2 mb-xxl">Timeline</h2>
+        <!-- This will be populated by content from work page or custom data -->
+        <div class="space-y-xl">
+          <!-- Example work entry - structure can be customized -->
+          <div class="border-l-4 border-accent pl-xl py-md">
+            <div class="flex flex-wrap items-baseline gap-md mb-sm">
+              <h3 class="text-h3">Position Title</h3>
+              <time class="text-small text-text-secondary">2020 - Present</time>
+            </div>
+            <p class="text-body text-text-secondary mb-xs"><strong>Company Name</strong></p>
+            <p class="text-body">Description of role and achievements. This can be customized based on your content structure.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+{% endblock %}
+

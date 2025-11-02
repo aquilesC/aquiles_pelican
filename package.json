@@ -1,0 +1,20 @@
+{
+  "name": "aquiles-pelican",
+  "version": "1.0.0",
+  "description": "Personal static website with Pelican and TailwindCSS",
+  "scripts": {
+    "build:css": "tailwindcss -i ./themes/aquiles_theme/static/css/src/input.css -o ./themes/aquiles_theme/static/css/style.css --minify",
+    "watch:css": "tailwindcss -i ./themes/aquiles_theme/static/css/src/input.css -o ./themes/aquiles_theme/static/css/style.css --watch"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.0"
+  },
+  "keywords": [
+    "pelican",
+    "static-site",
+    "tailwindcss"
+  ],
+  "author": "Aquiles",
+  "license": "MIT"
+}
+

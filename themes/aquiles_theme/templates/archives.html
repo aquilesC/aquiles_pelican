@@ -1,0 +1,191 @@
+{% extends "base.html" %}
+
+{% block title %}Articles | {{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+<style>
+  .articles-hero {
+    position: relative;
+    overflow: hidden;
+    background: 
+      linear-gradient(135deg, #1E88E5 0%, #1565C0 25%, #0D47A1 50%, #42A5F5 75%, #64B5F6 100%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='rgba(255,255,255,0.08)' d='M0,160L40,170.7C80,181,160,203,240,197.3C320,192,400,160,480,154.7C560,149,640,171,720,176C800,181,880,171,960,165.3C1040,160,1120,160,1200,138.7C1280,117,1360,75,1400,53.3L1440,32L1440,320L1400,320C1360,320,1280,320,1200,320C1120,320,1040,320,960,320C880,320,800,320,720,320C640,320,560,320,480,320C400,320,320,320,240,320C160,320,80,320,40,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+    background-size: 400% 400%, 130% 130%;
+    background-position: 0% 50%, bottom;
+    background-repeat: no-repeat, no-repeat;
+    animation: gradientShift 20s ease infinite, waveMorph3 12s ease-in-out infinite;
+  }
+
+  .articles-hero::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='%23F5F7FA' d='M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,154.7C960,171,1056,181,1152,165.3C1248,149,1344,107,1392,85.3L1440,64L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+    background-size: 120% 120%;
+    z-index: 1;
+    animation: waveMorph1 8s ease-in-out infinite;
+    transform-origin: bottom center;
+  }
+
+  .articles-hero > div {
+    position: relative;
+    z-index: 2;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    25% {
+      background-position: 100% 50%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    75% {
+      background-position: 0% 100%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  /* Additional wave layer for depth with different shape */
+  .articles-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 140px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320' preserveAspectRatio='none'%3E%3Cpath fill='rgba(255,255,255,0.15)' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,208C672,213,768,203,864,186.7C960,171,1056,149,1152,154.7C1248,160,1344,192,1392,208L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") no-repeat bottom;
+    background-size: 110% 110%;
+    animation: waveMorph2 10s ease-in-out infinite;
+    transform-origin: bottom center;
+    z-index: 1;
+  }
+
+  @keyframes waveMorph1 {
+    0%, 100% {
+      transform: scaleX(1) scaleY(1) translateX(0);
+      background-size: 120% 120%;
+    }
+    25% {
+      transform: scaleX(1.15) scaleY(0.95) translateX(-2%);
+      background-size: 130% 110%;
+    }
+    50% {
+      transform: scaleX(0.9) scaleY(1.1) translateX(2%);
+      background-size: 110% 130%;
+    }
+    75% {
+      transform: scaleX(1.1) scaleY(0.9) translateX(-1%);
+      background-size: 125% 115%;
+    }
+  }
+
+  @keyframes waveMorph2 {
+    0%, 100% {
+      transform: scaleX(1) scaleY(1) translateX(0) skewX(0deg);
+      background-size: 110% 110%;
+    }
+    33% {
+      transform: scaleX(0.95) scaleY(1.05) translateX(3%) skewX(2deg);
+      background-size: 115% 120%;
+    }
+    66% {
+      transform: scaleX(1.1) scaleY(0.92) translateX(-3%) skewX(-2deg);
+      background-size: 105% 100%;
+    }
+  }
+
+  @keyframes waveMorph3 {
+    0%, 100% {
+      background-size: 130% 130%;
+      background-position: 0% 100%;
+    }
+    25% {
+      background-size: 140% 120%;
+      background-position: -5% 100%;
+    }
+    50% {
+      background-size: 120% 140%;
+      background-position: 5% 100%;
+    }
+    75% {
+      background-size: 135% 125%;
+      background-position: -2% 100%;
+    }
+  }
+
+  /* Ensure text remains readable */
+  .articles-hero h1,
+  .articles-hero p {
+    color: white;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+</style>
+{% endblock %}
+
+{% block content %}
+  <!-- Hero Section for Articles -->
+  <section class="articles-hero pt-xxl md:pt-32 pb-xxl md:pb-32 flex items-center" style="min-height: 60vh;">
+    <div class="max-w-content mx-auto px-lg text-center w-full">
+      <h1 class="text-h1 md:text-h1 mb-md font-heading">Articles</h1>
+      <p class="text-body md:text-xl text-white max-w-2xl mx-auto">
+        Essays, thoughts, and insights on science, entrepreneurship, and the journey from researcher to founder.
+      </p>
+    </div>
+  </section>
+
+  <!-- Articles Grid -->
+  <div class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      {% if dates %}
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl">
+        {% for article in dates %}
+        <article class="bg-background border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
+          {% if article.hero_image %}
+          <div class="aspect-video overflow-hidden">
+            <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
+          </div>
+          {% endif %}
+          <div class="p-lg flex flex-col flex-grow">
+            {% if article.category %}
+            <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
+            {% endif %}
+            <h2 class="text-h4 mb-sm">
+              <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
+                {{ article.title }}
+              </a>
+            </h2>
+            {% if article.summary %}
+            <p class="text-small text-text-secondary mb-md flex-grow">{{ article.summary|truncate(120) }}</p>
+            {% endif %}
+            <div class="mb-md">
+              <a href="{{ SITEURL }}/{{ article.url }}" class="text-body text-accent hover:text-accentAlt hover:underline underline-offset-4 transition-colors font-medium">
+                Read more →
+              </a>
+            </div>
+            <div class="flex items-center justify-between pt-md border-t border-border mt-auto">
+              <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary">
+                {{ article.locale_date }}
+              </time>
+              {% if article.readingtime %}
+              <span class="text-overline text-text-secondary">{{ article.readingtime }} min</span>
+              {% endif %}
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p class="text-body text-text-secondary">No articles yet. Check back soon!</p>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

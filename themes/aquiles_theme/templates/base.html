@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ DEFAULT_LANG }}">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="generator" content="Pelican" />
+  
+  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
+  
+  {% block meta %}
+  <meta name="description" content="{% block description %}{{ SITESUBTITLE }}{% endblock %}" />
+  {% endblock %}
+  
+  <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css" />
+  
+  {% block extra_head %}{% endblock %}
+</head>
+<body class="bg-background">
+  {% include 'includes/header.html' %}
+  
+  <main id="main">
+    {% block content %}{% endblock %}
+  </main>
+  
+  {% include 'includes/footer.html' %}
+  
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>
+

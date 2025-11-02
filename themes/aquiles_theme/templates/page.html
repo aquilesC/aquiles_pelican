@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <article class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <header class="mb-xxl">
+        <h1 class="text-h1 mb-md">{{ page.title }}</h1>
+        {% if page.summary %}
+        <p class="text-h4 text-text-secondary">{{ page.summary }}</p>
+        {% endif %}
+      </header>
+
+      <div class="article-content">
+        {{ page.content }}
+      </div>
+    </div>
+  </article>
+{% endblock %}
+
