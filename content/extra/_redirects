@@ -1,0 +1,8 @@
+# Cloudflare Pages redirects
+# Format: [path] [destination] [status code]
+# Status codes: 301 (permanent), 302 (temporary), 200 (rewrite)
+# 
+# Examples (uncomment and modify as needed):
+# /old-page /new-page 301
+# /old-path/* /new-path/:splat 301
+
