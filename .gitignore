@@ -36,9 +36,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# TailwindCSS
-themes/aquiles_theme/static/css/style.css
-themes/aquiles_theme/static/css/style.css.map
 
 # IDE
 .vscode/
