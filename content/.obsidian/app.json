@@ -1,0 +1,7 @@
+{
+  "alwaysUpdateLinks": true,
+  "attachmentFolderPath": "images",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "articles",
+  "promptDelete": false
+}

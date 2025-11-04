@@ -1,164 +1,85 @@
+---
 Title: Entrepreneurial Mindset for Scientists
 Slug: entrepreneurial-mindset-for-scientists
-Date: 2024-01-24
+Date: 2025-11-04
 Category: Entrepreneurship
-Tags: Entrepreneurship, Mindset, Scientists
-Summary: Cultivating an entrepreneurial mindset helps scientists translate research into real-world impact. Here are the key attributes and how to develop them.
+Tags:
+  - mindset
+  - scipreneurs
+  - effectual-reasoning
+Summary: When I started my first company, I brought with me my scientifically oriented way of thinking. I thought that objectivity and facts were enough to push forward. It took me a while to understand that scipreneurship requires a much more holistic approach to problem solving and opportunity identification.
+---
+When I started my first company, I brought with me my scientifically oriented way of thinking. I thought that objectivity and facts were enough to push forward. It took me a while to understand that **scipreneurship requires a much more holistic approach to problem solving** and opportunity identification.
 
-# Entrepreneurial Mindset for Scientists
+Our accumulated set of experiences are almost as important as the formal skills we have developed.
 
-For many scientists, the transition from academic research to entrepreneurship can feel like navigating uncharted territory. The research world operates on discovery, peer review, and knowledge creation. The entrepreneurial world operates on value creation, market validation, and impact.
+Embracing different ways of perceiving the world is fundamental to understanding what it means to become an entrepreneur. Being able to understand processes at a technical but also emotional level is what I call the **scipreneurial mindset**. It’s the framework I developed over time to process inputs from many different sources.
+### Definition and Importance in Business
 
-But here's the thing: these two worlds aren't as separate as they might seem.
+An entrepreneurial mindset is not just a fancy term. It’s a way of thinking that can help us decide which challenges are worth tackling head-on, making decisive choices, and owning the outcomes, whether they’re good or bad.
 
-An entrepreneurial mindset isn't about becoming a different person. It's about **expanding your toolkit** to translate your research into real-world applications that create value for others.
+Sometimes this mindset is about seeing **the glass as half full** – finding those opportunities in the market that everyone else has overlooked, innovating, and not just taking risks, but **smart risks**.
 
-## Why Scientists Need an Entrepreneurial Mindset
+If there is something that scientists have in common is that they are resilient. Experimental failures are common. Cleaning up, regrouping, and retrying is what we do almost every single day.
 
-Traditional scientific training teaches you to ask questions, design experiments, analyze data, and publish findings. It doesn't necessarily teach you to:
+In business, the flow is similar. Things won’t always go your way, they will take longer, and it’s the ability to bounce back, regroup, and retry that counts.
 
-- Identify market opportunities in your research
-- Build products that solve real problems
-- Communicate value beyond peer review
-- Navigate the business side of innovation
+A different mindset is crucial in business because **opportunity recognition** is a big deal.
 
-An entrepreneurial mindset bridges this gap. It's about seeing the potential applications of your work and developing the skills to bring them to life.
+You know those moments when you think, “Hey, why hasn’t anyone thought of this before?” That’s what I’m talking about. Being able to spot these gaps in the market can lead you to create something truly successful and needed.
 
-## Key Attributes of an Entrepreneurial Mindset
+And the ability to spot those gaps greatly depends on the **accumulation of personal experiences**.
 
-Based on my experience and research, here are the core attributes that help scientists thrive in entrepreneurship:
+PhDs and Postdocs are routinely exposed to people working in the exact same topics, with the exact same tools. But if you look at it globally, there’ll be only a handful of people **in the world** working this way.
 
-### 1. Opportunity Identification
+That **makes you already quite unique**.
 
-Great research often solves a problem that exists in the lab. Great businesses solve problems that exist in the real world.
+Add the personal history of each one, where were they born, what languages they speak, and you’ll understand your uniqueness.
 
-Entrepreneurial scientists excel at **connecting the dots** between their research and market needs. They ask questions like:
-- Who else faces the problems I'm solving?
-- Where could my tools or methods be applied?
-- What inefficiencies exist in current practices?
+As a scipreneur, sometimes, you’ll notice you have two halves of a puzzle. The ability to identify situations where this is obvious just to you, and why, is what sets you in the path to success.
 
-The challenge isn't just spotting opportunities—it's assessing their potential value and timing. You need to ensure your innovation addresses real needs for customers, stakeholders, and investors.
+I started building microscopes and tools back in 2009. I always worked with a special technique, called fluorescence microscopy. In 2019 when I co-founded Dispertech, I did a deep dive into Extracellular Vesicles, a specific niche in biology. One day it just became apparent what the field was struggling with, and how fluorescence microscopy could be of help.
 
-### 2. Value Proposition Development
+It was one of these ‘eureka-moments’ when technology developments coalesce and allow **creative thinking**.
 
-As scientists, we're trained to be precise and technical. But when building products, technical features alone don't sell.
+Innovation and adaptability are your tools for survival in the fast-paced business arena. The world changes quickly, and businesses need to pivot and evolve just as fast. What worked yesterday might not work tomorrow, so staying stuck in your ways is not an option.
 
-A compelling value proposition answers one key question: **How does this improve someone's life or work?**
+For innovators, the **shiny object syndrome** is real. Pursuing always something new because it looks so much better than what we are doing. Changing focus too quickly can become detrimental. A new mindset will allow you to parse those ideas quickly, let them rest, and resurface when they make sense.
 
-Your research might have elegant mathematical frameworks or novel methodologies, but that's not what matters to end-users. What matters is whether it makes their jobs easier, their processes faster, or their outcomes better.
+Scientists are not used to explicitly discussing **risk management**. Anticipate failure and have a contingency plan.
 
-Learning to articulate value in terms of benefits, not features, is crucial.
+Entrepreneurs need to embrace risk management and uncertainty. But be aware, it’s not just avoiding risks – that’s pretty much impossible in business. Instead, it’s about understanding these risks, weighing them, and using them to your advantage. Think of it like surfing; you need to ride the waves, not run from them.
 
-### 3. Creativity and Innovation
+Lastly, and perhaps infinitely important, **a proactive approach** is what sets entrepreneurs apart.
 
-Here's where your scientific training gives you an advantage.
+It’s about not waiting for someone to hand you opportunities on a silver platter. You’ve got to be the one knocking on doors, making the calls, and sometimes, creating opportunities out of thin air. You need to learn to ask for help, move forward even if it’s not clear where, or how the path looks like.
 
-Scientists are naturally curious and comfortable with complexity. You're trained to integrate ideas from different disciplines, connect disparate concepts, and think beyond traditional boundaries.
+The mind of an entrepreneur is always in tension between what the future could look like and what the present allows. We’ll take another look at this when we discuss about **effectual reasoning**. 
 
-Entrepreneurial creativity is about applying these same skills to business challenges:
-- Connecting research insights with market needs
-- Designing solutions that are both scientifically sound and practically useful
-- Finding novel applications for existing tools
+### Contrast with the Typical Mindset in Academia
 
-The most innovative businesses often emerge from unexpected connections between fields.
+Understanding the mindset of an entrepreneur also requires acknowledging and overcoming the patterns developed in an academic environment.
 
-### 4. Risk Management
+Don’t get me wrong, academia is fantastic for deep dives into specialized research. It’s all about digging deep into a subject, unraveling its mysteries, and adding to the pool of human knowledge. But here’s the thing: this approach has its own set of rules and norms.
 
-Science teaches you to be cautious, to validate, to gather evidence. This is excellent training for entrepreneurship.
+In academia, there’s often a hesitancy to leap into the unknown. It’s more about sticking to proven paths and methods, rather than venturing into uncharted territories. This risk aversion makes perfect sense in the academic world where people is constantly judged by peers. There is limited tolerance for out of the box thinking and progress is done incrementally.
 
-But there's a difference between **managing risk** and **avoiding it**.
+Entrepreneurs must take a plunge, **even before knowing if there’s water in the swimming pool**.
 
-Entrepreneurial scientists learn to:
-- Assess personal, technical, and market risks
-- Make informed decisions with incomplete information
-- Balance the potential upside against acceptable losses
-- Develop strategies to mitigate risks while pursuing value creation
+Academic projects can stretch over years, even decades. There’s a luxury of time to explore, refine, and ponder over details. Both PhDs and postdocs experience just a glimpse of these processes, but very quickly embrace the way of thinking. There’s a given context, long-term objectives, and a very narrow focus.
 
-This isn't about being reckless. It's about being smart about which risks are worth taking.
+In business, however, **time is a luxury you often don’t have**. It’s about making quick decisions, sometimes on the fly.
 
-### 5. Resourcefulness
+Entrepreneurs can’t afford to focus on a single topic, they need to perform a balancing act between **business, product, science, and strategy**.
 
-In academia, you work with limited budgets, shared equipment, and tight timelines. You learn to be resourceful.
+The aspect of working style, which is tightly related to how people behave, is also different. Academics often enjoy a degree of solitude in their research, focusing and valuing individual contributions. Creating a startup is a team sport. You’re constantly collaborating, networking, bouncing ideas off others, and sometimes, compromising to get the best results. First customers are closer to partners. The initial team in a startup is a living organism where everyone contributes across domains, aligned with the founders’ vision.
 
-This skill translates directly to entrepreneurship.
+Let’s not forget about a crucial difference: **access to resources**.
 
-The ability to effectively marshal resources—whether that's human capital, funding, materials, or partnerships—is vital. You need to identify what you need, acquire it within constraints, and use it efficiently.
+In academia, even if you come from constrained environments, you have access to tools, people, space, and funds. Startups work with what they’ve got, stretching every dollar, and getting creative with their resources.
 
-Remember: it's not always about having the most resources. It's about **being the most resourceful**.
+Transitioning **from academia to entrepreneurship**, requires that you brace for a change in pace, shift how you approach problems, and develop a new way of working with others.
 
-### 6. Adaptability and Resilience
+It’s not just about what you know (our you think you know), but how quickly you can adapt and apply that knowledge in a fast-moving, ever-changing business landscape.
 
-Research rarely goes as planned. Experiments fail. Hypotheses prove wrong. Equipment breaks.
-
-Sound familiar?
-
-The entrepreneurial journey shares these characteristics. Markets change. Customers' needs evolve. Technical challenges emerge unexpectedly.
-
-Adaptability is about embracing change, not fighting it. Resilience is about learning from setbacks, not avoiding them. Your scientific training has already prepared you for this—you just need to apply it to a different domain.
-
-### 7. Collaboration and Empathy
-
-Science has always been collaborative. But in entrepreneurship, collaboration takes on new dimensions.
-
-You're not just working with peers who share your expertise. You're working with customers, investors, business partners, and end-users who may have completely different backgrounds and perspectives.
-
-Empathy becomes crucial: understanding others' needs, motivations, and challenges. This empathy helps you build solutions that are both innovative and user-centric.
-
-The most successful scientific entrepreneurs build diverse teams that complement their strengths and challenge their assumptions.
-
-## How to Develop an Entrepreneurial Mindset
-
-Cultivating an entrepreneurial mindset isn't about overnight transformation. It's a gradual process of developing new skills and perspectives.
-
-Here's how to get started:
-
-### 1. Start with What You Have
-
-Remember the three starting points from effectual reasoning:
-- **Who you are**: Your personality, values, and passions
-- **What you know**: Your skills, expertise, and unique knowledge
-- **Whom you know**: Your network and connections
-
-Don't wait for the perfect opportunity or complete understanding. Start with your current resources and build from there.
-
-### 2. Talk to Potential Users
-
-One of the biggest mistakes scientists make when transitioning to entrepreneurship is assuming they know what users need.
-
-Get out of the lab. Talk to people who might use your solution. Ask about their challenges, their workflows, their pain points. This empathy-building exercise will transform how you think about your work.
-
-### 3. Learn Business Basics
-
-You don't need an MBA, but you do need fundamental business literacy:
-- How businesses create and capture value
-- Basic marketing and customer acquisition
-- Financial management and fundraising
-- Legal considerations (IP, incorporation, contracts)
-
-Pick one area at a time and learn enough to understand the landscape and ask good questions.
-
-### 4. Build Something Small
-
-Theory is useful, but practice is transformative.
-
-Build a small prototype. Create a simple tool. Offer to solve someone's problem for free. These early experiences will teach you more than any book or course.
-
-### 5. Connect with the Ecosystem
-
-Find your community:
-- Join local entrepreneurship groups
-- Attend startup events and meetups
-- Connect with other scientist-entrepreneurs
-- Engage with technology transfer offices
-
-Surround yourself with people who are on similar journeys. Learn from their experiences, share your challenges, and build your network.
-
-## The Bridge Between Worlds
-
-An entrepreneurial mindset isn't about abandoning your scientific identity. It's about building a bridge between two worlds.
-
-You bring the rigor, the curiosity, and the problem-solving skills from your scientific training. You add the market awareness, the value proposition thinking, and the business acumen from entrepreneurship.
-
-Together, these create something powerful: the ability to translate great research into real-world impact.
-
-And that—creating impact beyond the lab—is perhaps the greatest validation of good science.
+It’s an exiting and very fulfilling ride, with lots of ups and downs along the way. Hopefully the ups are much more powerful and give you the energy required for moving forward.

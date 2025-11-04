@@ -1,0 +1,452 @@
+{
+  "main": {
+    "id": "af35023bf57712e2",
+    "type": "split",
+    "children": [
+      {
+        "id": "28ec808f42f56548",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "75bd8faeed0b7164",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/solve-or-remove-a-problem.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "solve-or-remove-a-problem"
+            }
+          },
+          {
+            "id": "3c1c0b046319a8c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/solve-or-remove-a-problem.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "solve-or-remove-a-problem"
+            }
+          },
+          {
+            "id": "37a74c4f20b3ba00",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/entrepreneurial-mindset-for-scientists.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "entrepreneurial-mindset-for-scientists"
+            }
+          },
+          {
+            "id": "152573262414a991",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/do-things-that-can-scale.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "do-things-that-can-scale"
+            }
+          },
+          {
+            "id": "380915a3d8c72be8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/how-to-incentivize-scipreneurship.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-to-incentivize-scipreneurship"
+            }
+          },
+          {
+            "id": "4f6ba1f6e33b6669",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/professors-can-enable-scipreneurs.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "professors-can-enable-scipreneurs"
+            }
+          },
+          {
+            "id": "74ea9c53933a26e5",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/my-story-as-a-founder-from-scientist-to-entrepreneur.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "my-story-as-a-founder-from-scientist-to-entrepreneur"
+            }
+          },
+          {
+            "id": "e64902594d8c7731",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/mentor-consultant-coach-partner-who-do-you-need-right-now.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "mentor-consultant-coach-partner-who-do-you-need-right-now"
+            }
+          },
+          {
+            "id": "241ab7577f70035f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/empowering-young-scientists-rethinking-academic-entrepreneurship.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "empowering-young-scientists-rethinking-academic-entrepreneurship"
+            }
+          },
+          {
+            "id": "cf08926299ed2271",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/the-path-to-surface-enhanced-raman-for-exosome-characterization.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "the-path-to-surface-enhanced-raman-for-exosome-characterization"
+            }
+          },
+          {
+            "id": "c921a80daae09dd0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/how-it-feels-quitting-your-own-startup.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-it-feels-quitting-your-own-startup"
+            }
+          },
+          {
+            "id": "802ce3bd18190bdd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/the-things-i-miss-the-most-from-my-time-as-a-phd.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "the-things-i-miss-the-most-from-my-time-as-a-phd"
+            }
+          },
+          {
+            "id": "8d8cec6d36aa33eb",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/there-and-back-again-13-years-apart.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "there-and-back-again-13-years-apart"
+            }
+          },
+          {
+            "id": "976d90b2d6bc6047",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/what-does-the-creation-of-altos-labs-mean.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "what-does-the-creation-of-altos-labs-mean"
+            }
+          },
+          {
+            "id": "e24a61fb7a0ffcb8",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/how-to-write-a-good-cover-letter-for-a-job.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-to-write-a-good-cover-letter-for-a-job"
+            }
+          },
+          {
+            "id": "9a3707160295e05d",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/how-to-present-yourself-in-a-cv.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-to-present-yourself-in-a-cv"
+            }
+          },
+          {
+            "id": "80f5ca6e432ba677",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/how-to-write-a-programming-book.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "how-to-write-a-programming-book"
+            }
+          },
+          {
+            "id": "ffc0cb6d8219d2c4",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "after-a-failure-revert-to-the-last-known-working-state"
+            }
+          }
+        ],
+        "currentTab": 17
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "1b06a3dbc36bc27e",
+    "type": "split",
+    "children": [
+      {
+        "id": "3a8f01fea439d978",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b018cbbe41ccc52b",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "byModifiedTime",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "f2af99096a981321",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "7e732f23b7c1627a",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "d6dc901adedd361b",
+    "type": "split",
+    "children": [
+      {
+        "id": "9b8fe109ed61d6ef",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "fea42bc6949e6fd8",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for after-a-failure-revert-to-the-last-known-working-state"
+            }
+          },
+          {
+            "id": "f9f66dfaa70fb3d2",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from after-a-failure-revert-to-the-last-known-working-state"
+            }
+          },
+          {
+            "id": "0eec33716ab3ef0d",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5425c8be2efa3653",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of after-a-failure-revert-to-the-last-known-working-state"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "ffc0cb6d8219d2c4",
+  "lastOpenFiles": [
+    "articles/how-to-write-a-programming-book.md",
+    "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+    "articles/how-to-present-yourself-in-a-cv.md",
+    "articles/how-to-write-a-good-cover-letter-for-a-job.md",
+    "articles/what-does-the-creation-of-altos-labs-mean.md",
+    "articles/there-and-back-again-13-years-apart.md",
+    "articles/the-things-i-miss-the-most-from-my-time-as-a-phd.md",
+    "articles/how-it-feels-quitting-your-own-startup.md",
+    "articles/the-path-to-surface-enhanced-raman-for-exosome-characterization.md",
+    "articles/exciting-vesicles-the-field-where-biology-meets-technology.md",
+    "articles/empowering-young-scientists-rethinking-academic-entrepreneurship.md",
+    "articles/mentor-consultant-coach-partner-who-do-you-need-right-now.md",
+    "articles/my-story-as-a-founder-from-scientist-to-entrepreneur.md",
+    "articles/Untitled 1.md",
+    "articles/how-to-incentivize-scipreneurship.md",
+    "articles/professors-can-enable-scipreneurs.md",
+    "articles/do-things-that-can-scale.md",
+    "articles/entrepreneurial-mindset-for-scientists.md",
+    "articles/solve-or-remove-a-problem.md",
+    "articles/effectual-reasoning-a-framework-for-aspiring-scipreneurs.md",
+    "images/og/getting-started-pelican.png",
+    "images/og/how-to-write-a-good-cover-letter-for-a-job.png",
+    "images/og/professors-can-enable-scipreneurs.png",
+    "images/og/there-and-back-again-13-years-apart.png",
+    "images/og/solve-or-remove-a-problem.png",
+    "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+    "articles/sample-article.md",
+    "articles/getting-started-with-pelican.md",
+    "images/og/what-does-the-creation-of-altos-labs-mean.png",
+    "images/og/the-things-i-miss-the-most-from-my-time-as-a-phd.png",
+    "images/og/the-path-to-surface-enhanced-raman-for-exosome-characterization.png",
+    "images/og/welcome-new-website.png",
+    "images/og/my-story-as-a-founder-from-scientist-to-entrepreneur.png",
+    "images/og",
+    "Untitled.md",
+    "templates/article.md",
+    "Untitled.base",
+    "templates"
+  ]
+}
