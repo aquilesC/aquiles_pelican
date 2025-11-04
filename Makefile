@@ -22,6 +22,7 @@ help:
 	@echo '   make stopserver      stop local server'
 	@echo '   make css             build TailwindCSS'
 	@echo '   make watch           watch and build CSS'
+	@echo '   make og-images       generate Open Graph images for articles'
 	@echo ''
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo 'Set the RELATIVE_URLS variable to 1 to enable relative urls'
@@ -65,5 +66,12 @@ css:
 watch:
 	npm run watch:css
 
-.PHONY: html help clean regenerate serve devserver stopserver publish css watch
+og-images:
+	@if [ -f $(VENV) ]; then \
+		. $(VENV) && python generate_og_images.py; \
+	else \
+		python3 generate_og_images.py; \
+	fi
+
+.PHONY: html help clean regenerate serve devserver stopserver publish css watch og-images
 

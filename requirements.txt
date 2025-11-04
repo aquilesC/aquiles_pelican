@@ -3,4 +3,6 @@ markdown
 jinja2
 typogrify
 beautifulsoup4
+cairosvg
+pelican-yaml-metadata
 

@@ -128,3 +128,46 @@ Edit `pelicanconf.py` to change:
 4. Add your social media handles in `pelicanconf.py`
 5. Add a favicon to `content/extra/favicon.ico`
 
+## Generating Open Graph Images
+
+The site includes a script to automatically generate Open Graph (OG) images for all articles. These are social media preview images that appear when articles are shared.
+
+### Setup
+
+1. Install dependencies (if not already installed):
+```bash
+source .venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Usage
+
+Run the script to generate OG images for all articles:
+
+```bash
+source .venv/bin/activate
+python generate_og_images.py
+```
+
+The script will:
+- Read all markdown files in `content/articles/`
+- Extract title and summary from each article
+- Generate PNG images at 1200x630px (standard OG size)
+- Save images to `content/images/og/` with filenames based on article slugs
+
+### Customization
+
+The script uses design system colors from `design_brief.json`:
+- Accent color: #1E88E5 (blue bar on left)
+- Text colors: #111111 (primary), #4A4A4A (secondary)
+- Background: White
+
+To customize the design, edit the constants at the top of `generate_og_images.py`:
+- `ACCENT_COLOR`, `TEXT_PRIMARY`, `TEXT_SECONDARY`, `BACKGROUND_COLOR`
+- `OG_WIDTH`, `OG_HEIGHT` for different dimensions
+- Font sizes and spacing in the `generate_svg_content()` function
+
+### Adding OG Images to Articles
+
+After generating OG images, you can reference them in your article metadata or templates. The images are available at `/images/og/{slug}.png`.
+
