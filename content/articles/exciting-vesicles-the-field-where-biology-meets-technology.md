@@ -1,6 +1,6 @@
 ---
 Title: Exciting Vesicles – the field where biology meets technology
-Slug: exciting-vesicles-the-field-where-biology-meets-technology/
+Slug: exciting-vesicles-the-field-where-biology-meets-technology
 Date: 2025-11-04
 Category: Science
 Tags:

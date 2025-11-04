@@ -251,12 +251,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+                "file": "articles/exciting-vesicles-the-field-where-biology-meets-technology.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "after-a-failure-revert-to-the-last-known-working-state"
+              "title": "exciting-vesicles-the-field-where-biology-meets-technology"
             }
           }
         ],
@@ -279,7 +279,7 @@
             "state": {
               "type": "file-explorer",
               "state": {
-                "sortOrder": "byModifiedTime",
+                "sortOrder": "alphabetical",
                 "autoReveal": false
               },
               "icon": "lucide-folder-closed",
@@ -410,15 +410,15 @@
   },
   "active": "ffc0cb6d8219d2c4",
   "lastOpenFiles": [
-    "articles/how-to-write-a-programming-book.md",
+    "articles/the-path-to-surface-enhanced-raman-for-exosome-characterization.md",
+    "articles/there-and-back-again-13-years-apart.md",
     "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+    "articles/how-to-write-a-programming-book.md",
     "articles/how-to-present-yourself-in-a-cv.md",
     "articles/how-to-write-a-good-cover-letter-for-a-job.md",
     "articles/what-does-the-creation-of-altos-labs-mean.md",
-    "articles/there-and-back-again-13-years-apart.md",
     "articles/the-things-i-miss-the-most-from-my-time-as-a-phd.md",
     "articles/how-it-feels-quitting-your-own-startup.md",
-    "articles/the-path-to-surface-enhanced-raman-for-exosome-characterization.md",
     "articles/exciting-vesicles-the-field-where-biology-meets-technology.md",
     "articles/empowering-young-scientists-rethinking-academic-entrepreneurship.md",
     "articles/mentor-consultant-coach-partner-who-do-you-need-right-now.md",
@@ -435,7 +435,6 @@
     "images/og/professors-can-enable-scipreneurs.png",
     "images/og/there-and-back-again-13-years-apart.png",
     "images/og/solve-or-remove-a-problem.png",
-    "articles/after-a-failure-revert-to-the-last-known-working-state.md",
     "articles/sample-article.md",
     "articles/getting-started-with-pelican.md",
     "images/og/what-does-the-creation-of-altos-labs-mean.png",

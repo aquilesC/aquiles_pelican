@@ -1,6 +1,6 @@
 ---
 Title: There and back again 13 years apart
-Slug: there-and-back-again-13-years-apart/
+Slug: there-and-back-again-13-years-apart
 Date: 2025-11-04
 Category: Personal
 Tags:
