@@ -30,58 +30,79 @@
   renderer.setPixelRatio(window.devicePixelRatio);
 
   // Particle system configuration
-  const PARTICLE_COUNT = 2000;
-  const PARTICLE_SIZE = 2;
+  const PARTICLE_COUNT = 500; // Reduced count since we're using individual meshes
+  const PARTICLE_SIZE = 3;
   const GRAVITY = 0.02;
   const DIFFUSION = 0.1;
-  const MOUSE_INFLUENCE = 0.15;
-  const MOUSE_RADIUS = 150;
+  const MOUSE_INFLUENCE = 0.4; // Increased for more evident interaction
+  const MOUSE_RADIUS = 250; // Increased radius for more evident interaction
 
-  // Particle geometry and material
-  const geometry = new THREE.BufferGeometry();
-  const positions = new Float32Array(PARTICLE_COUNT * 3);
-  const velocities = new Float32Array(PARTICLE_COUNT * 3);
-  const colors = new Float32Array(PARTICLE_COUNT * 3);
+  // Warm color palette (RGB values normalized 0-1)
+  const warmColors = [
+    { r: 1.0, g: 0.4, b: 0.2 },   // Deep orange
+    { r: 1.0, g: 0.6, b: 0.3 },   // Orange
+    { r: 1.0, g: 0.7, b: 0.4 },   // Light orange
+    { r: 1.0, g: 0.5, b: 0.3 },   // Burnt orange
+    { r: 0.9, g: 0.3, b: 0.2 },   // Red-orange
+    { r: 1.0, g: 0.8, b: 0.5 },   // Peach
+    { r: 0.9, g: 0.4, b: 0.3 },   // Coral
+    { r: 1.0, g: 0.6, b: 0.4 },   // Salmon
+    { r: 0.8, g: 0.3, b: 0.2 },   // Dark red-orange
+    { r: 1.0, g: 0.7, b: 0.5 }    // Light coral
+  ];
 
-  // Initialize particles
+  // Create spherical particles
+  const particleGroup = new THREE.Group();
+  const particles = [];
+  const velocities = [];
+  const baseColors = [];
+
+  // Sphere geometry for particles (reused)
+  const sphereGeometry = new THREE.SphereGeometry(PARTICLE_SIZE, 8, 8);
+
+  // Initialize particles as individual meshes
   for (let i = 0; i < PARTICLE_COUNT; i++) {
-    const i3 = i * 3;
-    
     // Random positions in a sphere
     const radius = Math.random() * 400 + 100;
     const theta = Math.random() * Math.PI * 2;
     const phi = Math.acos(Math.random() * 2 - 1);
     
-    positions[i3] = radius * Math.sin(phi) * Math.cos(theta);
-    positions[i3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
-    positions[i3 + 2] = radius * Math.cos(phi);
+    const x = radius * Math.sin(phi) * Math.cos(theta);
+    const y = radius * Math.sin(phi) * Math.sin(theta);
+    const z = radius * Math.cos(phi);
     
     // Random initial velocities
-    velocities[i3] = (Math.random() - 0.5) * 0.5;
-    velocities[i3 + 1] = (Math.random() - 0.5) * 0.5;
-    velocities[i3 + 2] = (Math.random() - 0.5) * 0.5;
+    velocities.push({
+      x: (Math.random() - 0.5) * 0.5,
+      y: (Math.random() - 0.5) * 0.5,
+      z: (Math.random() - 0.5) * 0.5
+    });
     
-    // Color gradient (cyan to blue)
-    const colorIntensity = Math.random() * 0.5 + 0.5;
-    colors[i3] = 0.1 * colorIntensity; // R
-    colors[i3 + 1] = 0.5 * colorIntensity; // G
-    colors[i3 + 2] = 0.8 * colorIntensity; // B
+    // Random base color from warm palette
+    const baseColor = warmColors[Math.floor(Math.random() * warmColors.length)];
+    baseColors.push(baseColor);
+    
+    // Create material with warm color
+    const material = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(baseColor.r, baseColor.g, baseColor.b),
+      transparent: true,
+      opacity: 0.7,
+      blending: THREE.AdditiveBlending
+    });
+    
+    // Create sphere mesh
+    const sphere = new THREE.Mesh(sphereGeometry, material);
+    sphere.position.set(x, y, z);
+    
+    particles.push(sphere);
+    particleGroup.add(sphere);
   }
 
-  geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-  geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+  scene.add(particleGroup);
 
-  const material = new THREE.PointsMaterial({
-    size: PARTICLE_SIZE,
-    vertexColors: true,
-    transparent: true,
-    opacity: 0.8,
-    blending: THREE.AdditiveBlending,
-    sizeAttenuation: true
-  });
-
-  const particles = new THREE.Points(geometry, material);
-  scene.add(particles);
+  // Color animation state
+  let colorTime = 0;
+  const COLOR_SPEED = 0.0005; // Slow color transition speed
 
   // Mouse tracking
   const mouse = new THREE.Vector2();
@@ -117,26 +138,37 @@
     mouseActive = false;
   });
 
+  // Helper function to interpolate between colors
+  function lerpColor(color1, color2, t) {
+    return {
+      r: color1.r + (color2.r - color1.r) * t,
+      g: color1.g + (color2.g - color1.g) * t,
+      b: color1.b + (color2.b - color1.b) * t
+    };
+  }
+
   // Animation loop
   let frame = 0;
   function animate() {
     requestAnimationFrame(animate);
     frame++;
+    
+    // Update color time for smooth transitions
+    colorTime += COLOR_SPEED;
+    if (colorTime >= 1) colorTime = 0;
 
     // Smooth mouse interpolation
     mouse.lerp(mouseTarget, 0.1);
 
     // Update particle positions with physics
-    const positions = geometry.attributes.position.array;
-    const velocities_array = velocities;
-
     for (let i = 0; i < PARTICLE_COUNT; i++) {
-      const i3 = i * 3;
+      const particle = particles[i];
+      const vel = velocities[i];
       
       // Current position
-      const x = positions[i3];
-      const y = positions[i3 + 1];
-      const z = positions[i3 + 2];
+      const x = particle.position.x;
+      const y = particle.position.y;
+      const z = particle.position.z;
       
       // Gravity toward center
       const centerX = 0;
@@ -151,12 +183,13 @@
       
       if (distance > 0.1) {
         const gravityForce = GRAVITY / (distance * distance + 1);
-        velocities_array[i3] += dx * gravityForce;
-        velocities_array[i3 + 1] += dy * gravityForce;
-        velocities_array[i3 + 2] += dz * gravityForce;
+        vel.x += dx * gravityForce;
+        vel.y += dy * gravityForce;
+        vel.z += dz * gravityForce;
       }
       
-      // Mouse interaction (repel particles)
+      // Enhanced mouse interaction (repel particles more strongly)
+      let mouseInteractionStrength = 0;
       if (mouseActive) {
         const mouseDx = mouse.x - x;
         const mouseDy = mouse.y - y;
@@ -166,38 +199,67 @@
         if (mouseDist < MOUSE_RADIUS && mouseDist > 0.1) {
           const influence = (MOUSE_RADIUS - mouseDist) / MOUSE_RADIUS;
           const force = MOUSE_INFLUENCE * influence;
-          velocities_array[i3] -= mouseDx * force;
-          velocities_array[i3 + 1] -= mouseDy * force;
-          velocities_array[i3 + 2] -= mouseDz * force * 0.5;
+          vel.x -= mouseDx * force;
+          vel.y -= mouseDy * force;
+          vel.z -= mouseDz * force * 0.5;
+          
+          // Store interaction strength for visual feedback
+          mouseInteractionStrength = influence;
         }
       }
       
       // Diffusion (random walk)
-      velocities_array[i3] += (Math.random() - 0.5) * DIFFUSION;
-      velocities_array[i3 + 1] += (Math.random() - 0.5) * DIFFUSION;
-      velocities_array[i3 + 2] += (Math.random() - 0.5) * DIFFUSION;
+      vel.x += (Math.random() - 0.5) * DIFFUSION;
+      vel.y += (Math.random() - 0.5) * DIFFUSION;
+      vel.z += (Math.random() - 0.5) * DIFFUSION;
       
       // Damping
-      velocities_array[i3] *= 0.98;
-      velocities_array[i3 + 1] *= 0.98;
-      velocities_array[i3 + 2] *= 0.98;
+      vel.x *= 0.98;
+      vel.y *= 0.98;
+      vel.z *= 0.98;
       
       // Update positions
-      positions[i3] += velocities_array[i3];
-      positions[i3 + 1] += velocities_array[i3 + 1];
-      positions[i3 + 2] += velocities_array[i3 + 2];
+      particle.position.x += vel.x;
+      particle.position.y += vel.y;
+      particle.position.z += vel.z;
       
       // Soft boundary (keep particles in view)
       const dist = Math.sqrt(x * x + y * y + z * z);
       if (dist > 600) {
         const scale = 600 / dist;
-        positions[i3] *= scale;
-        positions[i3 + 1] *= scale;
-        positions[i3 + 2] *= scale;
+        particle.position.x *= scale;
+        particle.position.y *= scale;
+        particle.position.z *= scale;
+      }
+      
+      // Color transition through warm palette
+      const colorIndex1 = Math.floor((colorTime + i * 0.001) * warmColors.length) % warmColors.length;
+      const colorIndex2 = (colorIndex1 + 1) % warmColors.length;
+      const t = ((colorTime + i * 0.001) * warmColors.length) % 1;
+      
+      let currentColor = lerpColor(warmColors[colorIndex1], warmColors[colorIndex2], t);
+      
+      // Enhance color when mouse interacts (brighter and more vibrant)
+      if (mouseInteractionStrength > 0) {
+        const brightnessBoost = 0.3 * mouseInteractionStrength;
+        currentColor = {
+          r: Math.min(1, currentColor.r + brightnessBoost),
+          g: Math.min(1, currentColor.g + brightnessBoost * 0.8),
+          b: Math.min(1, currentColor.b + brightnessBoost * 0.6)
+        };
+      }
+      
+      // Update particle color
+      particle.material.color.setRGB(currentColor.r, currentColor.g, currentColor.b);
+      
+      // Scale up particles when mouse interacts for more evident feedback
+      if (mouseInteractionStrength > 0) {
+        const scale = 1 + mouseInteractionStrength * 0.5;
+        particle.scale.set(scale, scale, scale);
+      } else {
+        particle.scale.set(1, 1, 1);
       }
     }
-    
-    geometry.attributes.position.needsUpdate = true;
     
     // Rotate camera slowly
     camera.position.x = Math.sin(frame * 0.001) * 50;

@@ -40,6 +40,8 @@ CATEGORY_URL = 'category/{slug}/'
 CATEGORY_SAVE_AS = 'category/{slug}/index.html'
 
 # Static files
+# Images in content/images/ will be copied to output/images/
+# Reference them in markdown as: ![alt text](/images/filename.png)
 STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
@@ -48,9 +50,13 @@ EXTRA_PATH_METADATA = {
     'extra/_redirects': {'path': '_redirects'},
 }
 
-# Plugin settings (optional, can be added later)
-# PLUGIN_PATHS = ['plugins']
-# PLUGINS = []
+# Exclude templates folder from being parsed as articles/pages
+ARTICLE_EXCLUDES = ['templates']
+PAGE_EXCLUDES = ['templates']
+
+# Plugin settings
+# pelican-yaml-metadata plugin handles YAML frontmatter (--- delimited)
+PLUGINS = ['yaml_metadata']
 
 # Markdown extensions
 MARKDOWN = {
