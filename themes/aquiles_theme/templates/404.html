@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}404 - Page Not Found | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <div class="pt-xxl md:pt-[80px] pb-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <!-- 404 Error Message -->
+      <header class="mb-xxl text-center">
+        <h1 class="text-h1 md:text-6xl lg:text-7xl mb-lg font-heading">404</h1>
+        <h2 class="text-h2 mb-md">Page Not Found</h2>
+        <p class="text-body text-text-secondary mb-xxl max-w-2xl mx-auto">
+          The page you're looking for doesn't exist. It may have been moved, deleted, or the URL might be incorrect.
+        </p>
+        <a href="{{ SITEURL }}/" class="btn btn-primary">
+          Return to Home
+        </a>
+      </header>
+
+      <!-- Latest Articles Section -->
+      {% if articles %}
+      <section class="mt-xxl">
+        <h2 class="text-h2 mb-xxl">Latest Articles</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+          {% for article in articles[:6] %}
+          <article class="bg-background border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex flex-col">
+            {% if article.hero_image %}
+            <div class="aspect-video overflow-hidden">
+              <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
+            </div>
+            {% endif %}
+            <div class="p-lg flex flex-col flex-grow">
+              {% if article.category %}
+              <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
+              {% endif %}
+              <h3 class="text-h4 mb-sm">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
+                  {{ article.title }}
+                </a>
+              </h3>
+              {% if article.summary %}
+              <p class="text-small text-text-secondary mb-md flex-grow">{{ article.summary|truncate(120) }}</p>
+              {% endif %}
+              <div class="mb-md">
+                <a href="{{ SITEURL }}/{{ article.url }}" class="text-body text-accent hover:text-accentAlt hover:underline underline-offset-4 transition-colors font-medium">
+                  Read more →
+                </a>
+              </div>
+              <div class="flex items-center justify-between pt-md border-t border-border">
+                <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary">
+                  {{ article.locale_date }}
+                </time>
+                {% if article.readingtime %}
+                <span class="text-overline text-text-secondary">{{ article.readingtime }} min</span>
+                {% endif %}
+              </div>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+        
+        {% if articles|length > 6 %}
+        <div class="mt-xxl text-center">
+          <a href="{{ SITEURL }}/articles/" class="btn btn-secondary">
+            View all articles
+          </a>
+        </div>
+        {% endif %}
+      </section>
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
+

@@ -16,11 +16,14 @@
       <div>
         <h3 class="text-h4 mb-md">Connect</h3>
         <ul class="space-y-xs">
+          {% if LINKEDIN_USERNAME %}
+          <li><a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">LinkedIn</a></li>
+          {% endif %}
           {% if TWITTER_USERNAME %}
-          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Twitter</a></li>
+          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Twitter</a></li>
           {% endif %}
           {% if GITHUB_USERNAME %}
-          <li><a href="https://github.com/{{ GITHUB_USERNAME }}" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">GitHub</a></li>
+          <li><a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">GitHub</a></li>
           {% endif %}
         </ul>
       </div>

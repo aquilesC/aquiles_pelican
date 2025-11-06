@@ -29,6 +29,33 @@
   <meta name="twitter:title" content="{{ article.title }}" />
   <meta name="twitter:description" content="{{ article.summary|striptags|truncate(200) }}" />
   <meta name="twitter:image" content="{{ SITEURL }}/images/og/{{ article.slug }}.png" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "{{ article.title|e }}",
+    "description": "{{ article.summary|striptags|truncate(200)|e }}",
+    "image": "{{ SITEURL }}/images/og/{{ article.slug }}.png",
+    "datePublished": "{{ article.date.isoformat() }}",
+    {% if article.modified %}"dateModified": "{{ article.modified.isoformat() }}",{% else %}"dateModified": "{{ article.date.isoformat() }}",{% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.author|default(AUTHOR)|e }}"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "{{ SITENAME|e }}"
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "{{ SITEURL }}/{{ article.url }}"
+    }{% if article.category %},
+    "articleSection": "{{ article.category.name|e }}"{% endif %}{% if article.tags %},
+    "keywords": "{{ article.tags|map(attribute='name')|join(', ')|e }}"{% endif %}
+  }
+  </script>
 {% endblock %}
 
 {% block content %}
@@ -92,7 +119,7 @@
       <!-- Share Buttons -->
       <div class="mt-xxl pt-xl border-t border-border">
         <h3 class="text-h4 mb-md">Share this article</h3>
-        <div class="flex gap-md">
+        <div class="flex flex-wrap gap-md mb-lg">
           <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url }}&text={{ article.title|urlencode }}" 
              target="_blank" 
              rel="noopener noreferrer"
@@ -103,9 +130,17 @@
              target="_blank" 
              rel="noopener noreferrer"
              class="btn btn-secondary">
-            LinkedIn
+            Share on LinkedIn
           </a>
         </div>
+        {% if LINKEDIN_USERNAME %}
+        <div class="text-small text-text-secondary">
+          <p class="mb-xs">Connect with me:</p>
+          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+            View my LinkedIn profile
+          </a>
+        </div>
+        {% endif %}
       </div>
     </div>
   </article>

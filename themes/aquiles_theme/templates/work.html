@@ -1,35 +1,219 @@
 {% extends "base.html" %}
 
-{% block title %}Work Experience | {{ SITENAME }}{% endblock %}
+{% block title %}Work Portfolio | {{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+  <style>
+    /* Portfolio grid styling with teal accent */
+    .work-portfolio-card {
+      background: white;
+      border: 2px solid #D1FAE5;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .work-portfolio-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: #0D9488;
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    
+    .work-portfolio-card:hover {
+      border-color: #0D9488;
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.1), 0 4px 6px -2px rgba(13, 148, 136, 0.05);
+      transform: translateY(-4px);
+    }
+    
+    .work-portfolio-card:hover::before {
+      transform: scaleY(1);
+    }
+    
+    .work-portfolio-tag {
+      background: #F0FDFA;
+      color: #047857;
+      border: 1px solid #D1FAE5;
+    }
+  </style>
+{% endblock %}
 
 {% block content %}
-  <div class="pt-xxl md:pt-[80px] pb-xxl">
+  <div class="pt-xxl md:pt-[80px] pb-xxl" style="background: linear-gradient(135deg, #F0FDFA 0%, #FFFFFF 100%);">
     <div class="max-w-content mx-auto px-lg">
-      <header class="mb-xxl">
-        <h1 class="text-h1 mb-md">Work Experience</h1>
-        <p class="text-body text-text-secondary">A summary of my professional journey and projects</p>
+      <!-- Header Section -->
+      <header class="mb-xxl text-center">
+        <h1 class="text-h1 md:text-5xl mb-md font-heading" style="color: #047857;">Work Portfolio</h1>
+        <p class="text-body text-text-secondary max-w-2xl mx-auto">
+          A collection of my professional achievements, projects, and contributions. Each piece represents a unique challenge and solution.
+        </p>
       </header>
 
-      <div class="article-content">
-        {{ page.content }}
-      </div>
-
-      <!-- Work Timeline Section -->
-      <section class="mt-xxl">
-        <h2 class="text-h2 mb-xxl">Timeline</h2>
-        <!-- This will be populated by content from work page or custom data -->
-        <div class="space-y-xl">
-          <!-- Example work entry - structure can be customized -->
-          <div class="border-l-4 border-accent pl-xl py-md">
-            <div class="flex flex-wrap items-baseline gap-md mb-sm">
-              <h3 class="text-h3">Position Title</h3>
-              <time class="text-small text-text-secondary">2020 - Present</time>
-            </div>
-            <p class="text-body text-text-secondary mb-xs"><strong>Company Name</strong></p>
-            <p class="text-body">Description of role and achievements. This can be customized based on your content structure.</p>
+      <!-- Introduction Content -->
+      {% if page.content %}
+      <section class="mb-xxl">
+        <div class="max-w-reading mx-auto">
+          <div class="article-content bg-white rounded-lg p-xxl border-2" style="border-color: #D1FAE5;">
+            {{ page.content }}
           </div>
         </div>
       </section>
+      {% endif %}
+
+      <!-- Work Portfolio Grid -->
+      {% set work_pages = [] %}
+      {% for p in pages %}
+        {% if p.slug != 'work' and p.slug != 'contact' %}
+          {% set is_work_page = False %}
+          {% if p.template == 'work-page' %}
+            {% set is_work_page = True %}
+          {% elif p.work == 'true' or p.work == True %}
+            {% set is_work_page = True %}
+          {% elif p.category and p.category.name == 'work' %}
+            {% set is_work_page = True %}
+          {% endif %}
+          {% if is_work_page %}
+            {% set _ = work_pages.append(p) %}
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+
+      {% if work_pages|length > 0 %}
+      <section class="mb-xxl">
+        <h2 class="text-h2 mb-xxl font-heading text-center" style="color: #047857;">Featured Work</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-lg">
+          {% for work_page in work_pages|sort(attribute='date', reverse=True) %}
+          <article class="work-portfolio-card rounded-lg overflow-hidden flex flex-col h-full">
+            <!-- Hero Image -->
+            {% if work_page.hero_image %}
+            <div class="aspect-video overflow-hidden bg-gradient-to-br from-teal-50 to-teal-100">
+              <img src="{{ SITEURL }}/{{ work_page.hero_image }}" 
+                   alt="{{ work_page.title }}" 
+                   class="w-full h-full object-cover" />
+            </div>
+            {% else %}
+            <div class="aspect-video bg-gradient-to-br from-teal-100 to-teal-200 flex items-center justify-center">
+              <svg class="w-16 h-16 text-teal-600 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+              </svg>
+            </div>
+            {% endif %}
+            
+            <!-- Card Content -->
+            <div class="p-lg flex flex-col flex-grow">
+              <!-- Category/Type -->
+              {% if work_page.category or work_page.work_type %}
+              <span class="work-portfolio-tag inline-block text-overline uppercase tracking-wider mb-sm px-sm py-xs rounded-full font-medium">
+                {{ work_page.category|default(work_page.work_type) }}
+              </span>
+              {% endif %}
+              
+              <!-- Title -->
+              <h3 class="text-h4 mb-sm font-heading" style="color: #047857;">
+                <a href="{{ SITEURL }}/{{ work_page.url }}" class="hover:underline underline-offset-4 transition-colors">
+                  {{ work_page.title }}
+                </a>
+              </h3>
+              
+              <!-- Summary/Description -->
+              {% if work_page.summary %}
+              <p class="text-small text-text-secondary mb-md flex-grow">
+                {{ work_page.summary|truncate(120) }}
+              </p>
+              {% elif work_page.content %}
+              <p class="text-small text-text-secondary mb-md flex-grow">
+                {{ work_page.content|striptags|truncate(120) }}
+              </p>
+              {% endif %}
+              
+              <!-- Meta Information -->
+              <div class="flex flex-wrap items-center gap-sm text-overline text-text-secondary mb-md">
+                {% if work_page.date %}
+                <time datetime="{{ work_page.date.isoformat() }}">{{ work_page.locale_date }}</time>
+                {% endif %}
+                {% if work_page.company %}
+                <span>•</span>
+                <span>{{ work_page.company }}</span>
+                {% endif %}
+              </div>
+              
+              <!-- Technologies/Tags -->
+              {% if work_page.technologies or work_page.tags %}
+              <div class="flex flex-wrap gap-xs mb-md">
+                {% if work_page.technologies %}
+                  {% for tech in work_page.technologies.split(',')[:3] %}
+                  <span class="text-overline px-xs py-xxs rounded" style="background: #F0FDFA; color: #047857; font-size: 10px;">
+                    {{ tech.strip() }}
+                  </span>
+                  {% endfor %}
+                {% elif work_page.tags %}
+                  {% for tag in work_page.tags[:3] %}
+                  <span class="text-overline px-xs py-xxs rounded" style="background: #F0FDFA; color: #047857; font-size: 10px;">
+                    {{ tag.name }}
+                  </span>
+                  {% endfor %}
+                {% endif %}
+              </div>
+              {% endif %}
+              
+              <!-- Read More Link -->
+              <a href="{{ SITEURL }}/{{ work_page.url }}" 
+                 class="inline-flex items-center gap-xs text-body font-medium mt-auto" 
+                 style="color: #0D9488;">
+                View Details
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                </svg>
+              </a>
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </section>
+      {% else %}
+      <!-- Empty State -->
+      <section class="mb-xxl text-center py-xxl">
+        <div class="max-w-md mx-auto">
+          <svg class="w-24 h-24 mx-auto mb-lg text-teal-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+          </svg>
+          <h2 class="text-h3 mb-md font-heading" style="color: #047857;">No work items yet</h2>
+          <p class="text-body text-text-secondary mb-lg">
+            Work portfolio items will appear here. Create pages with <code>Template: work-page</code> in their metadata to add them to this portfolio.
+          </p>
+        </div>
+      </section>
+      {% endif %}
+
+      <!-- Connect Section -->
+      {% if LINKEDIN_USERNAME %}
+      <section class="mt-xxl pt-xxl border-t" style="border-color: #D1FAE5;">
+        <div class="text-center max-w-2xl mx-auto">
+          <h2 class="text-h2 mb-md font-heading" style="color: #047857;">Let's Connect</h2>
+          <p class="text-body text-text-secondary mb-lg">
+            Interested in collaborating or learning more about my work? I'd love to hear from you.
+          </p>
+          <div class="flex flex-wrap justify-center gap-md">
+            <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               class="btn px-xxl py-lg font-medium transition-colors"
+               style="background: #0D9488; color: white;">
+              View LinkedIn Profile
+            </a>
+            <a href="{{ SITEURL }}/contact/" 
+               class="btn btn-secondary px-xxl py-lg font-medium">
+              Get in Touch
+            </a>
+          </div>
+        </div>
+      </section>
+      {% endif %}
     </div>
   </div>
 {% endblock %}

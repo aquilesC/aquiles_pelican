@@ -31,6 +31,15 @@
     letter-spacing: -0.5px;
   }
 
+  /* Global link styles - applies to all links except buttons */
+  a:not(.btn) {
+    @apply text-accent underline-offset-4 transition-colors;
+    @apply hover:text-accent-alt hover:underline;
+  }
+
+  /* Navigation links have their own styles that will override */
+  /* Article content links have their own styles that will override */
+
   /* Focus states for accessibility */
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-accent;
@@ -221,6 +230,75 @@
   .header-nav::after {
     content: none;
     display: none;
+  }
+
+  /* Work page content styling */
+  .work-content {
+    @apply max-w-reading mx-auto;
+  }
+
+  .work-content p {
+    @apply mb-lg;
+  }
+
+  .work-content a {
+    color: #0D9488;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 2px;
+    transition: color 0.2s ease;
+  }
+
+  .work-content a:hover {
+    color: #047857;
+  }
+
+  .work-content img {
+    @apply w-full rounded-lg my-xxl;
+  }
+
+  .work-content h2 {
+    @apply text-h2 font-heading mb-lg mt-xxl;
+    color: #047857;
+  }
+
+  .work-content h3 {
+    @apply text-h3 font-heading mb-md mt-xl;
+    color: #047857;
+  }
+
+  .work-content h4 {
+    @apply text-h4 font-heading mb-sm mt-lg;
+    color: #047857;
+  }
+
+  .work-content ul,
+  .work-content ol {
+    @apply mb-lg pl-lg;
+  }
+
+  .work-content li {
+    @apply mb-sm;
+  }
+
+  .work-content blockquote {
+    @apply border-l-4 pl-xl my-xxl italic;
+    border-color: #0D9488;
+    color: #64748B;
+  }
+
+  .work-content code {
+    @apply bg-teal-50 px-xs py-xxs rounded text-small;
+    color: #047857;
+    font-family: 'Monaco', 'Courier New', monospace;
+  }
+
+  .work-content pre {
+    @apply bg-teal-50 p-lg rounded-lg my-lg overflow-x-auto;
+  }
+
+  .work-content pre code {
+    @apply bg-transparent p-0;
   }
 }
 

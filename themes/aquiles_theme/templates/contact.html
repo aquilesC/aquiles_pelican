@@ -87,10 +87,18 @@
         <div class="mt-xxl pt-xl border-t border-border">
           <h2 class="text-h3 mb-lg">Other Ways to Reach Me</h2>
           <div class="space-y-md text-body text-text-secondary">
+            {% if LINKEDIN_USERNAME %}
+            <p>
+              <strong>LinkedIn:</strong> 
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+                {{ LINKEDIN_USERNAME }}
+              </a>
+            </p>
+            {% endif %}
             {% if TWITTER_USERNAME %}
             <p>
               <strong>Twitter:</strong> 
-              <a href="https://twitter.com/{{ TWITTER_USERNAME }}" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+              <a href="https://twitter.com/{{ TWITTER_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
                 @{{ TWITTER_USERNAME }}
               </a>
             </p>
@@ -98,7 +106,7 @@
             {% if GITHUB_USERNAME %}
             <p>
               <strong>GitHub:</strong> 
-              <a href="https://github.com/{{ GITHUB_USERNAME }}" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
+              <a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
                 {{ GITHUB_USERNAME }}
               </a>
             </p>

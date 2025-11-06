@@ -9,6 +9,7 @@ and generates OG images using an SVG template.
 import os
 import re
 import glob
+import argparse
 from pathlib import Path
 import cairosvg
 from typing import Dict, Optional
@@ -148,7 +149,7 @@ def generate_svg_content(title: str, summary: Optional[str]) -> str:
     return svg
 
 
-def generate_og_image(article_file: Path, output_dir: Path):
+def generate_og_image(article_file: Path, output_dir: Path, force: bool = False):
     """Generate OG image for a single article."""
     metadata = parse_article_metadata(article_file)
     
@@ -160,13 +161,18 @@ def generate_og_image(article_file: Path, output_dir: Path):
         print(f"⚠️  Skipping {article_file.name}: No slug found")
         return
     
+    # Output filename
+    output_file = output_dir / f"{metadata['slug']}.png"
+    
+    # Skip if file exists and force is not set
+    if output_file.exists() and not force:
+        print(f"⏭️  Skipping {metadata['title']}: Image already exists (use --force to regenerate)")
+        return
+    
     print(f"📝 Processing: {metadata['title']}")
     
     # Generate SVG content
     svg_content = generate_svg_content(metadata["title"], metadata.get("summary"))
-    
-    # Output filename
-    output_file = output_dir / f"{metadata['slug']}.png"
     
     # Convert SVG to PNG
     try:
@@ -183,6 +189,17 @@ def generate_og_image(article_file: Path, output_dir: Path):
 
 def main():
     """Main function to generate OG images for all articles."""
+    # Parse command-line arguments
+    parser = argparse.ArgumentParser(
+        description="Generate Open Graph (OG) images for articles"
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="Regenerate images even if they already exist"
+    )
+    args = parser.parse_args()
+    
     # Create output directory if it doesn't exist
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     
@@ -196,7 +213,7 @@ def main():
     print(f"🎨 Generating OG images for {len(article_files)} articles...\n")
     
     for article_file in sorted(article_files):
-        generate_og_image(article_file, OUTPUT_DIR)
+        generate_og_image(article_file, OUTPUT_DIR, force=args.force)
     
     print(f"\n✨ Done! Generated images saved to {OUTPUT_DIR}")
 

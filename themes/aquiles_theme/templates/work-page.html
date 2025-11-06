@@ -1,0 +1,276 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+
+{% block description %}{{ page.summary|default(page.title)|striptags|truncate(160) }}{% endblock %}
+
+{% block extra_head %}
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
+  <meta property="og:title" content="{{ page.title }}" />
+  <meta property="og:description" content="{{ page.summary|default(page.title)|striptags|truncate(200) }}" />
+  {% if page.hero_image %}
+  <meta property="og:image" content="{{ SITEURL }}/{{ page.hero_image }}" />
+  {% endif %}
+  <meta property="og:site_name" content="{{ SITENAME }}" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ page.title }}" />
+  <meta name="twitter:description" content="{{ page.summary|default(page.title)|striptags|truncate(200) }}" />
+  {% if page.hero_image %}
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ page.hero_image }}" />
+  {% endif %}
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": "{{ page.title|e }}",
+    "description": "{{ page.summary|default(page.title)|striptags|truncate(200)|e }}",
+    {% if page.hero_image %}"image": "{{ SITEURL }}/{{ page.hero_image }}",{% endif %}
+    {% if page.date %}"datePublished": "{{ page.date.isoformat() }}",{% endif %}
+    "author": {
+      "@type": "Person",
+      "name": "{{ AUTHOR|e }}"
+    }
+  }
+  </script>
+  
+  <style>
+    /* Portfolio-specific color palette - warmer, more professional */
+    .work-page {
+      --work-accent: #0D9488; /* Teal accent */
+      --work-accent-alt: #047857; /* Darker teal */
+      --work-accent-light: #5EEAD4; /* Light teal */
+      --work-bg-gradient: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 50%, #99F6E4 100%);
+      --work-card-bg: #FFFFFF;
+      --work-card-border: #D1FAE5;
+      --work-text-muted: #64748B;
+    }
+    
+    .work-hero {
+      background: var(--work-bg-gradient);
+      border-bottom: 3px solid var(--work-accent);
+    }
+    
+    .work-metric {
+      background: var(--work-card-bg);
+      border: 2px solid var(--work-card-border);
+      border-left: 4px solid var(--work-accent);
+    }
+    
+    .work-tag {
+      background: #F0FDFA;
+      color: var(--work-accent-alt);
+      border: 1px solid var(--work-card-border);
+    }
+    
+    .work-tag:hover {
+      background: var(--work-accent);
+      color: white;
+    }
+    
+    .work-achievement-card {
+      background: var(--work-card-bg);
+      border: 2px solid var(--work-card-border);
+      transition: all 0.3s ease;
+    }
+    
+    .work-achievement-card:hover {
+      border-color: var(--work-accent);
+      box-shadow: 0 10px 25px -5px rgba(13, 148, 136, 0.1), 0 4px 6px -2px rgba(13, 148, 136, 0.05);
+      transform: translateY(-2px);
+    }
+    
+    .work-link {
+      color: var(--work-accent);
+      border-bottom: 2px solid var(--work-accent-light);
+    }
+    
+    .work-link:hover {
+      color: var(--work-accent-alt);
+      border-bottom-color: var(--work-accent);
+    }
+    
+    .work-btn-primary {
+      background: var(--work-accent);
+      color: white;
+    }
+    
+    .work-btn-primary:hover {
+      background: var(--work-accent-alt);
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+  <div class="work-page">
+    <!-- Hero Section with Gradient Background -->
+    <section class="work-hero pt-xxl md:pt-[100px] pb-xxl">
+      <div class="max-w-content mx-auto px-lg">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-xxl items-center">
+          <!-- Text Content -->
+          <div>
+            {% if page.category or page.work_type %}
+            <span class="inline-block text-overline uppercase tracking-wider mb-md px-md py-xs rounded-full" style="background: rgba(13, 148, 136, 0.1); color: var(--work-accent-alt);">
+              {{ page.category|default(page.work_type) }}
+            </span>
+            {% endif %}
+            <h1 class="text-h1 md:text-5xl mb-md font-heading" style="color: var(--work-accent-alt);">
+              {{ page.title }}
+            </h1>
+            {% if page.summary %}
+            <p class="text-h4 mb-lg" style="color: var(--work-text-muted);">
+              {{ page.summary }}
+            </p>
+            {% endif %}
+            
+            <!-- Meta Information -->
+            <div class="flex flex-wrap items-center gap-md text-small mb-lg" style="color: var(--work-text-muted);">
+              {% if page.date %}
+              <time datetime="{{ page.date.isoformat() }}">{{ page.locale_date }}</time>
+              {% endif %}
+              {% if page.company %}
+              <span>•</span>
+              <span><strong>{{ page.company }}</strong></span>
+              {% endif %}
+              {% if page.role %}
+              <span>•</span>
+              <span>{{ page.role }}</span>
+              {% endif %}
+            </div>
+            
+            <!-- Tags/Skills -->
+            {% if page.tags or page.technologies %}
+            <div class="flex flex-wrap gap-xs mb-lg">
+              {% if page.technologies %}
+                {% for tech in page.technologies.split(',') %}
+                <span class="work-tag px-sm py-xs rounded-full text-overline font-medium transition-colors">
+                  {{ tech.strip() }}
+                </span>
+                {% endfor %}
+              {% elif page.tags %}
+                {% for tag in page.tags %}
+                <span class="work-tag px-sm py-xs rounded-full text-overline font-medium transition-colors">
+                  {{ tag.name }}
+                </span>
+                {% endfor %}
+              {% endif %}
+            </div>
+            {% endif %}
+          </div>
+          
+          <!-- Hero Image/Media -->
+          {% if page.hero_image %}
+          <div class="rounded-xl overflow-hidden shadow-2xl">
+            <img src="{{ SITEURL }}/{{ page.hero_image }}" alt="{{ page.title }}" class="w-full h-auto" />
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Metrics/Achievements Section -->
+    {% if page.metrics or page.achievements %}
+    <section class="py-xxl bg-white">
+      <div class="max-w-content mx-auto px-lg">
+        <h2 class="text-h2 mb-xxl font-heading text-center" style="color: var(--work-accent-alt);">Key Achievements</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+          {% if page.metrics %}
+            {% for metric in page.metrics.split('|') %}
+              {% set parts = metric.split(':') %}
+              {% if parts|length == 2 %}
+              <div class="work-metric rounded-lg p-lg text-center">
+                <div class="text-h1 font-heading mb-sm" style="color: var(--work-accent);">{{ parts[0].strip() }}</div>
+                <div class="text-body" style="color: var(--work-text-muted);">{{ parts[1].strip() }}</div>
+              </div>
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Main Content Section -->
+    <section class="py-xxl" style="background: #FAFAFA;">
+      <div class="max-w-content mx-auto px-lg">
+        <div class="max-w-reading mx-auto">
+          <div class="work-content prose prose-lg max-w-none">
+            {{ page.content }}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Project Highlights / Case Studies -->
+    {% if page.highlights %}
+    <section class="py-xxl bg-white">
+      <div class="max-w-content mx-auto px-lg">
+        <h2 class="text-h2 mb-xxl font-heading text-center" style="color: var(--work-accent-alt);">Project Highlights</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+          {% for highlight in page.highlights.split('|') %}
+            {% set parts = highlight.split('::') %}
+            {% if parts|length >= 2 %}
+            <div class="work-achievement-card rounded-lg p-lg">
+              <h3 class="text-h4 mb-md font-heading" style="color: var(--work-accent-alt);">
+                {{ parts[0].strip() }}
+              </h3>
+              <p class="text-body" style="color: var(--work-text-muted);">
+                {{ parts[1].strip() }}
+              </p>
+              {% if parts|length > 2 %}
+              <a href="{{ parts[2].strip() }}" class="work-link inline-block mt-md font-medium" target="_blank" rel="noopener noreferrer">
+                Learn more →
+              </a>
+              {% endif %}
+            </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    {% endif %}
+
+    <!-- Call to Action / Links -->
+    <section class="py-xxl" style="background: var(--work-bg-gradient);">
+      <div class="max-w-content mx-auto px-lg text-center">
+        <h2 class="text-h2 mb-md font-heading" style="color: var(--work-accent-alt);">Want to know more?</h2>
+        <p class="text-body mb-lg" style="color: var(--work-text-muted); max-width: 600px; margin-left: auto; margin-right: auto;">
+          Interested in learning more about this project or discussing potential collaboration?
+        </p>
+        <div class="flex flex-wrap justify-center gap-md">
+          <a href="{{ SITEURL }}/contact/" class="work-btn-primary btn px-xxl py-lg rounded-lg font-medium transition-colors">
+            Get in Touch
+          </a>
+          {% if page.project_url %}
+          <a href="{{ page.project_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary px-xxl py-lg rounded-lg font-medium">
+            View Project
+          </a>
+          {% endif %}
+          {% if LINKEDIN_USERNAME %}
+          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary px-xxl py-lg rounded-lg font-medium">
+            Connect on LinkedIn
+          </a>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <!-- Back to Work -->
+    <section class="py-lg bg-white border-t" style="border-color: var(--work-card-border);">
+      <div class="max-w-content mx-auto px-lg">
+        <a href="{{ SITEURL }}/work/" class="work-link inline-flex items-center gap-sm font-medium">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+          </svg>
+          Back to Work Portfolio
+        </a>
+      </div>
+    </section>
+  </div>
+{% endblock %}
+

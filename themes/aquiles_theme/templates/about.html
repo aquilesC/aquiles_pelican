@@ -1,0 +1,107 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title|default('About') }} | {{ SITENAME }}{% endblock %}
+
+{% block content %}
+  <div class="pt-xxl md:pt-[80px] pb-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      <!-- Hero Section -->
+      <header class="mb-xxl">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-xxl items-center">
+          <!-- Photo Column -->
+          <div class="order-2 md:order-1">
+            <div class="relative">
+              <div class="aspect-square rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-accent to-accent-alt max-w-md mx-auto">
+                <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
+                     alt="{{ AUTHOR }}" 
+                     class="w-full h-full object-cover"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="w-full h-full bg-gradient-to-br from-accent to-accent-alt flex items-center justify-center text-white text-h1 font-heading" style="display: none;">
+                  {{ SITENAME[0] }}
+                </div>
+              </div>
+              <!-- Decorative ring -->
+              <div class="absolute -inset-4 rounded-full border-2 border-accent/20 animate-pulse max-w-md mx-auto"></div>
+            </div>
+          </div>
+          
+          <!-- Text Column -->
+          <div class="order-1 md:order-2">
+            <h1 class="text-h1 md:text-6xl mb-lg font-heading">{{ page.title|default('About Me') }}</h1>
+            {% if page.summary %}
+            <p class="text-h4 text-text-secondary mb-lg">{{ page.summary }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <div class="max-w-3xl mx-auto">
+        <div class="article-content prose prose-lg max-w-none">
+          {{ page.content }}
+        </div>
+
+        <!-- Additional Sections (can be customized based on content) -->
+        {% if page.extra %}
+        {% if page.extra.timeline %}
+        <section class="mt-xxl">
+          <h2 class="text-h2 mb-xxl font-heading">Timeline</h2>
+          <div class="space-y-xl">
+            {% for item in page.extra.timeline %}
+            <div class="border-l-4 border-accent pl-xl py-md">
+              <div class="flex flex-wrap items-baseline gap-md mb-sm">
+                <h3 class="text-h3">{{ item.title }}</h3>
+                {% if item.date %}
+                <time class="text-small text-text-secondary">{{ item.date }}</time>
+                {% endif %}
+              </div>
+              {% if item.organization %}
+              <p class="text-body text-text-secondary mb-xs"><strong>{{ item.organization }}</strong></p>
+              {% endif %}
+              {% if item.description %}
+              <p class="text-body">{{ item.description }}</p>
+              {% endif %}
+            </div>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+
+        {% if page.extra.interests %}
+        <section class="mt-xxl">
+          <h2 class="text-h2 mb-lg font-heading">Interests</h2>
+          <div class="flex flex-wrap gap-md">
+            {% for interest in page.extra.interests %}
+            <span class="px-md py-xs bg-muted-bg border border-border rounded-full text-body text-text-secondary">
+              {{ interest }}
+            </span>
+            {% endfor %}
+          </div>
+        </section>
+        {% endif %}
+        {% endif %}
+
+        <!-- Contact CTA -->
+        <section class="mt-xxl pt-xxl border-t border-border">
+          <div class="text-center">
+            <h2 class="text-h2 mb-md font-heading">Get in Touch</h2>
+            <p class="text-body text-text-secondary mb-lg">
+              Interested in collaborating or just want to say hello?
+            </p>
+            <div class="flex flex-wrap justify-center gap-md">
+              <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
+                Contact Me
+              </a>
+              {% if LINKEDIN_USERNAME %}
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                LinkedIn
+              </a>
+              {% endif %}
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
