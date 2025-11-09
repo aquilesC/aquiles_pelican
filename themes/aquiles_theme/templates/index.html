@@ -2,6 +2,10 @@
 
 {% block title %}{{ SITENAME }}{% endblock %}
 
+{% block meta %}
+<meta name="description" content="Collection of essays and articles based on the work and experiences of Aquiles Carattino, an entrepreneurial scientist (scipreneur). He is passionate about solving complex challenges at the intersection of science and business." />
+{% endblock %}
+
 {% block extra_head %}
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 {% endblock %}
@@ -13,10 +17,10 @@
     <div class="relative z-10 h-full flex items-center justify-center pt-24">
       <div class="max-w-content mx-auto px-lg text-center">
         <h1 class="text-h1 md:text-6xl lg:text-7xl mb-lg font-heading text-white drop-shadow-lg">
-          Aquiles' corner of the internet.
+          Aquiles Carattino: Scientist + Entrepreneur = Scipreneur
         </h1>
         <p class="text-body md:text-xl text-gray-300 mb-xxl max-w-2xl mx-auto drop-shadow-md">
-          This website is my way of thinking out loud. Found something interesting? Drop me a line!
+          I share my experiences and learnings on science, entrepreneurship, and the intersection of the two. I like calling it the scipreneur's journey.
         </p>
         {% if articles %}
           {% set featured = articles[0] %}
@@ -43,7 +47,7 @@
           <div class="relative">
             <div class="aspect-square rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-accent to-accent-alt">
               <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-                   alt="{{ AUTHOR }}" 
+                   alt="Profile picture of Aquiles Carattino an entrepreneurial scientist, scipreneur. " 
                    class="w-full h-full object-cover"
                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
               <div class="w-full h-full bg-gradient-to-br from-accent to-accent-alt flex items-center justify-center text-white text-h2 font-heading" style="display: none;">
@@ -69,7 +73,7 @@
               Sometimes I see myself as a technologist. I try to understand how things fit together and what can be built with the latest developments. I believe there is a lot of potential that comes from basic research and we should find better ways of capitalizing on it. 
             </p>
             <a href="{{ SITEURL }}/work/" class="btn btn-primary">
-              Learn more about my work
+              Explore my career journey
             </a>
           </div>
         </div>
@@ -153,10 +157,13 @@
       <h2 class="text-h2 mb-xxl">Work Experience</h2>
       <div class="prose prose-lg max-w-none">
         <p class="text-body text-text-secondary mb-lg">
-          Explore my professional journey, projects, and contributions to the tech industry.
+          My biggest achievements include launching Python for the Lab, co-founding Dispertech, and being the first Product Manager at VSParticle. After my PhD, I have always worked in deep-tech, including instrumentation, product development, and entrepreneurship. 
+        </p>
+        <p class="text-body text-text-secondary mb-lg">
+          I write to systemitize what I learn and think. Some of those topics evolve over time and I try to revisit and update the content if I feel it's necessary. 
         </p>
         <a href="{{ SITEURL }}/work/" class="btn btn-primary">
-          Learn more
+          See what kept me busy for the past few years
         </a>
       </div>
     </div>
