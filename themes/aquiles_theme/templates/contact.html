@@ -11,14 +11,7 @@
       </header>
 
       <div class="max-w-2xl">
-        <!-- Netlify Form -->
-        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" class="space-y-lg">
-          <!-- Honeypot field for spam protection -->
-          <input type="hidden" name="form-name" value="contact" />
-          <p class="hidden">
-            <label>Don't fill this out if you're human: <input name="bot-field" /></label>
-          </p>
-
+        <form id="contact-form" action="https://formspree.io/f/xqawzylw" method="POST" class="space-y-lg">
           <!-- Name -->
           <div>
             <label for="name" class="block text-body mb-xs font-medium">Name <span class="text-accent">*</span></label>
@@ -77,10 +70,7 @@
             </button>
           </div>
 
-          <!-- Success Message (will be shown by Netlify after submission) -->
-          <div class="hidden" id="form-success">
-            <p class="text-body text-status-success">Thank you! Your message has been sent. I'll get back to you soon.</p>
-          </div>
+          <p id="contact-form-status" class="text-body text-text-secondary" role="status" aria-live="polite"></p>
         </form>
 
         <!-- Additional Contact Info -->
@@ -118,3 +108,55 @@
   </div>
 {% endblock %}
 
+{% block extra_scripts %}
+  {{ super() }}
+  <script>
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function handleSubmit(event) {
+        event.preventDefault();
+        const status = document.getElementById('contact-form-status');
+        if (!status) {
+          return;
+        }
+
+        status.textContent = '';
+        status.classList.remove('text-status-error', 'text-status-success');
+
+        const data = new FormData(contactForm);
+
+        try {
+          const response = await fetch(contactForm.action, {
+            method: contactForm.method,
+            body: data,
+            headers: {
+              Accept: 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            status.textContent = 'Thanks for your submission!';
+            status.classList.add('text-status-success');
+            contactForm.reset();
+            return;
+          }
+
+          let errorMessage = 'Oops! There was a problem submitting your form';
+          try {
+            const responseData = await response.json();
+            if (responseData && responseData.errors) {
+              errorMessage = responseData.errors.map(error => error.message).join(', ');
+            }
+          } catch (parseError) {
+            // Ignore JSON parsing errors and fall back to default message
+          }
+          status.textContent = errorMessage;
+          status.classList.add('text-status-error');
+        } catch (error) {
+          status.textContent = 'Oops! There was a problem submitting your form';
+          status.classList.add('text-status-error');
+        }
+      });
+    }
+  </script>
+{% endblock %}
