@@ -2,13 +2,13 @@
 # -*- coding: utf-8 -*- #
 from __future__ import unicode_literals
 
-AUTHOR = 'Aquiles'
-SITENAME = 'Aquiles'
-SITEURL = ''
+AUTHOR = 'Aquiles Carattino'
+SITENAME = 'Aquiles Carattino | Scipreneur, Innovator'
+SITEURL = 'https://www.aquiles.me'
 
 PATH = 'content'
 
-TIMEZONE = 'America/New_York'
+TIMEZONE = 'Europe/Amsterdam'
 
 DEFAULT_LANG = 'en'
 
