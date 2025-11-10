@@ -3,10 +3,28 @@
 {% block title %}Contact | {{ SITENAME }}{% endblock %}
 
 {% block content %}
+  <section class="relative h-screen contact-hero" style="background: radial-gradient(circle at top, rgba(14, 18, 28, 0.85), #080a10 70%);">
+    <canvas id="orbit-canvas" class="absolute inset-0 w-full h-full"></canvas>
+    <div class="relative z-10 h-full flex items-center justify-center">
+      <div class="max-w-content mx-auto px-lg text-center text-white">
+        <span class="text-overline uppercase tracking-widest text-accent inline-block mb-sm">Let's orbit ideas</span>
+        <h1 class="text-h1 md:text-6xl lg:text-7xl font-heading mb-lg drop-shadow-lg">Gravity Meets Conversations</h1>
+        <p class="text-body md:text-xl text-gray-300 max-w-2xl mx-auto drop-shadow-md">
+          Reach out and let’s explore how our worlds can align. Move your cursor to nudge the planets toward new possibilities.
+        </p>
+      </div>
+    </div>
+    <div class="absolute bottom-xl left-1/2 -translate-x-1/2 z-10 animate-bounce pointer-events-none text-white/70">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </div>
+  </section>
+
   <div class="py-xxl">
     <div class="max-w-content mx-auto px-lg">
       <header class="mb-xxl">
-        <h1 class="text-h1 mb-md">Get in Touch</h1>
+        <h2 class="text-h1 mb-md">Get in Touch</h2>
         <p class="text-body text-text-secondary">Have a question or want to collaborate? Send me a message.</p>
       </header>
 
@@ -111,6 +129,225 @@
 {% block extra_scripts %}
   {{ super() }}
   <script>
+    (function () {
+      const heroSection = document.querySelector('.contact-hero');
+      const canvas = document.getElementById('orbit-canvas');
+      if (!heroSection || !canvas) {
+        return;
+      }
+
+      const ctx = canvas.getContext('2d');
+      const devicePixelRatio = window.devicePixelRatio || 1;
+      const planets = [];
+      const colors = [
+        '#F3B700', '#FF7A00', '#FF4F79', '#00C9A7', '#6C63FF',
+        '#1E88E5', '#FFB199', '#9C27B0', '#4DD0E1'
+      ];
+      const baseDistance = 60;
+      const distanceStep = 45;
+      const baseMass = 400;
+      const sunRadius = 24;
+
+      let mousePosition = null;
+      let animationFrame;
+
+      function resizeCanvas() {
+        const { width, height } = heroSection.getBoundingClientRect();
+        canvas.width = width * devicePixelRatio;
+        canvas.height = height * devicePixelRatio;
+        canvas.style.width = `${width}px`;
+        canvas.style.height = `${height}px`;
+        ctx.scale(devicePixelRatio, devicePixelRatio);
+      }
+
+      function createPlanets() {
+        planets.length = 0;
+        const planetCount = 18;
+        for (let i = 0; i < planetCount; i += 1) {
+          const distance = baseDistance + i * distanceStep * 0.85;
+          const angle = (i / planetCount) * Math.PI * 2;
+          const size = 6 + Math.random() * 6;
+          const baseOrbitSpeed = Math.sqrt(baseMass / distance) * 0.045;
+          const speedFactor = 0.85 + Math.random() * 0.3;
+          const radialBias = (Math.random() - 0.5) * 0.06 * baseOrbitSpeed;
+          const tangentX = -Math.sin(angle);
+          const tangentY = Math.cos(angle);
+          const radialX = Math.cos(angle);
+          const radialY = Math.sin(angle);
+          planets.push({
+            distance,
+            angle,
+            size,
+            color: colors[i % colors.length],
+            position: { x: 0, y: 0 },
+            velocity: {
+              x: tangentX * baseOrbitSpeed * speedFactor + radialX * radialBias,
+              y: tangentY * baseOrbitSpeed * speedFactor + radialY * radialBias
+            }
+          });
+        }
+      }
+
+      function updatePlanetPositions(deltaTime) {
+        const width = canvas.width / devicePixelRatio;
+        const height = canvas.height / devicePixelRatio;
+        const center = { x: width / 2, y: height / 2 };
+        const gravitationalConstant = 0.08;
+
+        planets.forEach(planet => {
+          const dx = planet.position.x - center.x;
+          const dy = planet.position.y - center.y;
+          const distance = Math.hypot(dx, dy) || 1;
+
+          const sunForce = -(gravitationalConstant * baseMass) / (distance * distance);
+          planet.velocity.x += (dx / distance) * sunForce * deltaTime;
+          planet.velocity.y += (dy / distance) * sunForce * deltaTime;
+
+          if (mousePosition) {
+            const mdx = planet.position.x - mousePosition.x;
+            const mdy = planet.position.y - mousePosition.y;
+            const mdistance = Math.hypot(mdx, mdy) || 1;
+            const influence = -28 / (mdistance * mdistance);
+            planet.velocity.x += (mdx / mdistance) * influence * deltaTime;
+            planet.velocity.y += (mdy / mdistance) * influence * deltaTime;
+          }
+
+          planet.position.x += planet.velocity.x * deltaTime;
+          planet.position.y += planet.velocity.y * deltaTime;
+        });
+      }
+
+      function render() {
+        const width = canvas.width / devicePixelRatio;
+        const height = canvas.height / devicePixelRatio;
+        ctx.clearRect(0, 0, width, height);
+
+        const center = { x: width / 2, y: height / 2 };
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        const glowGradient = ctx.createRadialGradient(
+          center.x,
+          center.y,
+          sunRadius * 0.2,
+          center.x,
+          center.y,
+          sunRadius * 4
+        );
+        glowGradient.addColorStop(0, 'rgba(255, 229, 127, 0.8)');
+        glowGradient.addColorStop(0.4, 'rgba(255, 170, 82, 0.6)');
+        glowGradient.addColorStop(1, 'rgba(12, 16, 26, 0)');
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, sunRadius * 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = glowGradient;
+        ctx.fill();
+        ctx.restore();
+
+        ctx.beginPath();
+        ctx.arc(center.x, center.y, sunRadius, 0, Math.PI * 2);
+        ctx.fillStyle = '#FFCA28';
+        ctx.fill();
+
+        planets.forEach(planet => {
+          const orbitRadius = Math.hypot(planet.position.x - center.x, planet.position.y - center.y);
+          ctx.beginPath();
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+          ctx.lineWidth = 1;
+          ctx.arc(center.x, center.y, orbitRadius, 0, Math.PI * 2);
+          ctx.stroke();
+
+          ctx.beginPath();
+          ctx.fillStyle = planet.color;
+          ctx.shadowBlur = 8;
+          ctx.shadowColor = planet.color;
+          ctx.arc(planet.position.x, planet.position.y, planet.size, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.shadowBlur = 0;
+        });
+      }
+
+      function step(timestamp) {
+        if (!step.last) {
+          step.last = timestamp;
+        }
+        const delta = Math.min((timestamp - step.last) / 16, 2);
+        updatePlanetPositions(delta);
+        render();
+        step.last = timestamp;
+        animationFrame = requestAnimationFrame(step);
+      }
+
+      function initialisePositions() {
+        const width = canvas.width / devicePixelRatio;
+        const height = canvas.height / devicePixelRatio;
+        const center = { x: width / 2, y: height / 2 };
+        planets.forEach(planet => {
+          const angle = planet.angle;
+          planet.position.x = center.x + Math.cos(angle) * planet.distance;
+          planet.position.y = center.y + Math.sin(angle) * planet.distance;
+        });
+      }
+
+      function handlePointer(event) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (event.clientX - rect.left);
+        const y = (event.clientY - rect.top);
+        mousePosition = { x, y };
+      }
+
+      function handlePointerOut() {
+        mousePosition = null;
+      }
+
+      function handleResize() {
+        ctx.setTransform(1, 0, 0, 1, 0, 0);
+        resizeCanvas();
+        initialisePositions();
+      }
+
+      window.addEventListener('resize', handleResize);
+      heroSection.addEventListener('mousemove', handlePointer);
+      heroSection.addEventListener('mouseleave', handlePointerOut);
+      heroSection.addEventListener('touchmove', event => {
+        if (event.touches && event.touches[0]) {
+          handlePointer(event.touches[0]);
+        }
+      }, { passive: true });
+      heroSection.addEventListener('touchend', handlePointerOut);
+
+      resizeCanvas();
+      createPlanets();
+      initialisePositions();
+      animationFrame = requestAnimationFrame(step);
+
+      canvas.addEventListener('click', event => {
+        const rect = canvas.getBoundingClientRect();
+        const x = (event.clientX - rect.left) * (devicePixelRatio || 1);
+        const y = (event.clientY - rect.top) * (devicePixelRatio || 1);
+        const width = canvas.width;
+        const height = canvas.height;
+        const centerX = width / 2;
+        const centerY = height / 2;
+        const distanceToCenter = Math.hypot(x - centerX, y - centerY);
+        if (distanceToCenter <= sunRadius * (devicePixelRatio || 1) * 2.5) {
+          cancelAnimationFrame(animationFrame);
+          createPlanets();
+          initialisePositions();
+          step.last = performance.now();
+          animationFrame = requestAnimationFrame(step);
+        }
+      });
+
+      document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+          cancelAnimationFrame(animationFrame);
+        } else {
+          step.last = performance.now();
+          animationFrame = requestAnimationFrame(step);
+        }
+      });
+    }());
+
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
       contactForm.addEventListener('submit', async function handleSubmit(event) {
