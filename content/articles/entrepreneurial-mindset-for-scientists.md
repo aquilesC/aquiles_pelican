@@ -2,7 +2,7 @@
 Title: Entrepreneurial Mindset for Scientists
 Slug: entrepreneurial-mindset-for-scientists
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Science Commercialization
 Tags:
   - mindset
   - scipreneurs

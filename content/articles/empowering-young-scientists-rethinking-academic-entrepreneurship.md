@@ -2,7 +2,7 @@
 Title: "Empowering Young Scientists: Rethinking ‘Academic’ Entrepreneurship"
 Slug: empowering-young-scientists-rethinking-academic-entrepreneurship
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Science Commercialization
 Tags:
   - academic-entrepreneurship
   - scipreneurs

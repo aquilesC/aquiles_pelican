@@ -2,7 +2,7 @@
 Title: How to incentivize scipreneurship
 Slug: how-to-incentivize-scipreneurship
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Science Commercialization
 Tags:
   - academic-entrepreneurship
   - scipreneurs

@@ -2,7 +2,7 @@
 Title: Do things that can scale
 Slug: do-things-that-can-scale
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Deep Tech Strategy
 Tags:
   - advice
   - scaling

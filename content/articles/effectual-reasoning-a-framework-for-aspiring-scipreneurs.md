@@ -2,7 +2,7 @@
 Title: Effectual reasoning, a framework for aspiring scipreneurs
 Slug: effectual-reasoning-a-framework-for-aspiring-scipreneurs
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Science Commercialization
 Tags:
   - frameworks
   - scipreneurs

@@ -2,7 +2,7 @@
 Title: What does the creation of Altos Labs mean
 Slug: what-does-the-creation-of-altos-labs-mean
 Date: 2025-11-04
-Category: Technology
+Category: Deep Tech Strategy
 Tags:
   - biotech
   - companies

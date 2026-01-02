@@ -2,7 +2,7 @@
 Title: Professors can enable scipreneurs
 Slug: professors-can-enable-scipreneurs
 Date: 2025-11-04
-Category: Entrepreneurship
+Category: Science Commercialization
 Tags:
   - academic-entrepreneurship
   - professors

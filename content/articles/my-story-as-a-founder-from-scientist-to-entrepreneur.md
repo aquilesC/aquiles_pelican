@@ -2,7 +2,7 @@
 Title: "My Story as an Entrepreneur: From Scientist to Founder"
 Slug: my-story-as-a-founder-from-scientist-to-entrepreneur
 Date: 2025-11-04
-Category: Personal
+Category: Science Commercialization
 Tags:
   - academic-entrepreneurship
   - advice
