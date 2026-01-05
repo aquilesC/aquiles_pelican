@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+
+{% block extra_head %}
+{% include 'includes/services_hero_style.html' %}
+{% endblock %}
+
+{% block content %}
+  <!-- Hero Section -->
+  <section class="services-hero pt-xxl md:pt-32 pb-xxl md:pb-32 flex items-center" style="min-height: 50vh;">
+    <div class="max-w-content mx-auto px-lg text-center w-full">
+      <h1 class="text-h1 md:text-h1 mb-md font-heading">{{ page.title }}</h1>
+      {% if page.summary %}
+      <p class="text-body md:text-xl text-white max-w-2xl mx-auto">
+        {{ page.summary }}
+      </p>
+      {% endif %}
+    </div>
+  </section>
+
+  <article class="py-xxl">
+    <div class="max-w-content mx-auto px-lg">
+      
+      <div class="article-content prose prose-lg max-w-none mb-xxl">
+        {{ page.content }}
+      </div>
+
+      <!-- Graphs/Visuals Placeholder Section - Removed in favor of content-embedded images -->
+
+
+      <!-- Contact Form Section -->
+      <div id="contact-form" class="bg-muted-bg py-xxl border-t border-border rounded-lg mt-xxl">
+        <div class="max-w-2xl mx-auto px-lg">
+          <header class="mb-xl text-center">
+            <h2 class="text-h2 mb-md">Interested?</h2>
+            <p class="text-body text-text-secondary">Get in touch to book this service.</p>
+          </header>
+          {% include 'includes/contact_form.html' %}
+        </div>
+      </div>
+    </div>
+  </article>
+{% endblock %}
+
+{% block extra_scripts %}
+{{ super() }}
+{% include 'includes/contact_script.html' %}
+{% endblock %}
