@@ -8,6 +8,10 @@ Template: work
 I have done and tried many things. From building websites, to creating highly-accurate measurement systems. Below you can find a summarized version of my CV along with links to projects I like highlighting. 
 
 ## Current Role
+**Business Developer**  
+VSParticle | Jan 2026 - Present
+
+After finding initial traction from some customers in the semicon space, I have been tasked with further exploring this opportunity. Challenges include developing a network of people who may need our solution, understanding the challenges and defining a value proposition. The ultimate goal is to drive revenue growth preceeding a product development cycle. 
 
 **Product Manager**  
 VSParticle | Jan 2025 - Dec 2025
