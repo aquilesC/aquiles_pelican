@@ -47,6 +47,7 @@
 
   /* Reduced motion support */
   @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -58,6 +59,7 @@
 }
 
 @layer components {
+
   /* Article content typography */
   .article-content {
     @apply max-w-reading mx-auto;
@@ -86,7 +88,8 @@
   .btn {
     @apply inline-block px-xl py-md font-medium rounded transition-colors;
     @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent;
-    min-height: 44px; /* Accessibility: 44x44px hit target */
+    min-height: 44px;
+    /* Accessibility: 44x44px hit target */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -131,9 +134,11 @@
     0% {
       background-position: 0% 50%;
     }
+
     50% {
       background-position: 100% 50%;
     }
+
     100% {
       background-position: 0% 50%;
     }
@@ -149,7 +154,7 @@
     backdrop-filter: blur(0.5px);
   }
 
-  .about-section > * {
+  .about-section>* {
     position: relative;
     z-index: 1;
   }
@@ -224,12 +229,33 @@
   .header-nav.scrolled {
     margin-top: 0;
   }
-  
+
   /* Ensure no background bleed on sides */
   .header-nav::before,
   .header-nav::after {
     content: none;
     display: none;
+  }
+
+  /* Mobile menu open state */
+  .header-nav.mobile-menu-open nav {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(16px) saturate(180%);
+    -webkit-backdrop-filter: blur(16px) saturate(180%);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(230, 233, 239, 0.3);
+    border-radius: 0;
+  }
+
+  /* Ensure text is visible when menu is open (overriding the white text from non-scrolled state) */
+  .header-nav.mobile-menu-open nav a,
+  .header-nav.mobile-menu-open nav svg,
+  .header-nav.mobile-menu-open .text-h3 {
+    @apply text-text-primary;
+  }
+
+  .header-nav.mobile-menu-open nav a:hover {
+    @apply text-accent;
   }
 
   /* Work page content styling */
@@ -301,4 +327,3 @@
     @apply bg-transparent p-0;
   }
 }
-

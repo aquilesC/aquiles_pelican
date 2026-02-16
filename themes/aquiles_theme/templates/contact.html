@@ -69,7 +69,7 @@
 {% block extra_scripts %}
   {{ super() }}
   <script>
-    (function () {
+    document.addEventListener('DOMContentLoaded', () => {
       const heroSection = document.querySelector('.contact-hero');
       const canvas = document.getElementById('orbit-canvas');
       if (!heroSection || !canvas) {
@@ -87,12 +87,16 @@
       const distanceStep = 45;
       const baseMass = 400;
       const sunRadius = 24;
+      const gravitationalConstant = 0.08;
 
       let mousePosition = null;
       let animationFrame;
 
       function resizeCanvas() {
         const { width, height } = heroSection.getBoundingClientRect();
+        // Ensure we have dimensions to work with
+        if (width === 0 || height === 0) return;
+        
         canvas.width = width * devicePixelRatio;
         canvas.height = height * devicePixelRatio;
         canvas.style.width = `${width}px`;
@@ -107,13 +111,12 @@
           const distance = baseDistance + i * distanceStep * 0.85;
           const angle = (i / planetCount) * Math.PI * 2;
           const size = 6 + Math.random() * 6;
-          const baseOrbitSpeed = Math.sqrt(baseMass / distance) * 0.045;
-          const speedFactor = 0.85 + Math.random() * 0.3;
-          const radialBias = (Math.random() - 0.5) * 0.06 * baseOrbitSpeed;
+          // Calculate exact orbital speed for circular orbit: v = sqrt(GM/r)
+          const orbitalSpeed = Math.sqrt((gravitationalConstant * baseMass) / distance);
+          
           const tangentX = -Math.sin(angle);
           const tangentY = Math.cos(angle);
-          const radialX = Math.cos(angle);
-          const radialY = Math.sin(angle);
+          
           planets.push({
             distance,
             angle,
@@ -121,8 +124,8 @@
             color: colors[i % colors.length],
             position: { x: 0, y: 0 },
             velocity: {
-              x: tangentX * baseOrbitSpeed * speedFactor + radialX * radialBias,
-              y: tangentY * baseOrbitSpeed * speedFactor + radialY * radialBias
+              x: tangentX * orbitalSpeed,
+              y: tangentY * orbitalSpeed
             }
           });
         }
@@ -132,7 +135,6 @@
         const width = canvas.width / devicePixelRatio;
         const height = canvas.height / devicePixelRatio;
         const center = { x: width / 2, y: height / 2 };
-        const gravitationalConstant = 0.08;
 
         planets.forEach(planet => {
           const dx = planet.position.x - center.x;
@@ -146,8 +148,14 @@
           if (mousePosition) {
             const mdx = planet.position.x - mousePosition.x;
             const mdy = planet.position.y - mousePosition.y;
-            const mdistance = Math.hypot(mdx, mdy) || 1;
-            const influence = -28 / (mdistance * mdistance);
+            // Clamp minimum distance to prevent extreme forces
+            const mdistance = Math.max(Math.hypot(mdx, mdy), 20);
+            
+            // Limit the maximum interaction force
+            const maxInteractionForce = 0.5;
+            const rawInfluence = -28 / (mdistance * mdistance);
+            const influence = Math.max(Math.min(rawInfluence, maxInteractionForce), -maxInteractionForce);
+            
             planet.velocity.x += (mdx / mdistance) * influence * deltaTime;
             planet.velocity.y += (mdy / mdistance) * influence * deltaTime;
           }
@@ -286,8 +294,8 @@
           animationFrame = requestAnimationFrame(step);
         }
       });
-    }());
-
-    {% include 'includes/contact_script.html' %}
+    });
   </script>
+
+  {% include 'includes/contact_script.html' %}
 {% endblock %}

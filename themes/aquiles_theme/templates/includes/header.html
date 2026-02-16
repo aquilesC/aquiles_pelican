@@ -71,46 +71,37 @@
         mobileMenu.classList.toggle('hidden');
         menuIcon.classList.toggle('hidden');
         closeIcon.classList.toggle('hidden');
+        header.classList.toggle('mobile-menu-open');
       });
     }
 
     // Navbar scroll effect (frosted glass)
     const header = document.getElementById('header');
-    const currentPath = window.location.pathname;
-    
-    // Check if we're on an articles page (archives or individual article) or work page
-    const isArticlesPage = currentPath.startsWith('/articles') || currentPath === '/articles';
-    const isWorkPage = currentPath.startsWith('/work') || currentPath === '/work';
     
     function updateNavbar() {
       const scrollY = window.scrollY || window.pageYOffset;
+      const hasHeroSection = document.querySelector('.hero-section');
       
-      // On articles and work pages, always show frosted glass (no scroll requirement)
-      if (isArticlesPage || isWorkPage) {
+      // If no hero section is present (like on article pages), 
+      // OR if we have scrolled down, show the "scrolled" (solid/frosted) style.
+      if (!hasHeroSection || scrollY > 100) {
         header.classList.add('scrolled');
       } else {
-        // On other pages, only show after scrolling
-        if (scrollY > 100) {
-          header.classList.add('scrolled');
-        } else {
-          header.classList.remove('scrolled');
-        }
+        header.classList.remove('scrolled');
       }
     }
 
-    // Throttle scroll events for better performance (only needed on non-articles/work pages)
-    if (!isArticlesPage && !isWorkPage) {
-      let ticking = false;
-      window.addEventListener('scroll', function() {
-        if (!ticking) {
-          window.requestAnimationFrame(function() {
-            updateNavbar();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-    }
+    // Throttle scroll events for better performance
+    let ticking = false;
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updateNavbar();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
     
     // Initial check
     updateNavbar();

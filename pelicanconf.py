@@ -98,24 +98,24 @@ SERVICES_DATA = [
         'summary': "A free 1-hour no-obligation chat to discuss your current challenges and explore how I can help. It's a great way to see if we're a good fit.",
         'details': 'Free 1-hour consultation',
         'link_text': 'Schedule Now',
-        'link_url': '#contact-form'
+        'link_url': '/services/golden-hour/'
     },
     {
         'title': 'Deep Dive',
         'summary': 'Focused on Series A startups, this engagement is designed to polish your roadmap, refine your product-market fit, and prepare you for the next stage of growth. We work closely together to address ensuring your technology aligns with business goals.',
         'details': '3-month engagement',
         'link_text': 'Learn More',
-        'link_url': '#contact-form'
+        'link_url': '/services/deep-dive/'
     },
     {
         'title': 'Workshop',
         'summary': '"Breaking the Ice into Entrepreneurship." Ideally suited for Ph.D. students and postdocs, this workshop covers the basics of spinning out technology, validating ideas, and thinking like an entrepreneur.',
         'details': '2-day workshop for scientists',
         'link_text': 'Book Workshop',
-        'link_url': '#contact-form'
+        'link_url': '/services/workshop/'
     }
 ]
 
 # Uncomment following line if you want document-relative URLs when developing
-# RELATIVE_URLS = True
+RELATIVE_URLS = True
 
