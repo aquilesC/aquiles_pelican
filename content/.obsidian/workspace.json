@@ -251,12 +251,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "pages/work.md",
+                "file": "articles/words-in-books-are-like-dna.md",
                 "mode": "source",
-                "source": false
+                "source": true
               },
               "icon": "lucide-file",
-              "title": "work"
+              "title": "words-in-books-are-like-dna"
             }
           }
         ],
@@ -410,20 +410,22 @@
   },
   "active": "ffc0cb6d8219d2c4",
   "lastOpenFiles": [
+    "articles/what-does-the-creation-of-altos-labs-mean.md",
+    "articles/words-in-books-are-like-dna.md",
+    "articles/after-a-failure-revert-to-the-last-known-working-state.md",
+    "articles/how-to-present-yourself-in-a-cv.md",
+    "articles/my-story-as-a-founder-from-scientist-to-entrepreneur.md",
+    "pages/work.md",
     "pages/dispertech.md",
     "articles/exciting-vesicles-the-field-where-biology-meets-technology.md",
     "articles/the-path-to-surface-enhanced-raman-for-exosome-characterization.md",
     "articles/there-and-back-again-13-years-apart.md",
-    "articles/after-a-failure-revert-to-the-last-known-working-state.md",
     "articles/how-to-write-a-programming-book.md",
-    "articles/how-to-present-yourself-in-a-cv.md",
     "articles/how-to-write-a-good-cover-letter-for-a-job.md",
-    "articles/what-does-the-creation-of-altos-labs-mean.md",
     "articles/the-things-i-miss-the-most-from-my-time-as-a-phd.md",
     "articles/how-it-feels-quitting-your-own-startup.md",
     "articles/empowering-young-scientists-rethinking-academic-entrepreneurship.md",
     "articles/mentor-consultant-coach-partner-who-do-you-need-right-now.md",
-    "articles/my-story-as-a-founder-from-scientist-to-entrepreneur.md",
     "articles/Untitled 1.md",
     "articles/how-to-incentivize-scipreneurship.md",
     "articles/professors-can-enable-scipreneurs.md",
@@ -445,7 +447,6 @@
     "images/og/my-story-as-a-founder-from-scientist-to-entrepreneur.png",
     "images/og",
     "Untitled.md",
-    "templates/article.md",
     "Untitled.base",
     "templates"
   ]
