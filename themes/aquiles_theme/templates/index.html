@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from 'includes/card.html' import render_card %}
+{% from 'includes/icons.html' import icon %}
 
 {% block title %}Aquiles Carattino | Deep Tech Entrepreneurship Advisor{% endblock %}
 
@@ -6,74 +8,83 @@
 <meta name="description" content="Aquiles Carattino helps technical founders and scientists transition from academia to entrepreneurship. Actionable advice on deep tech strategy, product management, and commercializing science." />
 {% endblock %}
 
-{% block extra_head %}
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-{% endblock %}
-
 {% block content %}
   <!-- Full-Screen Hero Section with 3D Particles -->
-  <section class="hero-section relative h-screen w-full overflow-hidden bg-[#0a0a0a] -mt-24">
-    <canvas id="particle-canvas" class="absolute inset-0 w-full h-full"></canvas>
-    <div class="relative z-10 h-full flex items-center justify-center pt-24">
-      <div class="max-w-content mx-auto px-lg text-center">
-        <h1 class="text-h1 md:text-6xl lg:text-7xl mb-lg font-heading text-white drop-shadow-lg">
-          Aquiles Carattino: Deep Tech Advisor
-        </h1>
-        <p class="text-body md:text-xl text-gray-300 mb-xxl max-w-2xl mx-auto drop-shadow-md">
-          I share my experiences and learnings on science, entrepreneurship, and the intersection of the two. I like calling it the scipreneur's journey.
-        </p>
+  <section class="hero-section relative overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
+    <canvas id="particle-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
+    
+    <div class="relative z-10 container-site text-center pt-24 pb-16">
+      <span class="kicker text-accent mb-md inline-flex">
+        {{ icon('sparkles', 'w-4 h-4') }}
+        <span>The Scipreneur's Journey</span>
+      </span>
+      <h1 class="text-display font-heading text-white mb-lg max-w-4xl mx-auto drop-shadow-md">
+        Aquiles Carattino: Deep Tech Advisor
+      </h1>
+      <p class="text-body md:text-xl text-gray-300 mb-2xl max-w-2xl mx-auto drop-shadow-sm">
+        Helping scientists and technical founders transition from lab research to scalable commercial ventures.
+      </p>
+      
+      <div class="flex flex-wrap items-center justify-center gap-md">
         {% if articles %}
           {% set featured = articles[0] %}
-          <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary text-lg px-xxl py-lg shadow-lg">
-            Read Latest
+          <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary">
+            <span>Read Latest Article</span>
+            {{ icon('arrow-right', 'icon icon-arrow') }}
           </a>
         {% endif %}
+        <a href="{{ SITEURL }}/services/" class="btn btn-on-dark">
+          <span>Advisory Services</span>
+        </a>
       </div>
     </div>
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-xl left-1/2 transform -translate-x-1/2 z-10 animate-bounce">
-      <svg class="w-6 h-6 text-white opacity-60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-      </svg>
-    </div>
+
+    <!-- Scroll down indicator -->
+    <a href="#about" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/60 hover:text-white transition-colors" aria-label="Scroll to content">
+      {{ icon('chevron-down', 'w-7 h-7 animate-bounce') }}
+    </a>
   </section>
 
   <!-- About Me Section -->
-  <section class="about-section relative py-xxl overflow-hidden">
-    <div class="max-w-content mx-auto px-lg">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-xxl items-center">
+  <section id="about" class="about-section section border-b border-border">
+    <div class="container-site">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-xl md:gap-3xl items-center">
         <!-- Photo Column -->
-        <div class="order-2 md:order-1">
-          <div class="relative">
-            <div class="aspect-square rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-accent to-accent-alt">
-              <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-                   alt="Profile picture of Aquiles Carattino an entrepreneurial scientist, scipreneur. " 
-                   class="w-full h-full object-cover"
-                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-              <div class="w-full h-full bg-gradient-to-br from-accent to-accent-alt flex items-center justify-center text-white text-h2 font-heading" style="display: none;">
-                {{ SITENAME[0] }}
-              </div>
-            </div>
-            <!-- Decorative ring -->
-            <div class="absolute -inset-4 rounded-full border-2 border-accent/20 animate-pulse"></div>
+        <div class="md:col-span-5 order-2 md:order-1">
+          <div class="portrait">
+            <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
+                 alt="{{ AUTHOR }}" 
+                 width="420"
+                 height="420"
+                 loading="lazy"
+                 decoding="async">
           </div>
         </div>
         
         <!-- Text Column -->
-        <div class="order-1 md:order-2">
-          <h2 class="text-h2 md:text-h1 mb-lg font-heading">About Me</h2>
-          <div class="prose prose-lg max-w-none">
-            <p class="text-body text-text-secondary mb-md">
-              I am an entrepreneurial scientist, or a scientist entrepreneur, depending on the day. I am passionate about solving complex challenges, understanding customers, markets, and opportunities. 
+        <div class="md:col-span-7 order-1 md:order-2">
+          <span class="kicker mb-xs">About Me</span>
+          <h2 class="section-title mb-md">Scientist & Entrepreneur</h2>
+          
+          <div class="space-y-md text-body text-text-secondary mb-xl">
+            <p>
+              I am an entrepreneurial scientist, or a scientist entrepreneur, depending on the day. I am passionate about solving complex challenges, understanding customers, markets, and opportunities.
             </p>
-            <p class="text-body text-text-secondary mb-md">
-              I use this website to share some of my thoughts. Some are more or less complete. They are normally complemented with the <a href="https://notes.aquiles.me" class="text-accent hover:text-accentAlt underline-offset-4 hover:underline transition-colors">notes</a> I take on my <a href="https://notes.aquiles.me/digital_garden" class="text-accent hover:text-accentAlt underline-offset-4 hover:underline transition-colors">digital garden</a>.
+            <p>
+              My background spans building precision instrumentation during my PhD, co-founding <a href="{{ SITEURL }}/dispertech/" class="font-medium text-accent hover:underline">Dispertech</a>, and serving as Product Manager at VSParticle. I write to systematize what I learn at the intersection of deep tech and venture building.
             </p>
-            <p class="text-body text-text-secondary mb-lg">
-              Sometimes I see myself as a technologist. I try to understand how things fit together and what can be built with the latest developments. I believe there is a lot of potential that comes from basic research and we should find better ways of capitalizing on it. 
+            <p>
+              These thoughts are complemented with raw notes in my <a href="https://notes.aquiles.me/digital_garden" target="_blank" rel="noopener noreferrer" class="font-medium text-accent hover:underline">digital garden {{ icon('external', 'w-3.5 h-3.5 inline') }}</a>.
             </p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-md">
             <a href="{{ SITEURL }}/work/" class="btn btn-primary">
-              Explore my career journey
+              <span>View Career Journey</span>
+              {{ icon('arrow-right', 'icon icon-arrow') }}
+            </a>
+            <a href="{{ SITEURL }}/contact/" class="btn btn-secondary">
+              <span>Get in Touch</span>
             </a>
           </div>
         </div>
@@ -81,95 +92,143 @@
     </div>
   </section>
 
-  <!-- Hero Feature Section -->
+  <!-- Featured Story Section -->
   {% if articles %}
     {% set featured = articles[0] %}
-    <section class="bg-muted-bg py-xxl">
-      <div class="max-w-content mx-auto px-lg">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-xl items-center">
-          <div>
-            <span class="text-overline text-accent uppercase tracking-wider mb-md inline-block">Featured</span>
-            <h2 class="text-h1 mb-md">{{ featured.title }}</h2>
+    {% set has_og = (OG_IMAGES is defined and featured.slug in OG_IMAGES) %}
+    <section class="section bg-muted-bg border-b border-border">
+      <div class="container-site">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
+          <div class="lg:col-span-7">
+            <span class="kicker mb-xs">Featured Story</span>
+            <h2 class="text-h1 mb-md">
+              <a href="{{ SITEURL }}/{{ featured.url }}" class="hover:text-accent transition-colors">
+                {{ featured.title }}
+              </a>
+            </h2>
             {% if featured.summary %}
-            <p class="text-body text-text-secondary mb-lg">{{ featured.summary }}</p>
+            <p class="text-body text-text-secondary mb-lg">
+              {{ featured.summary }}
+            </p>
             {% endif %}
+            
+            <div class="meta mb-xl">
+              <time datetime="{{ featured.date.isoformat() }}">
+                {{ icon('calendar', 'icon text-accent/80') }}
+                <span>{{ featured.locale_date }}</span>
+              </time>
+              {% if featured.category %}
+                <span>
+                  {{ icon('tag', 'icon text-accent/80') }}
+                  <span>{{ featured.category.name }}</span>
+                </span>
+              {% endif %}
+            </div>
+
             <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary">
-              Read more
+              <span>Read Full Story</span>
+              {{ icon('arrow-right', 'icon icon-arrow') }}
             </a>
           </div>
-          {% if featured.hero_image %}
-          <div class="rounded-lg overflow-hidden">
-            <img src="{{ SITEURL }}/{{ featured.hero_image }}" alt="{{ featured.title }}" class="w-full h-auto" />
+
+          <div class="lg:col-span-5">
+            <a href="{{ SITEURL }}/{{ featured.url }}" class="block group focus:outline-none" aria-label="Read {{ featured.title }}">
+              <div class="card overflow-hidden group-hover:border-accent transition-all duration-300 group-hover:-translate-y-1">
+                {% if featured.hero_image %}
+                  <div class="cover cover-tall" style="--hue: 250;">
+                    <img src="{{ SITEURL }}/{{ featured.hero_image }}" alt="" loading="lazy" decoding="async" class="transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                {% elif has_og %}
+                  <div class="relative overflow-hidden bg-muted-bg" style="aspect-ratio: 1200 / 630;">
+                    <img src="{{ SITEURL }}/images/og/{{ featured.slug }}.png" alt="{{ featured.title }}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                  </div>
+                {% else %}
+                  <div class="cover cover-tall" style="--hue: 250;">
+                    <span class="cover-label" aria-hidden="true">{{ featured.category.name if featured.category else SITENAME }}</span>
+                  </div>
+                {% endif %}
+              </div>
+            </a>
           </div>
-          {% endif %}
         </div>
       </div>
     </section>
   {% endif %}
 
-  <!-- Articles Grid -->
+  <!-- Recent Articles Grid -->
   {% if articles %}
-  <section class="py-xxl">
-    <div class="max-w-content mx-auto px-lg">
-      <h2 class="text-h2 mb-xxl">Recent Articles</h2>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-        {% for article in articles[1:7] %}
-        <article class="bg-background border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex">
-          {% if article.hero_image %}
-          <div class="aspect-video overflow-hidden">
-            <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full object-cover" />
-          </div>
-          {% endif %}
-          <div class="p-lg flex flex-col flex-grow">
-            {% if article.category %}
-            <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
-            {% endif %}
-            <h3 class="text-h4 mb-sm">
-              <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
-                {{ article.title }}
-              </a>
-            </h3>
-            {% if article.summary %}
-            <p class="text-small text-text-secondary mb-md">{{ article.summary|truncate(120) }}</p>
-            {% endif %}
-            <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary mt-auto">
-              {{ article.locale_date }}
-            </time>
-          </div>
-        </article>
-        {% endfor %}
-      </div>
-      
-      {% if articles|length > 7 %}
-      <div class="mt-xxl text-center">
-        <a href="{{ SITEURL }}/articles/" class="btn btn-secondary">
-          View all articles
+  <section class="section">
+    <div class="container-site">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-2xl">
+        <div>
+          <span class="kicker mb-xs">Latest Writing</span>
+          <h2 class="section-title">Recent Articles</h2>
+        </div>
+        <a href="{{ SITEURL }}/articles/" class="btn btn-secondary btn-sm">
+          <span>All Articles ({{ articles|length }})</span>
+          {{ icon('arrow-right', 'icon icon-arrow') }}
         </a>
       </div>
-      {% endif %}
+
+      <!-- Articles Grid with proper gap and equal heights -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+        {% for article in articles[1:7] %}
+          {{ render_card(article) }}
+        {% endfor %}
+      </div>
     </div>
   </section>
   {% endif %}
 
-  <!-- Work Experience Preview -->
-  <section class="bg-muted-bg py-xxl">
-    <div class="max-w-content mx-auto px-lg">
-      <h2 class="text-h2 mb-xxl">Work Experience</h2>
-      <div class="prose prose-lg max-w-none">
-        <p class="text-body text-text-secondary mb-lg">
-          My biggest achievements include launching Python for the Lab, co-founding Dispertech, and being the first Product Manager at VSParticle. After my PhD, I have always worked in deep-tech, including instrumentation, product development, and entrepreneurship. 
+  <!-- Services Advisory Teaser Section -->
+  {% if SERVICES_DATA %}
+  <section class="section bg-muted-bg border-t border-border">
+    <div class="container-site">
+      <div class="text-center max-w-2xl mx-auto mb-2xl">
+        <span class="kicker mb-xs">How I Can Help</span>
+        <h2 class="section-title mb-md">Advisory for Technical Founders</h2>
+        <p class="text-body text-text-secondary">
+          From first feasibility check to scaling commercial operations, I advise scientists navigating deep tech ventures.
         </p>
-        <p class="text-body text-text-secondary mb-lg">
-          I write to systemitize what I learn and think. Some of those topics evolve over time and I try to revisit and update the content if I feel it's necessary. 
-        </p>
-        <a href="{{ SITEURL }}/work/" class="btn btn-primary">
-          See what kept me busy for the past few years
-        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+        {% for service in SERVICES_DATA %}
+        <div class="service-card">
+          <div class="service-icon mb-xs">
+            {% if loop.index == 1 %}
+              {{ icon('sparkles', 'w-6 h-6') }}
+            {% elif loop.index == 2 %}
+              {{ icon('share', 'w-6 h-6') }}
+            {% else %}
+              {{ icon('user', 'w-6 h-6') }}
+            {% endif %}
+          </div>
+          <span class="kicker text-accent">{{ service.details }}</span>
+          <h3 class="card-title text-h4">
+            <a href="{{ SITEURL }}{{ service.link_url }}" class="card-link">
+              {{ service.title }}
+            </a>
+          </h3>
+          <p class="text-small text-text-secondary grow">
+            {{ service.summary }}
+          </p>
+          <div class="pt-md border-t border-border mt-auto">
+            <span class="card-cta">
+              <span>{{ service.link_text }}</span>
+              {{ icon('arrow-right', 'icon icon-arrow') }}
+            </span>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
+  {% endif %}
 {% endblock %}
 
 {% block extra_scripts %}
-  <script src="{{ SITEURL }}/theme/js/particles.js"></script>
+  <!-- Three.js and Particle background loaded with defer for smooth rendering -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script defer src="{{ SITEURL }}/theme/js/particles.js"></script>
 {% endblock %}

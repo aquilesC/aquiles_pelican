@@ -1,0 +1,74 @@
+{% from 'includes/icons.html' import icon %}
+
+{% macro render_card(article, is_heading_h2=False) -%}
+  {% set cat_slug = article.category.slug if article.category else 'general' %}
+  {% set hue = CATEGORY_HUES.get(cat_slug, 250) if CATEGORY_HUES is defined else 250 %}
+  {% set has_og = (OG_IMAGES is defined and article.slug in OG_IMAGES) %}
+
+  <article class="card">
+    <!-- Visual cover (hero image -> OG image -> procedural hue cover) -->
+    <div class="cover" style="--hue: {{ hue }};">
+      {% if article.hero_image %}
+        <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="" loading="lazy" decoding="async" />
+      {% elif has_og %}
+        <img src="{{ SITEURL }}/images/og/{{ article.slug }}.png" alt="" loading="lazy" decoding="async" />
+      {% else %}
+        <span class="cover-label" aria-hidden="true">{{ article.category.name if article.category else SITENAME }}</span>
+      {% endif %}
+    </div>
+
+    <div class="card-body">
+      <!-- Category kicker -->
+      {% if article.category %}
+        <div>
+          <span class="kicker">
+            {{ article.category.name }}
+          </span>
+        </div>
+      {% endif %}
+
+      <!-- Card Title (click target stretches over entire card) -->
+      {% if is_heading_h2 %}
+        <h2 class="card-title">
+          <a href="{{ SITEURL }}/{{ article.url }}" class="card-link">
+            {{ article.title }}
+          </a>
+        </h2>
+      {% else %}
+        <h3 class="card-title">
+          <a href="{{ SITEURL }}/{{ article.url }}" class="card-link">
+            {{ article.title }}
+          </a>
+        </h3>
+      {% endif %}
+
+      <!-- Excerpt -->
+      {% if article.summary %}
+        <p class="card-summary">
+          {{ article.summary|striptags }}
+        </p>
+      {% endif %}
+
+      <!-- Footer: Date + Read CTA -->
+      <div class="card-footer">
+        <div class="meta">
+          <time datetime="{{ article.date.isoformat() }}">
+            {{ icon('calendar', 'icon text-accent/80') }}
+            <span>{{ article.locale_date }}</span>
+          </time>
+          {% if article.readingtime %}
+            <span>
+              {{ icon('clock', 'icon text-accent/80') }}
+              <span>{{ article.readingtime }} min</span>
+            </span>
+          {% endif %}
+        </div>
+
+        <span class="card-cta" aria-hidden="true">
+          <span>Read</span>
+          {{ icon('arrow-right', 'icon icon-arrow') }}
+        </span>
+      </div>
+    </div>
+  </article>
+{%- endmacro %}

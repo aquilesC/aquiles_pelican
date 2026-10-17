@@ -1,73 +1,75 @@
 {% extends "base.html" %}
+{% from 'includes/card.html' import render_card %}
+{% from 'includes/icons.html' import icon %}
 
 {% block title %}Articles | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-  <div class="pt-xxl md:pt-[80px] pb-xxl">
-    <div class="max-w-content mx-auto px-lg">
-      <header class="mb-xxl">
-        <h1 class="text-h1 mb-md">Articles</h1>
-        <p class="text-body text-text-secondary">Essays, thoughts, and insights</p>
-      </header>
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <div class="container-site text-center max-w-3xl mx-auto">
+      <span class="kicker mb-xs">
+        {{ icon('sparkles', 'w-4 h-4') }}
+        <span>Essays & Frameworks</span>
+      </span>
+      <h1 class="font-heading mb-md">Articles</h1>
+      <p class="page-hero-lead max-w-2xl mx-auto">
+        Reflections and learnings on deep tech, science commercialization, and the entrepreneurial journey.
+      </p>
+    </div>
+
+    <!-- Seamless Wave Divider -->
+    <svg class="page-hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
+      <path d="M0,32 C280,72 520,12 800,48 C1080,84 1280,24 1440,40 L1440,80 L0,80 Z"></path>
+    </svg>
+  </section>
+
+  <!-- Content Section -->
+  <section class="section pt-8">
+    <div class="container-site">
+      <!-- Category Filter Chips -->
+      {% if categories %}
+      <div class="flex flex-wrap items-center justify-center gap-xs md:gap-sm mb-2xl" role="navigation" aria-label="Article categories">
+        <span class="text-meta font-medium text-text-secondary mr-xs">Topics:</span>
+        <a href="{{ SITEURL }}/articles/" class="chip" aria-current="page">
+          All ({{ articles|length }})
+        </a>
+        {% for cat, cat_articles in categories|sort(attribute='0.name') %}
+        <a href="{{ SITEURL }}/{{ cat.url }}" class="chip chip-neutral">
+          <span>{{ cat.name }}</span>
+          <span class="opacity-60 text-overline">({{ cat_articles|length }})</span>
+        </a>
+        {% endfor %}
+      </div>
+      {% endif %}
 
       {% if articles %}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
         {% for article in articles %}
-        <article class="card card-hover">
-          {% if article.hero_image %}
-          <div class="aspect-video overflow-hidden">
-            <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-full object-cover" />
-          </div>
-          {% endif %}
-          <div class="p-lg">
-            {% if article.category %}
-            <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ article.category }}</span>
-            {% endif %}
-            <h2 class="text-h4 mb-sm">
-              <a href="{{ SITEURL }}/{{ article.url }}" class="hover:text-accent underline-offset-4 hover:underline transition-colors">
-                {{ article.title }}
-              </a>
-            </h2>
-            {% if article.summary %}
-            <p class="text-small text-text-secondary mb-md">{{ article.summary|truncate(120) }}</p>
-            {% endif %}
-            <div class="mb-md">
-              <a href="{{ SITEURL }}/{{ article.url }}" class="text-body text-accent hover:text-accentAlt hover:underline underline-offset-4 transition-colors font-medium">
-                Read more →
-              </a>
-            </div>
-            <div class="flex items-center justify-between">
-              <time datetime="{{ article.date.isoformat() }}" class="text-overline text-text-secondary">
-                {{ article.locale_date }}
-              </time>
-              {% if article.readingtime %}
-              <span class="text-overline text-text-secondary">{{ article.readingtime }} min</span>
-              {% endif %}
-            </div>
-          </div>
-        </article>
+          {{ render_card(article, is_heading_h2=True) }}
         {% endfor %}
       </div>
 
       <!-- Pagination -->
-      {% if articles_page.has_other_pages() %}
-      <nav class="mt-xxl flex justify-center gap-md" aria-label="Pagination">
+      {% if articles_page and articles_page.has_other_pages() %}
+      <nav class="mt-2xl flex justify-center gap-md" aria-label="Pagination">
         {% if articles_page.has_previous() %}
         <a href="{{ SITEURL }}/{{ articles_previous_page.url }}" class="btn btn-secondary">
-          Previous
+          {{ icon('arrow-left', 'icon') }}
+          <span>Previous</span>
         </a>
         {% endif %}
         {% if articles_page.has_next() %}
         <a href="{{ SITEURL }}/{{ articles_next_page.url }}" class="btn btn-secondary">
-          Next
+          <span>Next</span>
+          {{ icon('arrow-right', 'icon') }}
         </a>
         {% endif %}
       </nav>
       {% endif %}
       {% else %}
-      <p class="text-body text-text-secondary">No articles yet. Check back soon!</p>
+      <p class="text-body text-text-secondary text-center">No articles yet. Check back soon!</p>
       {% endif %}
     </div>
-  </div>
+  </section>
 {% endblock %}
-

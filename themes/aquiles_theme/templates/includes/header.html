@@ -1,109 +1,123 @@
-<header id="header" class="header-nav fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-  <nav class="max-w-content mx-auto px-lg py-md" aria-label="Main navigation">
-    <div class="flex items-center justify-between">
-      <!-- Logo -->
-      <div class="flex-shrink-0">
-        <a href="{{ SITEURL }}/" class="text-h3 font-heading text-text-primary hover:text-accent transition-colors">
-          {{ SITENAME }}
-        </a>
-      </div>
-      
-      <!-- Primary Navigation -->
-      <div class="hidden md:flex items-center space-x-lg">
-        <a href="{{ SITEURL }}/work/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
-          Experience
-        </a>
-        <a href="{{ SITEURL }}/services/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
-          Services
-        </a>
-        <a href="{{ SITEURL }}/articles/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
-          Articles
-        </a>
-        <a href="{{ SITEURL }}/contact/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors">
-          Contact
-        </a>
-      </div>
-      
-      <!-- Mobile Menu Button -->
-      <button id="mobile-menu-button" 
-              class="md:hidden p-xs focus:outline-none focus:ring-2 focus:ring-accent rounded"
-              aria-label="Toggle menu"
-              aria-expanded="false">
-        <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path id="menu-icon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-          <path id="close-icon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
+{% from 'includes/icons.html' import icon %}
+
+<header id="header" class="site-header" role="banner">
+  <div class="container-site h-full flex items-center justify-between gap-md">
+    <!-- Logo -->
+    <a href="{{ SITEURL }}/" class="site-logo" aria-label="{{ SITENAME }} - Home">
+      <span class="site-logo-mark" aria-hidden="true">{{ SITENAME[0] }}</span>
+      <span class="font-heading font-bold">{{ SITENAME }}</span>
+    </a>
+
+    <!-- Primary Desktop Navigation -->
+    <nav class="hidden md:flex items-center gap-lg" aria-label="Primary navigation">
+      <a href="{{ SITEURL }}/work/" 
+         class="nav-link" 
+         {% if (page and page.slug == 'work') or (page and page.template == 'work-page') %}aria-current="page"{% endif %}>
+        Experience
+      </a>
+      <a href="{{ SITEURL }}/services/" 
+         class="nav-link" 
+         {% if (page and (page.slug == 'services' or page.template == 'service_page')) %}aria-current="page"{% endif %}>
+        Services
+      </a>
+      <a href="{{ SITEURL }}/articles/" 
+         class="nav-link" 
+         {% if (output_file and 'articles/' in output_file) or (article is defined) or (category is defined) or (tag is defined) %}aria-current="page"{% endif %}>
+        Articles
+      </a>
+      <a href="{{ SITEURL }}/contact/" 
+         class="nav-link" 
+         {% if page and page.slug == 'contact' %}aria-current="page"{% endif %}>
+        Contact
+      </a>
+    </nav>
+
+    <!-- Desktop Utilities / CTA -->
+    <div class="hidden md:flex items-center gap-md">
+      <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary btn-sm">
+        <span>Book a Call</span>
+        {{ icon('arrow-right', 'icon icon-arrow') }}
+      </a>
     </div>
-    
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="hidden md:hidden mt-md pb-md">
-      <nav class="flex flex-col space-y-md" aria-label="Mobile navigation">
-        <a href="{{ SITEURL }}/work/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
-          Experience
-        </a>
-        <a href="{{ SITEURL }}/services/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
-          Services
-        </a>
-        <a href="{{ SITEURL }}/articles/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
-          Articles
-        </a>
-        <a href="{{ SITEURL }}/contact/" class="text-body text-text-primary hover:text-accent underline-offset-4 hover:underline transition-colors py-xs">
-          Contact
-        </a>
-      </nav>
+
+    <!-- Mobile Menu Button -->
+    <button type="button"
+            id="mobile-menu-toggle"
+            class="menu-toggle md:hidden"
+            popovertarget="mobile-menu"
+            aria-label="Toggle menu"
+            aria-controls="mobile-menu">
+      <span class="icon-menu">{{ icon('menu', 'w-6 h-6') }}</span>
+      <span class="icon-close">{{ icon('close', 'w-6 h-6') }}</span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu (Native Popover with JS fallback) -->
+  <div id="mobile-menu" popover class="mobile-menu md:hidden">
+    <nav class="flex flex-col mb-lg" aria-label="Mobile navigation">
+      <a href="{{ SITEURL }}/" 
+         class="nav-link"
+         {% if output_file == 'index.html' %}aria-current="page"{% endif %}>
+        Home
+      </a>
+      <a href="{{ SITEURL }}/work/" 
+         class="nav-link"
+         {% if (page and page.slug == 'work') or (page and page.template == 'work-page') %}aria-current="page"{% endif %}>
+        Experience
+      </a>
+      <a href="{{ SITEURL }}/services/" 
+         class="nav-link"
+         {% if (page and (page.slug == 'services' or page.template == 'service_page')) %}aria-current="page"{% endif %}>
+        Services
+      </a>
+      <a href="{{ SITEURL }}/articles/" 
+         class="nav-link"
+         {% if (output_file and 'articles/' in output_file) or (article is defined) or (category is defined) or (tag is defined) %}aria-current="page"{% endif %}>
+        Articles
+      </a>
+      <a href="{{ SITEURL }}/contact/" 
+         class="nav-link"
+         {% if page and page.slug == 'contact' %}aria-current="page"{% endif %}>
+        Contact
+      </a>
+    </nav>
+    <div class="pt-sm">
+      <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary w-full text-center">
+        <span>Book a Call</span>
+        {{ icon('arrow-right', 'icon icon-arrow') }}
+      </a>
     </div>
-  </nav>
+  </div>
 </header>
 
 <script>
-  // Mobile menu toggle
-  document.addEventListener('DOMContentLoaded', function() {
-    const menuButton = document.getElementById('mobile-menu-button');
+  (function() {
+    const header = document.getElementById('header');
+    if (!header) return;
+
+    // Check if the current page has a dark hero section
+    const hasDarkHero = document.querySelector('.hero-section, .contact-hero');
+    if (hasDarkHero) {
+      document.body.classList.add('has-dark-hero');
+    }
+
+    function onScroll() {
+      const isScrolled = window.scrollY > 20;
+      header.classList.toggle('is-scrolled', isScrolled);
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+
+    // Fallback toggle for browsers without native Popover API
+    const toggleBtn = document.getElementById('mobile-menu-toggle');
     const mobileMenu = document.getElementById('mobile-menu');
-    const menuIcon = document.getElementById('menu-icon');
-    const closeIcon = document.getElementById('close-icon');
-    
-    if (menuButton) {
-      menuButton.addEventListener('click', function() {
-        const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-        menuButton.setAttribute('aria-expanded', !isExpanded);
-        mobileMenu.classList.toggle('hidden');
-        menuIcon.classList.toggle('hidden');
-        closeIcon.classList.toggle('hidden');
-        header.classList.toggle('mobile-menu-open');
+    if (toggleBtn && mobileMenu && !('popover' in HTMLElement.prototype)) {
+      toggleBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const isOpen = mobileMenu.classList.toggle('is-open');
+        toggleBtn.setAttribute('aria-expanded', isOpen);
       });
     }
-
-    // Navbar scroll effect (frosted glass)
-    const header = document.getElementById('header');
-    
-    function updateNavbar() {
-      const scrollY = window.scrollY || window.pageYOffset;
-      const hasHeroSection = document.querySelector('.hero-section');
-      
-      // If no hero section is present (like on article pages), 
-      // OR if we have scrolled down, show the "scrolled" (solid/frosted) style.
-      if (!hasHeroSection || scrollY > 100) {
-        header.classList.add('scrolled');
-      } else {
-        header.classList.remove('scrolled');
-      }
-    }
-
-    // Throttle scroll events for better performance
-    let ticking = false;
-    window.addEventListener('scroll', function() {
-      if (!ticking) {
-        window.requestAnimationFrame(function() {
-          updateNavbar();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    });
-    
-    // Initial check
-    updateNavbar();
-  });
+  })();
 </script>

@@ -3,19 +3,18 @@
 {% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-  <article class="py-xxl">
-    <div class="max-w-content mx-auto px-lg">
-      <header class="mb-xxl">
-        <h1 class="text-h1 mb-md">{{ page.title }}</h1>
+  <article class="section">
+    <div class="container-site">
+      <header class="max-w-reading mx-auto mb-2xl">
+        <h1 class="text-h1 mb-md font-heading">{{ page.title }}</h1>
         {% if page.summary %}
-        <p class="text-h4 text-text-secondary">{{ page.summary }}</p>
+        <p class="lead mb-lg">{{ page.summary }}</p>
         {% endif %}
       </header>
 
-      <div class="article-content">
+      <div class="prose prose-site mx-auto">
         {{ page.content }}
       </div>
     </div>
   </article>
 {% endblock %}
-

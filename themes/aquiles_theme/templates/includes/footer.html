@@ -1,49 +1,84 @@
-<footer id="footer" class="bg-muted-bg border-t border-border mt-xxl">
-  <div class="max-w-content mx-auto px-lg py-xxl">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
-      <!-- Quick Links -->
-      <div>
-        <h3 class="text-h4 mb-md">Quick Links</h3>
-        <ul class="space-y-xs">
-          <li><a href="{{ SITEURL }}/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Home</a></li>
-          <li><a href="{{ SITEURL }}/articles/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Articles</a></li>
-          <li><a href="{{ SITEURL }}/work/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Experience</a></li>
-          <li><a href="{{ SITEURL }}/services/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Services</a></li>
-          <li><a href="{{ SITEURL }}/contact/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Contact</a></li>
-        </ul>
-      </div>
-      
-      <!-- Social Links (if configured) -->
-      <div>
-        <h3 class="text-h4 mb-md">Connect</h3>
-        <ul class="space-y-xs">
+{% from 'includes/icons.html' import icon %}
+
+<footer id="footer" class="site-footer mt-4xl" role="contentinfo">
+  <div class="container-site py-3xl">
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+      <!-- Col 1: Bio & Brand -->
+      <div class="md:col-span-6 lg:col-span-5">
+        <a href="{{ SITEURL }}/" class="site-logo mb-md inline-flex" aria-label="{{ SITENAME }} - Home">
+          <span class="site-logo-mark" aria-hidden="true">{{ SITENAME[0] }}</span>
+          <span class="font-heading font-bold">{{ SITENAME }}</span>
+        </a>
+        <p class="text-small text-text-secondary max-w-md mb-lg">
+          Deep tech advisor, scientist, and entrepreneur. Documenting the scipreneur's journey—from fundamental research to scalable commercial ventures.
+        </p>
+
+        <!-- Social Icons with 44px hit target -->
+        <div class="flex items-center gap-sm">
           {% if LINKEDIN_USERNAME %}
-          <li><a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">LinkedIn</a></li>
-          {% endif %}
-          {% if TWITTER_USERNAME %}
-          <li><a href="https://twitter.com/{{ TWITTER_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Twitter</a></li>
+          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="icon-btn" 
+             aria-label="LinkedIn profile">
+            {{ icon('linkedin', 'w-5 h-5') }}
+          </a>
           {% endif %}
           {% if GITHUB_USERNAME %}
-          <li><a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">GitHub</a></li>
+          <a href="https://github.com/{{ GITHUB_USERNAME }}" 
+             target="_blank" 
+             rel="noopener noreferrer" 
+             class="icon-btn" 
+             aria-label="GitHub profile">
+            {{ icon('github', 'w-5 h-5') }}
+          </a>
           {% endif %}
+          {% if FEED_ALL_RSS %}
+          <a href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" 
+             target="_blank" 
+             rel="alternate" 
+             type="application/rss+xml"
+             class="icon-btn" 
+             aria-label="RSS Feed">
+            {{ icon('rss', 'w-5 h-5') }}
+          </a>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Col 2: Navigation -->
+      <div class="md:col-span-3 lg:col-span-3 lg:col-start-7">
+        <h3 class="text-h4 mb-md font-heading font-semibold text-text-primary">Explore</h3>
+        <ul class="space-y-xs">
+          <li><a href="{{ SITEURL }}/" class="footer-link">Home</a></li>
+          <li><a href="{{ SITEURL }}/work/" class="footer-link">Experience</a></li>
+          <li><a href="{{ SITEURL }}/services/" class="footer-link">Services</a></li>
+          <li><a href="{{ SITEURL }}/articles/" class="footer-link">Articles</a></li>
+          <li><a href="{{ SITEURL }}/contact/" class="footer-link">Contact</a></li>
         </ul>
       </div>
-      
-      <!-- Legal -->
-      <div>
-        <h3 class="text-h4 mb-md">Legal</h3>
+
+      <!-- Col 3: Services & Legal -->
+      <div class="md:col-span-3 lg:col-span-3">
+        <h3 class="text-h4 mb-md font-heading font-semibold text-text-primary">Services & Legal</h3>
         <ul class="space-y-xs">
-          <li><a href="{{ SITEURL }}/privacy/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Privacy</a></li>
-          <li><a href="{{ SITEURL }}/terms/" class="text-body text-text-secondary hover:text-accent underline-offset-4 hover:underline transition-colors">Terms</a></li>
+          <li><a href="{{ SITEURL }}/services/golden-hour/" class="footer-link">Golden Hour (Free)</a></li>
+          <li><a href="{{ SITEURL }}/services/deep-dive/" class="footer-link">Deep Dive Advisory</a></li>
+          <li><a href="{{ SITEURL }}/services/workshop/" class="footer-link">Founder Workshop</a></li>
+          <li class="pt-sm"><a href="{{ SITEURL }}/privacy/" class="footer-link">Privacy Policy</a></li>
+          <li><a href="{{ SITEURL }}/terms/" class="footer-link">Terms of Service</a></li>
         </ul>
       </div>
     </div>
-    
-    <div class="mt-xxl pt-xl border-t border-border text-center">
-      <p class="text-small text-text-secondary">
-        &copy; 2026 {{ AUTHOR }}. All rights reserved.
+
+    <!-- Bottom Bar -->
+    <div class="mt-2xl pt-lg border-t border-border flex flex-col sm:flex-row items-center justify-between gap-md text-meta text-text-secondary">
+      <p>
+        &copy; {{ CURRENT_YEAR|default(2026) }} {{ AUTHOR }}. All rights reserved.
+      </p>
+      <p class="flex items-center gap-xs">
+        <span>Published with Pelican & Tailwind CSS</span>
       </p>
     </div>
   </div>
 </footer>
-

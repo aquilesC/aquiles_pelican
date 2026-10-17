@@ -7,7 +7,11 @@
     "watch:css": "tailwindcss -i ./themes/aquiles_theme/static/css/src/input.css -o ./themes/aquiles_theme/static/css/style.css --watch"
   },
   "devDependencies": {
-    "tailwindcss": "^3.4.0"
+    "@fontsource-variable/inter": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.1",
+    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/typography": "^0.5.20",
+    "tailwindcss": "^4.3.3"
   },
   "keywords": [
     "pelican",

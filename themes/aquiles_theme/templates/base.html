@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="light dark" />
   <meta name="generator" content="Pelican" />
   
   <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
@@ -11,25 +12,36 @@
   <meta name="description" content="{% block description %}{{ SITESUBTITLE }}{% endblock %}" />
   {% endblock %}
   
+  <!-- Preload core variable fonts for fast, visually stable typography -->
+  <link rel="preload" href="{{ SITEURL }}/theme/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="{{ SITEURL }}/theme/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- Stylesheet -->
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css" />
   
+  <!-- Feeds -->
+  {% if FEED_ALL_RSS %}
+  <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }} - RSS Feed" href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" />
+  {% endif %}
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBEN060376"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-BBEN060376');
+  </script>
+
   {% block extra_head %}{% endblock %}
 </head>
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-BBEN060376"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+<body class="bg-background text-text-primary">
+  <a href="#main" class="skip-link">Skip to main content</a>
 
-  gtag('config', 'G-BBEN060376');
-</script>
-
-<body class="bg-background">
   {% include 'includes/header.html' %}
   
-  <main id="main">
+  <main id="main" tabindex="-1">
     {% block content %}{% endblock %}
   </main>
   
@@ -38,4 +50,3 @@
   {% block extra_scripts %}{% endblock %}
 </body>
 </html>
-

@@ -1,65 +1,73 @@
 {% extends "base.html" %}
+{% from 'includes/icons.html' import icon %}
 
-{% block title %}{{ page.title|default('About') }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ page.title|default('About Me') }} | {{ SITENAME }}{% endblock %}
 
 {% block content %}
-  <div class="pt-xxl md:pt-[80px] pb-xxl">
-    <div class="max-w-content mx-auto px-lg">
+  <div class="section">
+    <div class="container-site">
       <!-- Hero Section -->
-      <header class="mb-xxl">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-xxl items-center">
+      <header class="mb-3xl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-xl md:gap-3xl items-center">
           <!-- Photo Column -->
-          <div class="order-2 md:order-1">
-            <div class="relative">
-              <div class="aspect-square rounded-full overflow-hidden shadow-2xl bg-gradient-to-br from-accent to-accent-alt max-w-md mx-auto">
-                <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-                     alt="{{ AUTHOR }}" 
-                     class="w-full h-full object-cover"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <div class="w-full h-full bg-gradient-to-br from-accent to-accent-alt flex items-center justify-center text-white text-h1 font-heading" style="display: none;">
-                  {{ SITENAME[0] }}
-                </div>
-              </div>
-              <!-- Decorative ring -->
-              <div class="absolute -inset-4 rounded-full border-2 border-accent/20 animate-pulse max-w-md mx-auto"></div>
+          <div class="md:col-span-5 order-2 md:order-1">
+            <div class="portrait">
+              <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
+                   alt="{{ AUTHOR }}" 
+                   width="420"
+                   height="420"
+                   loading="lazy"
+                   decoding="async">
             </div>
           </div>
           
           <!-- Text Column -->
-          <div class="order-1 md:order-2">
-            <h1 class="text-h1 md:text-6xl mb-lg font-heading">{{ page.title|default('About Me') }}</h1>
+          <div class="md:col-span-7 order-1 md:order-2">
+            <span class="kicker mb-xs">Biography</span>
+            <h1 class="text-h1 md:text-5xl mb-md font-heading">{{ page.title|default('About Me') }}</h1>
             {% if page.summary %}
-            <p class="text-h4 text-text-secondary mb-lg">{{ page.summary }}</p>
+            <p class="lead mb-lg">{{ page.summary }}</p>
             {% endif %}
+            <div class="flex flex-wrap items-center gap-md">
+              <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
+                <span>Get in Touch</span>
+                {{ icon('arrow-right', 'icon icon-arrow') }}
+              </a>
+              {% if LINKEDIN_USERNAME %}
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+                {{ icon('linkedin', 'w-4 h-4 text-[#0a66c2]') }}
+                <span>LinkedIn Profile</span>
+              </a>
+              {% endif %}
+            </div>
           </div>
         </div>
       </header>
 
-      <!-- Main Content -->
-      <div class="max-w-3xl mx-auto">
-        <div class="article-content prose prose-lg max-w-none">
+      <!-- Main Prose Content -->
+      <div class="max-w-reading mx-auto">
+        <div class="prose prose-site mx-auto mb-3xl">
           {{ page.content }}
         </div>
 
-        <!-- Additional Sections (can be customized based on content) -->
-        {% if page.extra %}
-        {% if page.extra.timeline %}
-        <section class="mt-xxl">
-          <h2 class="text-h2 mb-xxl font-heading">Timeline</h2>
-          <div class="space-y-xl">
+        <!-- Additional Sections -->
+        {% if page.extra and page.extra.timeline %}
+        <section class="mt-2xl mb-2xl">
+          <h2 class="text-h2 mb-xl font-heading">Timeline</h2>
+          <div class="space-y-lg">
             {% for item in page.extra.timeline %}
-            <div class="border-l-4 border-accent pl-xl py-md">
-              <div class="flex flex-wrap items-baseline gap-md mb-sm">
-                <h3 class="text-h3">{{ item.title }}</h3>
+            <div class="border-l-2 border-accent pl-lg py-xs">
+              <div class="flex flex-wrap items-baseline gap-md mb-xxs">
+                <h3 class="text-h4 font-heading font-bold text-text-primary">{{ item.title }}</h3>
                 {% if item.date %}
-                <time class="text-small text-text-secondary">{{ item.date }}</time>
+                <time class="text-meta text-text-secondary">{{ item.date }}</time>
                 {% endif %}
               </div>
               {% if item.organization %}
-              <p class="text-body text-text-secondary mb-xs"><strong>{{ item.organization }}</strong></p>
+              <p class="text-small font-medium text-text-secondary mb-xxs">{{ item.organization }}</p>
               {% endif %}
               {% if item.description %}
-              <p class="text-body">{{ item.description }}</p>
+              <p class="text-body text-text-secondary">{{ item.description }}</p>
               {% endif %}
             </div>
             {% endfor %}
@@ -67,41 +75,24 @@
         </section>
         {% endif %}
 
-        {% if page.extra.interests %}
-        <section class="mt-xxl">
-          <h2 class="text-h2 mb-lg font-heading">Interests</h2>
-          <div class="flex flex-wrap gap-md">
-            {% for interest in page.extra.interests %}
-            <span class="px-md py-xs bg-muted-bg border border-border rounded-full text-body text-text-secondary">
-              {{ interest }}
-            </span>
-            {% endfor %}
-          </div>
-        </section>
-        {% endif %}
-        {% endif %}
-
-        <!-- Contact CTA -->
-        <section class="mt-xxl pt-xxl border-t border-border">
-          <div class="text-center">
-            <h2 class="text-h2 mb-md font-heading">Get in Touch</h2>
-            <p class="text-body text-text-secondary mb-lg">
-              Interested in collaborating or just want to say hello?
-            </p>
-            <div class="flex flex-wrap justify-center gap-md">
-              <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
-                Contact Me
-              </a>
-              {% if LINKEDIN_USERNAME %}
-              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-                LinkedIn
-              </a>
-              {% endif %}
-            </div>
+        <!-- Contact CTA Card -->
+        <section class="mt-3xl p-xl bg-muted-bg rounded-2xl border border-border text-center">
+          <span class="kicker mb-xs">Collaboration</span>
+          <h2 class="text-h2 mb-md font-heading font-bold">Let's Connect</h2>
+          <p class="text-body text-text-secondary mb-xl max-w-md mx-auto">
+            Interested in collaborating or discussing deep tech commercialization?
+          </p>
+          <div class="flex flex-wrap justify-center gap-md">
+            <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
+              <span>Send a Message</span>
+              {{ icon('arrow-right', 'icon icon-arrow') }}
+            </a>
+            <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-secondary">
+              <span>Book a Free Call</span>
+            </a>
           </div>
         </section>
       </div>
     </div>
   </div>
 {% endblock %}
-

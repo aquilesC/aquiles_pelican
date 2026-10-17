@@ -1,75 +1,99 @@
 {% extends "base.html" %}
+{% from 'includes/icons.html' import icon %}
 
-{% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ page.title|default('Advisory Services') }} | {{ SITENAME }}{% endblock %}
 
-{% block extra_head %}
-<!-- Wave Animation Styles -->
-{% include 'includes/services_hero_style.html' %}
+{% block meta %}
+<meta name="description" content="Deep tech advisory services for technical founders and researchers: Golden Hour, Deep Dive, and Entrepreneurship Workshops." />
 {% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
-<section class="services-hero pt-xxl md:pt-32 pb-xxl md:pb-32 flex items-center" style="min-height: 60vh;">
-  <div class="max-w-content mx-auto px-lg text-center w-full">
-    <h1 class="text-h1 md:text-h1 mb-md font-heading">Services</h1>
-    <p class="text-body md:text-xl text-white max-w-2xl mx-auto">
-      Helping scientists and deep tech startups navigate the complex journey from lab to market.
+<section class="page-hero">
+  <div class="container-site text-center max-w-3xl mx-auto">
+    <span class="kicker mb-xs">
+      {{ icon('sparkles', 'w-4 h-4') }}
+      <span>Advisory & Mentorship</span>
+    </span>
+    <h1 class="font-heading mb-md">Services</h1>
+    <p class="page-hero-lead max-w-2xl mx-auto">
+      Helping scientists and deep tech founders navigate the complex journey from lab bench to market.
     </p>
   </div>
+
+  <!-- Seamless Wave Divider -->
+  <svg class="page-hero-wave" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor" aria-hidden="true">
+    <path d="M0,32 C280,72 520,12 800,48 C1080,84 1280,24 1440,40 L1440,80 L0,80 Z"></path>
+  </svg>
 </section>
 
 <!-- Services Grid -->
-<div class="py-xxl">
-  <div class="max-w-content mx-auto px-lg">
+<section class="section">
+  <div class="container-site">
     {% if SERVICES_DATA %}
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-xl mb-3xl">
       {% for service in SERVICES_DATA %}
-      <article class="bg-background border border-border rounded-lg overflow-hidden hover:shadow-lg transition-shadow flex flex-col h-full">
-        <div class="p-lg flex flex-col flex-grow">
-          {% if service.details %}
-          <span class="text-overline text-accent uppercase tracking-wider mb-xs inline-block">{{ service.details }}</span>
+      <div class="service-card">
+        <div class="service-icon mb-xs">
+          {% if loop.index == 1 %}
+            {{ icon('sparkles', 'w-6 h-6') }}
+          {% elif loop.index == 2 %}
+            {{ icon('share', 'w-6 h-6') }}
+          {% else %}
+            {{ icon('user', 'w-6 h-6') }}
           {% endif %}
-          <h2 class="text-h4 mb-sm">
-            {{ service.title }}
-          </h2>
-          {% if service.summary %}
-          <p class="text-body text-text-secondary mb-md flex-grow">{{ service.summary }}</p>
-          {% endif %}
-          <div class="mt-md pt-lg border-t border-border">
-            <a href="{{ service.link_url }}" class="btn btn-secondary w-full text-center block">
-              {{ service.link_text }}
-            </a>
-          </div>
         </div>
-      </article>
+        {% if service.details %}
+        <span class="kicker text-accent">{{ service.details }}</span>
+        {% endif %}
+        <h2 class="card-title text-h3">
+          <a href="{{ SITEURL }}{{ service.link_url }}" class="card-link">
+            {{ service.title }}
+          </a>
+        </h2>
+        {% if service.summary %}
+        <p class="text-body text-text-secondary grow">
+          {{ service.summary }}
+        </p>
+        {% endif %}
+        <div class="pt-md border-t border-border mt-auto">
+          <span class="card-cta">
+            <span>{{ service.link_text }}</span>
+            {{ icon('arrow-right', 'icon icon-arrow') }}
+          </span>
+        </div>
+      </div>
       {% endfor %}
     </div>
     {% endif %}
 
     <!-- Page Content (if any) -->
-    <div class="prose prose-lg max-w-none mt-xxl text-center">
+    {% if page and page.content %}
+    <div class="prose prose-site max-w-reading mx-auto mb-3xl">
       {{ page.content }}
     </div>
+    {% endif %}
   </div>
-</div>
+</section>
 
-<!-- Contact Form Section -->
-<div id="contact-form" class="bg-muted-bg py-xxl border-t border-border">
-  <div class="max-w-content mx-auto px-lg">
-    <header class="mb-xxl text-center">
-      <h2 class="text-h1 mb-md">Get in Touch</h2>
-      <p class="text-body text-text-secondary">Have a question or want to collaborate? Send me a message.</p>
-    </header>
+<!-- Contact Section -->
+<section id="contact" class="section bg-muted-bg border-t border-border">
+  <div class="container-site">
+    <div class="text-center max-w-2xl mx-auto mb-2xl">
+      <span class="kicker mb-xs">Get in Touch</span>
+      <h2 class="section-title mb-md">Start a Conversation</h2>
+      <p class="text-body text-text-secondary">
+        Have a question or want to explore how we can collaborate? Send a message and I'll respond within two business days.
+      </p>
+    </div>
 
     <div class="max-w-2xl mx-auto">
       {% include 'includes/contact_form.html' %}
     </div>
   </div>
-</div>
+</section>
 {% endblock %}
 
 {% block extra_scripts %}
-<script>
-  {% include 'includes/contact_script.html' %}
-</script>
+{% include 'includes/contact_script.html' %}
 {% endblock %}

@@ -90,6 +90,23 @@ SITE_DESCRIPTION = 'Personal website featuring essays, work experience, and proj
 TWITTER_USERNAME = None
 GITHUB_USERNAME = 'aquilesC'
 LINKEDIN_USERNAME = 'aquic'
+BOOKING_URL = '/services/golden-hour/'
+
+# Theme helpers
+import datetime as _dt
+from pathlib import Path as _Path
+
+CURRENT_YEAR = _dt.date.today().year
+# Slugs that have a generated Open Graph image (see generate_og_images.py)
+OG_IMAGES = {p.stem for p in (_Path(__file__).parent / 'content' / 'images' / 'og').glob('*.png')}
+# Hue (0-360, OKLCH) used for the generated card covers of each category
+CATEGORY_HUES = {
+    'personal': 45,
+    'science': 175,
+    'science-commercialization': 250,
+    'deep-tech-strategy': 285,
+    'entrepreneurship': 20,
+}
 
 # Services Data
 SERVICES_DATA = [

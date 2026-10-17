@@ -1,4 +1,6 @@
 {% extends "base.html" %}
+{% from 'includes/card.html' import render_card %}
+{% from 'includes/icons.html' import icon %}
 
 {% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
 
@@ -10,7 +12,11 @@
   <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
   <meta property="og:title" content="{{ article.title }}" />
   <meta property="og:description" content="{{ article.summary|striptags|truncate(200) }}" />
+  {% if article.hero_image %}
+  <meta property="og:image" content="{{ SITEURL }}/{{ article.hero_image }}" />
+  {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
   <meta property="og:image" content="{{ SITEURL }}/images/og/{{ article.slug }}.png" />
+  {% endif %}
   <meta property="og:site_name" content="{{ SITENAME }}" />
   {% if article.author %}
   <meta property="article:author" content="{{ article.author }}" />
@@ -28,7 +34,11 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="{{ article.title }}" />
   <meta name="twitter:description" content="{{ article.summary|striptags|truncate(200) }}" />
+  {% if article.hero_image %}
+  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.hero_image }}" />
+  {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
   <meta name="twitter:image" content="{{ SITEURL }}/images/og/{{ article.slug }}.png" />
+  {% endif %}
 
   <!-- Schema.org structured data -->
   <script type="application/ld+json">
@@ -37,7 +47,11 @@
     "@type": "BlogPosting",
     "headline": "{{ article.title|e }}",
     "description": "{{ article.summary|striptags|truncate(200)|e }}",
+    {% if article.hero_image %}
+    "image": "{{ SITEURL }}/{{ article.hero_image }}",
+    {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
     "image": "{{ SITEURL }}/images/og/{{ article.slug }}.png",
+    {% endif %}
     "datePublished": "{{ article.date.isoformat() }}",
     {% if article.modified %}"dateModified": "{{ article.modified.isoformat() }}",{% else %}"dateModified": "{{ article.date.isoformat() }}",{% endif %}
     "author": {
@@ -59,90 +73,225 @@
 {% endblock %}
 
 {% block content %}
-  <article class="pt-xxl md:pt-[80px] pb-xxl">
-    <!-- Hero Image -->
-    {% if article.hero_image %}
-    <div class="max-w-full mb-xxl">
-      <img src="{{ SITEURL }}/{{ article.hero_image }}" alt="{{ article.title }}" class="w-full h-auto" />
-      {% if article.hero_caption %}
-      <p class="text-small text-text-secondary text-center mt-sm">{{ article.hero_caption }}</p>
-      {% endif %}
-    </div>
-    {% endif %}
+  <!-- Scroll-driven reading progress bar -->
+  <div class="reading-progress" aria-hidden="true"></div>
 
-    <div class="max-w-content mx-auto px-lg">
-      <!-- Article Header -->
-      <header class="mb-xxl">
+  <article class="py-xl md:py-3xl">
+    <div class="container-site">
+      <!-- Article Header & Reading Column: Aligned to max-w-reading -->
+      <header class="max-w-reading mx-auto mb-2xl">
+        <!-- Breadcrumb Navigation -->
+        <nav aria-label="Breadcrumb" class="mb-lg">
+          <ol class="flex items-center gap-xs text-meta text-text-secondary">
+            <li><a href="{{ SITEURL }}/" class="hover:text-accent">Home</a></li>
+            <li aria-hidden="true">/</li>
+            <li><a href="{{ SITEURL }}/articles/" class="hover:text-accent">Articles</a></li>
+            {% if article.category %}
+            <li aria-hidden="true">/</li>
+            <li><a href="{{ SITEURL }}/{{ article.category.url }}" class="hover:text-accent">{{ article.category.name }}</a></li>
+            {% endif %}
+          </ol>
+        </nav>
+
         {% if article.category %}
-        <a href="{{ SITEURL }}/{{ article.category.url }}" class="text-overline text-accent uppercase tracking-wider mb-md inline-block hover:text-accentAlt hover:underline underline-offset-4 transition-colors">
-          {{ article.category }}
-        </a>
+        <div class="mb-sm">
+          <a href="{{ SITEURL }}/{{ article.category.url }}" class="chip">
+            {{ icon('tag', 'w-3.5 h-3.5') }}
+            <span>{{ article.category.name }}</span>
+          </a>
+        </div>
         {% endif %}
-        <h1 class="text-h1 mb-md">{{ article.title }}</h1>
+
+        <h1 class="text-h1 md:text-5xl font-heading mb-md">
+          {{ article.title }}
+        </h1>
         
         {% if article.summary %}
-        <p class="text-h4 text-text-secondary mb-lg">{{ article.summary }}</p>
+        <p class="lead mb-lg">
+          {{ article.summary|striptags }}
+        </p>
         {% endif %}
         
-        <!-- Meta Information -->
-        <div class="flex flex-wrap items-center gap-md text-small text-text-secondary">
-          <time datetime="{{ article.date.isoformat() }}">{{ article.locale_date }}</time>
+        <!-- Metadata Row -->
+        <div class="flex flex-wrap items-center gap-md pt-md border-t border-border text-meta text-text-secondary">
+          <time datetime="{{ article.date.isoformat() }}" class="flex items-center gap-xs">
+            {{ icon('calendar', 'w-4 h-4 text-accent/80') }}
+            <span>{{ article.locale_date }}</span>
+          </time>
           {% if article.readingtime %}
-          <span>•</span>
-          <span>{{ article.readingtime }} min read</span>
+          <span class="flex items-center gap-xs">
+            {{ icon('clock', 'w-4 h-4 text-accent/80') }}
+            <span>{{ article.readingtime }} min read</span>
+          </span>
           {% endif %}
           {% if article.author %}
-          <span>•</span>
-          <span>By {{ article.author }}</span>
-          {% endif %}
-          {% if article.tags %}
-          <span>•</span>
-          <div class="flex flex-wrap gap-xs items-center">
-            {% for tag in article.tags %}
-            <a href="{{ SITEURL }}/{{ tag.url }}" class="inline-flex items-center gap-xs px-sm py-xs bg-muted-bg text-text-secondary hover:bg-accent hover:text-white rounded-full transition-colors text-overline">
-              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z"></path>
-              </svg>
-              <span>{{ tag.name }}</span>
-            </a>
-            {% endfor %}
-          </div>
+          <span class="flex items-center gap-xs">
+            {{ icon('user', 'w-4 h-4 text-accent/80') }}
+            <span>By {{ article.author }}</span>
+          </span>
           {% endif %}
         </div>
       </header>
 
-      <!-- Article Content -->
-      <div class="article-content">
+      <!-- Hero Image (if provided) -->
+      {% if article.hero_image %}
+      <figure class="max-w-reading mx-auto mb-2xl">
+        <img src="{{ SITEURL }}/{{ article.hero_image }}" 
+             alt="{{ article.title }}" 
+             class="w-full h-auto rounded-xl shadow-lg border border-border" 
+             loading="eager" />
+        {% if article.hero_caption %}
+        <figcaption class="text-meta text-text-secondary text-center mt-sm italic">
+          {{ article.hero_caption }}
+        </figcaption>
+        {% endif %}
+      </figure>
+      {% endif %}
+
+      <!-- Article Rich Text Body -->
+      <div class="article-body prose prose-site mx-auto mb-3xl">
         {{ article.content }}
       </div>
 
-      <!-- Share Buttons -->
-      <div class="mt-xxl pt-xl border-t border-border">
-        <h3 class="text-h4 mb-md">Share this article</h3>
-        <div class="flex flex-wrap gap-md mb-lg">
-          <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url }}&text={{ article.title|urlencode }}" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="btn btn-secondary">
-            Twitter
+      <!-- Tags & Share Section (aligned to reading width) -->
+      <footer class="max-w-reading mx-auto pt-xl border-t border-border">
+        <!-- Tags -->
+        {% if article.tags %}
+        <div class="flex flex-wrap items-center gap-xs mb-xl">
+          <span class="text-meta font-medium text-text-secondary mr-xs">Tags:</span>
+          {% for tag in article.tags %}
+          <a href="{{ SITEURL }}/{{ tag.url }}" class="chip chip-neutral text-meta">
+            #{{ tag.name }}
           </a>
-          <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url }}" 
-             target="_blank" 
-             rel="noopener noreferrer"
-             class="btn btn-secondary">
-            Share on LinkedIn
-          </a>
-        </div>
-        {% if LINKEDIN_USERNAME %}
-        <div class="text-small text-text-secondary">
-          <p class="mb-xs">Connect with me:</p>
-          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
-            View my LinkedIn profile
-          </a>
+          {% endfor %}
         </div>
         {% endif %}
-      </div>
+
+        <!-- Share Actions Bar with Icons -->
+        <div class="bg-muted-bg p-lg rounded-2xl border border-border mb-2xl">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
+            <div>
+              <h2 class="text-h4 font-heading font-semibold text-text-primary mb-xs">Share this essay</h2>
+              <p class="text-meta text-text-secondary">If you found this insightful, share it with fellow scipreneurs.</p>
+            </div>
+            
+            <div class="flex flex-wrap items-center gap-sm">
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url|urlencode }}" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="share-btn"
+                 aria-label="Share on LinkedIn">
+                {{ icon('linkedin', 'w-4 h-4 text-[#0a66c2]') }}
+                <span>LinkedIn</span>
+              </a>
+
+              <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url|urlencode }}&text={{ article.title|urlencode }}" 
+                 target="_blank" 
+                 rel="noopener noreferrer"
+                 class="share-btn"
+                 aria-label="Share on X">
+                {{ icon('twitter', 'w-4 h-4') }}
+                <span>Post</span>
+              </a>
+
+              <button type="button" 
+                      id="copy-link-btn"
+                      data-url="{{ SITEURL }}/{{ article.url }}"
+                      class="share-btn"
+                      aria-label="Copy link to article">
+                <span id="copy-icon">{{ icon('copy', 'w-4 h-4') }}</span>
+                <span id="copy-text">Copy link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Author Box -->
+        <div class="author-box mb-3xl">
+          <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
+               alt="{{ AUTHOR }}" 
+               width="72" 
+               height="72"
+               loading="lazy" />
+          <div>
+            <span class="kicker text-accent mb-xxs">Author</span>
+            <h3 class="text-h4 font-heading font-bold text-text-primary mb-xs">{{ AUTHOR }}</h3>
+            <p class="text-small text-text-secondary mb-md">
+              Founder, scientist, and deep-tech advisor. Helping academic researchers and startup teams translate hard tech into successful commercial products.
+            </p>
+            <div class="flex flex-wrap items-center gap-md">
+              {% if LINKEDIN_USERNAME %}
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+                {{ icon('linkedin', 'w-4 h-4 text-[#0a66c2]') }}
+                <span>Connect on LinkedIn</span>
+              </a>
+              {% endif %}
+              <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary btn-sm">
+                <span>Book a Free Chat</span>
+                {{ icon('arrow-right', 'icon icon-arrow') }}
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Next / Previous Article Navigation -->
+        {% if article.prev_article or article.next_article %}
+        <nav class="grid grid-cols-1 md:grid-cols-2 gap-md pt-xl border-t border-border" aria-label="Article navigation">
+          {% if article.prev_article %}
+          <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="card p-md group">
+            <span class="text-meta text-text-secondary flex items-center gap-xs mb-xs">
+              {{ icon('arrow-left', 'w-3.5 h-3.5') }}
+              <span>Previous Article</span>
+            </span>
+            <span class="font-heading font-semibold text-text-primary group-hover:text-accent transition-colors">
+              {{ article.prev_article.title }}
+            </span>
+          </a>
+          {% else %}
+          <div></div>
+          {% endif %}
+
+          {% if article.next_article %}
+          <a href="{{ SITEURL }}/{{ article.next_article.url }}" class="card p-md group text-right">
+            <span class="text-meta text-text-secondary flex items-center justify-end gap-xs mb-xs">
+              <span>Next Article</span>
+              {{ icon('arrow-right', 'w-3.5 h-3.5') }}
+            </span>
+            <span class="font-heading font-semibold text-text-primary group-hover:text-accent transition-colors">
+              {{ article.next_article.title }}
+            </span>
+          </a>
+          {% endif %}
+        </nav>
+        {% endif %}
+      </footer>
     </div>
   </article>
-{% endblock %}
 
+  <script>
+    (function() {
+      // Copy Link Button with dynamic feedback
+      const copyBtn = document.getElementById('copy-link-btn');
+      if (copyBtn) {
+        copyBtn.addEventListener('click', async function() {
+          const url = copyBtn.getAttribute('data-url') || window.location.href;
+          try {
+            await navigator.clipboard.writeText(url);
+            const copyIcon = document.getElementById('copy-icon');
+            const copyText = document.getElementById('copy-text');
+            copyBtn.setAttribute('data-copied', 'true');
+            if (copyIcon) copyIcon.innerHTML = '{{ icon("check", "w-4 h-4 text-status-success")|replace("\n", "") }}';
+            if (copyText) copyText.textContent = 'Copied!';
+            setTimeout(() => {
+              copyBtn.removeAttribute('data-copied');
+              if (copyIcon) copyIcon.innerHTML = '{{ icon("copy", "w-4 h-4")|replace("\n", "") }}';
+              if (copyText) copyText.textContent = 'Copy link';
+            }, 2500);
+          } catch (err) {
+            // fallback
+          }
+        });
+      }
+    })();
+  </script>
+{% endblock %}

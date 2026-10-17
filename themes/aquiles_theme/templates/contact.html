@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% from 'includes/icons.html' import icon %}
 
 {% block title %}Contact | {{ SITENAME }}{% endblock %}
 
@@ -21,44 +22,65 @@
     </div>
   </section>
 
-  <div class="py-xxl">
-    <div class="max-w-content mx-auto px-lg">
-      <header class="mb-xxl">
-        <h2 class="text-h1 mb-md">Get in Touch</h2>
-        <p class="text-body text-text-secondary">Have a question or want to collaborate? Send me a message.</p>
-      </header>
+  <div class="section">
+    <div class="container-site">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl md:gap-3xl">
+        <!-- Form Column -->
+        <div class="lg:col-span-7">
+          <span class="kicker mb-xs">Direct Inquiry</span>
+          <h2 class="text-h1 mb-md">Get in Touch</h2>
+          <p class="text-body text-text-secondary mb-xl">
+            Have a question, venture idea, or want to explore advisory collaboration? Send me a message below.
+          </p>
 
-      <div class="max-w-2xl">
-        {% include 'includes/contact_form.html' %}
+          {% include 'includes/contact_form.html' %}
+        </div>
 
-        <!-- Additional Contact Info -->
-        <div class="mt-xxl pt-xl border-t border-border">
-          <h2 class="text-h3 mb-lg">Other Ways to Reach Me</h2>
-          <div class="space-y-md text-body text-text-secondary">
-            {% if LINKEDIN_USERNAME %}
-            <p>
-              <strong>LinkedIn:</strong> 
-              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
-                {{ LINKEDIN_USERNAME }}
-              </a>
+        <!-- Sidebar Column: Other Ways to Connect -->
+        <div class="lg:col-span-5">
+          <div class="bg-muted-bg p-xl rounded-2xl border border-border">
+            <h3 class="text-h3 font-heading font-bold mb-md">Connect Directly</h3>
+            <p class="text-small text-text-secondary mb-lg">
+              I'm actively engaged with deep tech startups, university incubators, and researchers considering their spinout strategy.
             </p>
-            {% endif %}
-            {% if TWITTER_USERNAME %}
-            <p>
-              <strong>Twitter:</strong> 
-              <a href="https://twitter.com/{{ TWITTER_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
-                @{{ TWITTER_USERNAME }}
+
+            <div class="space-y-sm mb-xl">
+              {% if LINKEDIN_USERNAME %}
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="card p-md flex items-center gap-md group">
+                <span class="icon-btn bg-white">
+                  {{ icon('linkedin', 'w-5 h-5 text-[#0a66c2]') }}
+                </span>
+                <div>
+                  <span class="text-meta text-text-secondary block">LinkedIn</span>
+                  <span class="font-semibold text-text-primary group-hover:text-accent transition-colors">/in/{{ LINKEDIN_USERNAME }}</span>
+                </div>
               </a>
-            </p>
-            {% endif %}
-            {% if GITHUB_USERNAME %}
-            <p>
-              <strong>GitHub:</strong> 
-              <a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="text-accent hover:text-accent-alt underline-offset-4 hover:underline">
-                {{ GITHUB_USERNAME }}
+              {% endif %}
+
+              {% if GITHUB_USERNAME %}
+              <a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="card p-md flex items-center gap-md group">
+                <span class="icon-btn bg-white">
+                  {{ icon('github', 'w-5 h-5') }}
+                </span>
+                <div>
+                  <span class="text-meta text-text-secondary block">GitHub</span>
+                  <span class="font-semibold text-text-primary group-hover:text-accent transition-colors">@{{ GITHUB_USERNAME }}</span>
+                </div>
               </a>
-            </p>
-            {% endif %}
+              {% endif %}
+            </div>
+
+            <div class="p-md rounded-xl bg-surface border border-border">
+              <span class="kicker text-accent mb-xxs">Free Consultation</span>
+              <h4 class="text-h4 font-heading font-semibold mb-xs">The Golden Hour</h4>
+              <p class="text-meta text-text-secondary mb-md">
+                1-hour no-obligation strategy session to analyze your current challenges.
+              </p>
+              <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-secondary btn-sm w-full">
+                <span>Book Free Session</span>
+                {{ icon('arrow-right', 'icon icon-arrow') }}
+              </a>
+            </div>
           </div>
         </div>
       </div>
