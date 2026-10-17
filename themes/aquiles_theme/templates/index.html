@@ -8,6 +8,8 @@
 <meta name="description" content="Aquiles Carattino helps technical founders and scientists transition from academia to entrepreneurship. Actionable advice on deep tech strategy, product management, and commercializing science." />
 {% endblock %}
 
+{% block body_class %}has-dark-hero{% endblock %}
+
 {% block content %}
   <!-- Full-Screen Hero Section with 3D Particles -->
   <section class="hero-section relative overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
@@ -230,5 +232,5 @@
 {% block extra_scripts %}
   <!-- Three.js and Particle background loaded with defer for smooth rendering -->
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script defer src="{{ SITEURL }}/theme/js/particles.js"></script>
+  <script defer src="{{ SITEURL }}/theme/js/particles.js?v={{ JS_VERSION }}"></script>
 {% endblock %}

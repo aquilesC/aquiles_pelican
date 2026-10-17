@@ -11,8 +11,8 @@ This is a personal publishing platform combining essays, work experience, and pr
 - **Static Site Generator**: Pelican (Python)
 - **Templating**: Jinja2
 - **Styling**: TailwindCSS
-- **Form Handling**: Netlify Forms
-- **Deployment**: Static hosting (Netlify compatible)
+- **Form Handling**: Formspree
+- **Deployment**: Cloudflare Pages
 
 ## Project Structure
 
@@ -30,7 +30,6 @@ aquiles_pelican/
 ├── publishconf.py       # Production settings
 ├── requirements.txt     # Python dependencies
 ├── package.json         # Node dependencies (TailwindCSS)
-├── tailwind.config.js   # TailwindCSS configuration
 └── design_brief.json    # Design specifications
 
 ```
@@ -99,19 +98,21 @@ The design follows specifications in `design_brief.json`:
 
 ## Deployment
 
-The site generates static HTML files to `output/` directory.
+The site generates static HTML files to `output/` directory and is deployed via Cloudflare Pages.
 
-For Netlify deployment:
-1. Set build command: `pelican content -s publishconf.py && npm run build:css`
-2. Set publish directory: `output`
-3. Netlify Forms will automatically process forms
+For Cloudflare Pages deployment:
+1. Build command: `pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py`
+2. Build output directory: `output`
+3. Environment variables: `PYTHON_VERSION=3.13`, `NODE_VERSION=20`
+
+See `cloudflare-pages.md` for full setup instructions.
 
 ## Features
 
 - Home page with featured content
 - Articles/blog listing
 - Work experience showcase
-- Contact form (Netlify Forms)
+- Contact form (Formspree)
 - Responsive design
 - Accessibility features (AA/AAA contrast)
 - SEO optimized

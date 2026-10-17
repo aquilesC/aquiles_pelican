@@ -97,6 +97,19 @@ import datetime as _dt
 from pathlib import Path as _Path
 
 CURRENT_YEAR = _dt.date.today().year
+
+import hashlib as _hashlib
+import time as _time
+
+def _get_asset_version(rel_path):
+    p = _Path(__file__).parent / rel_path
+    if p.exists():
+        return _hashlib.md5(p.read_bytes()).hexdigest()[:10]
+    return str(int(_time.time()))
+
+CSS_VERSION = _get_asset_version('themes/aquiles_theme/static/css/style.css')
+JS_VERSION = _get_asset_version('themes/aquiles_theme/static/js/particles.js')
+
 # Slugs that have a generated Open Graph image (see generate_og_images.py)
 OG_IMAGES = {p.stem for p in (_Path(__file__).parent / 'content' / 'images' / 'og').glob('*.png')}
 # Hue (0-360, OKLCH) used for the generated card covers of each category

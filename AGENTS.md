@@ -18,3 +18,4 @@
 - Site generation: `source .venv/bin/activate && make html` (or `make publish`)
 - Open Graph images: `source .venv/bin/activate && make og-images`
 - Development server: `source .venv/bin/activate && make serve`
+- Link checking: `source .venv/bin/activate && make check-links` (or `make check-links-internal`)

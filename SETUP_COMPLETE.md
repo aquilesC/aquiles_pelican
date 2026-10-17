@@ -17,8 +17,8 @@ Your Pelican static website with TailwindCSS is now ready. Here's what has been 
 ### 3. Pelican Configuration
 - ✅ `pelicanconf.py` - Development configuration
 - ✅ `publishconf.py` - Production configuration
-- ✅ `netlify.toml` - Netlify deployment configuration
 - ✅ `Makefile` - Build automation
+- ✅ `cloudflare-pages.md` - Cloudflare Pages deployment configuration
 
 ### 4. Template System (Jinja2)
 - ✅ `base.html` - Base template
@@ -64,10 +64,9 @@ aquiles_pelican/
 │       └── theme.conf
 ├── pelicanconf.py         # Pelican config
 ├── publishconf.py         # Production config
-├── tailwind.config.js    # TailwindCSS config
 ├── requirements.txt      # Python deps
 ├── package.json          # Node deps
-└── netlify.toml          # Netlify config
+└── cloudflare-pages.md   # Cloudflare Pages deployment guide
 ```
 
 ## 🚀 Next Steps
@@ -105,7 +104,7 @@ cd output && python -m pelican.server
 2. **Articles**: Full listing page (`/articles/`) with card layout
 3. **Article Detail**: Full article view with metadata, tags, sharing
 4. **Work Experience**: Custom page (`/work/`) for showcasing your career
-5. **Contact Form**: Netlify Forms integration (`/contact/`)
+5. **Contact Form**: Formspree integration (`/contact/`)
 6. **Responsive Design**: Mobile-first, works on all devices
 7. **Accessibility**: AA/AAA contrast, keyboard navigation, focus states
 8. **SEO**: Meta tags, structured data ready
@@ -118,13 +117,12 @@ The design follows your `design_brief.json`:
 - **Layout**: 12-column grid, max-width 1200px
 - **Spacing**: Consistent 4px-48px scale
 
-## 📧 Netlify Forms
+## 📧 Contact Form
 
-The contact form is already configured for Netlify Forms:
-- Form name: `contact`
-- Honeypot field for spam protection
+The contact form is configured with Formspree:
+- Endpoint: Formspree integration
 - Required fields: name, email, subject, message
-- Netlify will automatically process submissions
+- Accessible client-side validation and responsive layout
 
 ## 🔧 Customization Points
 

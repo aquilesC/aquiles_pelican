@@ -20,16 +20,16 @@ Static website built with Pelican (Python static site generator) and TailwindCSS
 - Header: Sticky navigation with logo, primary nav, utilities
 - Footer: Quick links, social icons, legal, signature
 - Article cards: Kicker, title, excerpt, media, tag
-- Forms: Netlify Forms compatible (netlify attribute)
+- Forms: Formspree integration (`https://formspree.io/f/xqawzylw`)
 
 ## Content Structure
 - Articles: Markdown files in `content/articles/`
 - Pages: Markdown files in `content/pages/`
 - Work experience: Custom page type
-- Contact form: HTML form with Netlify attributes
+- Contact form: HTML form integrated with Formspree
 
 ## Important Files
 - `pelicanconf.py`: Main Pelican configuration
-- `tailwind.config.js`: TailwindCSS design tokens
+- `publishconf.py`: Production configuration for Cloudflare Pages
 - `themes/aquiles_theme/`: Custom theme templates
 

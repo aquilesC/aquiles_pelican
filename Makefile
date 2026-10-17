@@ -23,6 +23,8 @@ help:
 	@echo '   make css             build TailwindCSS'
 	@echo '   make watch           watch and build CSS'
 	@echo '   make og-images       generate Open Graph images for articles'
+	@echo '   make check-links     check for broken internal and external links'
+	@echo '   make check-links-internal  quickly check internal links only'
 	@echo ''
 	@echo 'Set the DEBUG variable to 1 to enable debugging, e.g. make DEBUG=1 html'
 	@echo 'Set the RELATIVE_URLS variable to 1 to enable relative urls'
@@ -45,7 +47,7 @@ regenerate:
 	fi
 
 serve:
-	cd $(OUTPUTDIR) && $(PYTHON) -m pelican.server
+	$(PYTHON) -m http.server 8000 --directory $(OUTPUTDIR)
 
 devserver:
 	$(BASEDIR)/develop_server.sh restart
@@ -73,5 +75,19 @@ og-images:
 		python3 generate_og_images.py; \
 	fi
 
-.PHONY: html help clean regenerate serve devserver stopserver publish css watch og-images
+check-links: html
+	@if [ -f $(VENV) ]; then \
+		. $(VENV) && python check_links.py $(CHECK_OPTS); \
+	else \
+		python3 check_links.py $(CHECK_OPTS); \
+	fi
+
+check-links-internal: html
+	@if [ -f $(VENV) ]; then \
+		. $(VENV) && python check_links.py --internal-only $(CHECK_OPTS); \
+	else \
+		python3 check_links.py --internal-only $(CHECK_OPTS); \
+	fi
+
+.PHONY: html help clean regenerate serve devserver stopserver publish css watch og-images check-links check-links-internal
 

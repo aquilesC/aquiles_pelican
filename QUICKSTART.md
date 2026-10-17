@@ -90,17 +90,16 @@ make clean       # Remove output directory
 make publish     # Build for production
 ```
 
-## Netlify Deployment
+## Cloudflare Pages Deployment
 
 1. Push your code to a Git repository
-2. Connect the repository to Netlify
-3. Netlify will automatically:
-   - Install dependencies
-   - Build CSS
-   - Generate the site
-   - Process forms
+2. Connect the repository to Cloudflare Pages
+3. Configure build settings:
+   - Build command: `pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py`
+   - Build output directory: `output`
+   - Environment variables: `PYTHON_VERSION=3.13`, `NODE_VERSION=20`
 
-The `netlify.toml` file is already configured for this workflow.
+See `cloudflare-pages.md` for full instructions.
 
 ## Customization
 
