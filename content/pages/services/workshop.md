@@ -9,9 +9,8 @@ Summary: Training the Next Generation of Scipreneurs.
 
 Most scientists are trained to be skeptical, thorough, and risk-averse—traits that make great researchers but hesitant entrepreneurs. I help universities, incubators, and TTOs flip the script. This is not a theoretical lecture; it is a hands-on bootcamp on the realities of deep tech entrepreneurship.
 
-<div style="background: #222; color: #fff; padding: 20px; text-align: center; margin: 20px 0; border: 1px dashed #555; border-radius: 8px;">
-    <strong>Graph Placeholder 1</strong><br>
-    <em>(Space for graph illustrating mindset shift: Scientist vs. Entrepreneur)</em>
+<div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
+    <img src="/theme/images/WorkshopMindset.jpg" alt="Mindset Shift: Scientist vs. Entrepreneur" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
 ### Who this is for: 
@@ -23,9 +22,8 @@ University Tech Transfer Offices (TTOs), PhD Cohorts, Incubators, and Research I
 *   **The Toolkit:** Practical application of Lean Startup methodology in a Deep Tech context.
 *   **The Pitch:** How to communicate complex science to non-experts without "dumbing it down."
 
-<div style="background: #222; color: #fff; padding: 20px; text-align: center; margin: 20px 0; border: 1px dashed #555; border-radius: 8px;">
-    <strong>Graph Placeholder 2</strong><br>
-    <em>(Space for graph illustrating the Lean Startup Toolkit in Deep Tech)</em>
+<div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
+    <img src="/theme/images/WorkshopToolkit.jpg" alt="Lean Startup Toolkit in Deep Tech" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
 ### Format: 

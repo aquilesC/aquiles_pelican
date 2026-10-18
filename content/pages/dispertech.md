@@ -63,13 +63,13 @@ For me it was clear: a light-sheet microscope would address their problems, thei
 I set to build the OpenSPIM. One of the first successful open-hardware projects. It was not a walk in the park as I initially expected. Some of the parts that had to be built had wrong specs or wrong tech drawings. Choices of optics and distances did not match. But the team managed to pull through and the first data was acquired within a couple of months. 
 
 The more interesting thing was that people would simply get it. It didn't take a long time to explain what we do, how that would help them, and why it would be worth talking to us. 
+
 # Closing a Chapter: Leaving Dispertech
 
 The entire process of creating a spinout can be draining. On top of that, Covid hit right when the first product was ready, when we were supposed to go to conferences, visit customers, and strengthen the commercial side of the team. 
 
 Covid was too long, and we missed what was happening in the community. It was clear the nanoCET would not find product-market fit without a massive re-engineering that we couldn't afford. 
 
-The nanoQNT would be the best path forward, and it coincided to securing a professional seed-round for the company. 
+The nanoQNT would be the best path forward, and it coincided with securing a professional seed-round for the company. 
 
 However, I just hadn't in me to keep going. I stopped being an asset for the team and couldn't reinvent myself. 
-
