@@ -68,9 +68,11 @@ css:
 watch:
 	npm run watch:css
 
+# uv-managed Python does not search Homebrew's lib dir, so point CairoSVG at libcairo there (set on the python call: macOS strips DYLD_* vars passed through /bin/sh)
+BREW_LIB := $(shell brew --prefix 2>/dev/null)/lib
 og-images:
 	@if [ -f $(VENV) ]; then \
-		. $(VENV) && python generate_og_images.py; \
+		. $(VENV) && DYLD_FALLBACK_LIBRARY_PATH="$(BREW_LIB)" python generate_og_images.py; \
 	else \
 		python3 generate_og_images.py; \
 	fi

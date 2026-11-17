@@ -7,6 +7,10 @@
   ```
   Alternatively, explicitly use `.venv/bin/python`, `.venv/bin/pip`, or `.venv/bin/pelican`.
 - Never install Python packages globally or outside `.venv`.
+- The Python version is pinned in `.python-version` / `runtime.txt` to match Cloudflare's build image (currently 3.14.8). Build the venv with a uv-managed interpreter so Homebrew upgrades cannot break it:
+  ```bash
+  uv venv --seed --python "$(cat .python-version)" .venv && .venv/bin/pip install -r requirements.txt
+  ```
 
 ## Project Overview
 - Static website built with Pelican and TailwindCSS.

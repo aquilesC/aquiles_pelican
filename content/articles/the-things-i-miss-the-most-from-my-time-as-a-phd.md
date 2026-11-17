@@ -12,7 +12,7 @@ Many people, when faced with the struggle of stepping out of academia, ask thems
 
 In my case, there is one thing that made all the difference: **access to people with interesting problems**.
 
-I didn’t value it enough while doing [my Ph.D](https://www.aquiles.me/my-work/my-phd-thesis/ "My PhD Thesis"). I gave it for granted and, in hindsight, **I didn’t interact with as many people as I should have**. Many researchers are facing next-generation problems, they are posing questions aiming at very far fetched applications if any at all.
+I didn’t value it enough while doing [my Ph.D]({filename}/pages/phd.md "My PhD Thesis"). I gave it for granted and, in hindsight, **I didn’t interact with as many people as I should have**. Many researchers are facing next-generation problems, they are posing questions aiming at very far fetched applications if any at all.
 
 Outside of the academic environment, it becomes harder to meet people doing this type of cutting edge work, people who pose themselves hard problems. I miss the seminars and random talks by invited speakers.
 

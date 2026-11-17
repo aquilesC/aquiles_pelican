@@ -97,7 +97,7 @@ make publish     # Build for production
 3. Configure build settings:
    - Build command: `pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py`
    - Build output directory: `output`
-   - Environment variables: `PYTHON_VERSION=3.13`, `NODE_VERSION=20`
+   - Environment variables: `PYTHON_VERSION=3.14.8`, `NODE_VERSION=20`
 
 See `cloudflare-pages.md` for full instructions.
 

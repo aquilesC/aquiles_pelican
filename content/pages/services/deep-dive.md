@@ -14,7 +14,7 @@ You have the technology (TRL 7-9), but you don’t have a product yet. You are b
 Series A startups or well-funded spin-outs. You have a technical team, but you lack a dedicated Product Manager or Commercial Lead.
 
 <div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
-    <img src="/theme/images/DeepDive.png" alt="Deep Dive Engagement Model" style="width: 100%; height: auto; border-radius: 8px;">
+    <img src="/theme/images/DeepDive.webp" width="1600" height="873" loading="lazy" decoding="async" alt="Deep Dive Engagement Model" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
 ### How I help

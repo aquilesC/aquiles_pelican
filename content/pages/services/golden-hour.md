@@ -14,7 +14,7 @@ You don’t always need a long-term consultant. Sometimes, you just need someone
 Early-stage founders, Post-docs exploring a spin-out, or technical leaders facing a specific "Make or Break" decision (e.g., Should we pivot? Is this investor term sheet fair? How do I hire my first salesperson?).
 
 <div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
-    <img src="/theme/images/GoldenHour.png" alt="Golden Hour Strategy Visualization" style="width: 100%; height: auto; border-radius: 8px;">
+    <img src="/theme/images/GoldenHour.webp" width="1600" height="873" loading="lazy" decoding="async" alt="Golden Hour Strategy Visualization" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
 ### What we tackle

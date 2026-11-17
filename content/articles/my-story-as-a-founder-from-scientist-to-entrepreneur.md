@@ -19,7 +19,7 @@ My path is definitely not a linear one. I didn’t go from PhD to founder, to su
 
 ## My unfair advantage
 
-[My PhD](https://www.aquiles.me/my-work/my-phd-thesis/ "My PhD Thesis") was focused on building new tools to study poorly understood phenomena. I think that gave me a somewhat unfair advantage, because I learned how to _make_ things. One of the early bottlenecks I had to overcome was developing software to control my setup.
+[My PhD]({filename}/pages/phd.md "My PhD Thesis") was focused on building new tools to study poorly understood phenomena. I think that gave me a somewhat unfair advantage, because I learned how to _make_ things. One of the early bottlenecks I had to overcome was developing software to control my setup.
 
 Due to a mistake, a technician accidentally formatted the wrong computer in the lab. I was never able to run the original control software again.
 
@@ -45,7 +45,7 @@ As romantic as starting a company can sound, each one of us has a different runw
 
 By the end of 2018, almost exactly 2 years after I’ve finished my PhD, we had managed to secure a _relatively_ small grant. But that grant had a multiplier effect: it was a pre-condition to convince an investment fund to come onboard and finance the first two years of the company.
 
-In 2019, [we established Dispertech](https://www.aquiles.me/my-work/dispertech/ "Dispertech"). It had several shareholders, a reserve of shares for early employees, a reverse vesting strategy. The whole package: We became a real company.
+In 2019, [we established Dispertech]({filename}/pages/dispertech.md "Dispertech"). It had several shareholders, a reserve of shares for early employees, a reverse vesting strategy. The whole package: We became a real company.
 
 We partnered with two experienced entrepreneurs who would become the managers of the company, while I would focus on the technical development.
 

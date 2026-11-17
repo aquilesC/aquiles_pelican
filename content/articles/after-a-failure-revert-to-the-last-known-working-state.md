@@ -9,11 +9,11 @@ Tags:
   - project-management
 Summary: Both long and short-running projects will, at some point, face a failure. Sometimes it is possible to plan around them or include them as part of a risk management and mitigation program. Sometimes, however, failures appear unexpectedly, bringing an entire project to a halt and perhaps challenging its continuity.
 ---
-To give some context, I can use my personal experience as an example. At [Dispertech](https://www.aquiles.me/my-work/dispertech/ "Dispertech"), we are building a device to characterize nanoparticles. It is based on technology developed in a lab, and we must transform a rough prototype into a usable product. Our biggest failure arose when I could not detect the same particles detected in the lab years before.
+To give some context, I can use my personal experience as an example. At [Dispertech]({filename}/pages/dispertech.md "Dispertech"), we are building a device to characterize nanoparticles. It is based on technology developed in a lab, and we must transform a rough prototype into a usable product. Our biggest failure arose when I could not detect the same particles detected in the lab years before.
 
 If I could not succeed at detecting these specific particles, the project was likely going to end. Therefore, rationalizing such a failure had a very high emotional toll. Moreover, reverting the many failed attempts required some detailed understanding of the factors that brought me to this particular conjuncture.
 
-## The Multiparemetric Optimization Problem
+## The Multiparametric Optimization Problem
 
 One of the biggest challenges in many projects is to define what we are trying to achieve. In our case, the general idea of “user-friendliness” has many different approaches. Software to control the experiment must be accessible. The external housing has to look nice and include informative LEDs to show the status of the device. The optics must be designed to minimize user intervention.
 

@@ -103,7 +103,7 @@ The site generates static HTML files to `output/` directory and is deployed via 
 For Cloudflare Pages deployment:
 1. Build command: `pip install -r requirements.txt && npm ci && npm run build:css && pelican content -s publishconf.py`
 2. Build output directory: `output`
-3. Environment variables: `PYTHON_VERSION=3.13`, `NODE_VERSION=20`
+3. Environment variables: `PYTHON_VERSION=3.14.8`, `NODE_VERSION=20`
 
 See `cloudflare-pages.md` for full setup instructions.
 

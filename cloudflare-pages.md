@@ -20,12 +20,12 @@ Configure these in the Cloudflare Pages dashboard under **Build settings**:
 Set these in the Cloudflare Pages dashboard under **Settings > Environment variables**:
 
 #### Production
-- `PYTHON_VERSION`: `3.13`
+- `PYTHON_VERSION`: `3.14.8`
 - `NODE_VERSION`: `20`
 - `NPM_FLAGS`: `--prefer-offline --no-audit`
 
 #### Preview Deploys (optional)
-- `PYTHON_VERSION`: `3.13`
+- `PYTHON_VERSION`: `3.14.8`
 - `NODE_VERSION`: `20`
 - `NPM_FLAGS`: `--prefer-offline --no-audit`
 
@@ -88,7 +88,7 @@ After deployment:
 ## Troubleshooting
 
 ### Build Fails
-- Verify Python version matches `runtime.txt` (3.13)
+- Verify Python version matches `.python-version` and `runtime.txt` (3.14.8, Cloudflare's default build image Python since 2026-10-14)
 - Check that all dependencies in `requirements.txt` are valid
 - Ensure `package.json` and `package-lock.json` are committed
 

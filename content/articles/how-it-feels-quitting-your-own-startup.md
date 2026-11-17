@@ -12,7 +12,7 @@ Creating a [startup is an extremely personal endeavor](https://www.aquiles.me/my
 
 ## **Moving away from the startup you created and sustained over years is a tough decision**.
 
-In my case, I’m departing a young company with lots of potential. [Dispertech](https://www.aquiles.me/my-work/dispertech/ "Dispertech") is, in many regards, still in its infancy: there were barely any customers. The first product, **the NanoCET did not find product-market fit** and we had to discontinue it. We developed a second product, the NanoQNT, which shows lots of potential, even at its minimum viable product level.
+In my case, I’m departing a young company with lots of potential. [Dispertech]({filename}/pages/dispertech.md "Dispertech") is, in many regards, still in its infancy: there were barely any customers. The first product, **the NanoCET did not find product-market fit** and we had to discontinue it. We developed a second product, the NanoQNT, which shows lots of potential, even at its minimum viable product level.
 
 The closest feeling I have to describing how it feels leaving my own startup is **that of a breakup**.
 
