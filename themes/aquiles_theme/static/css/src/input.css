@@ -44,7 +44,7 @@
   --c-text: #111111;
   --c-text-2: #4a4a4a;
   --c-border: #e6e9ef;
-  --c-accent: #1976d2;      /* 4.6:1 on white - passes AA for text */
+  --c-accent: #1565c0;      /* >= 5:1 on white, muted and accent-soft backgrounds (AA) */
   --c-accent-alt: #0d47a1;
   --c-accent-soft: #e8f1fc;
   --c-on-accent: #ffffff;
@@ -222,6 +222,7 @@
   body {
     @apply font-body text-body text-text-primary bg-background;
     font-size-adjust: from-font;
+    overflow-wrap: break-word; /* long URLs and words wrap instead of widening the page */
   }
 
   h1, h2, h3, h4 {
@@ -912,87 +913,6 @@
     }
   }
 
-  /* ---------- Prose (articles & pages) ---------- */
-  .prose.prose-site {
-    --tw-prose-body: var(--color-text-primary);
-    --tw-prose-headings: var(--color-text-primary);
-    --tw-prose-lead: var(--color-text-secondary);
-    --tw-prose-links: var(--color-accent);
-    --tw-prose-bold: var(--color-text-primary);
-    --tw-prose-counters: var(--color-text-secondary);
-    --tw-prose-bullets: color-mix(in srgb, var(--color-accent) 60%, var(--color-border));
-    --tw-prose-hr: var(--color-border);
-    --tw-prose-quotes: var(--color-text-primary);
-    --tw-prose-quote-borders: var(--color-accent);
-    --tw-prose-captions: var(--color-text-secondary);
-    --tw-prose-kbd: var(--color-text-primary);
-    --tw-prose-code: var(--color-text-primary);
-    --tw-prose-pre-code: #e6edf3;
-    --tw-prose-pre-bg: #0d1117;
-    --tw-prose-th-borders: var(--color-border);
-    --tw-prose-td-borders: var(--color-border);
-    max-width: var(--container-reading);
-    font-size: 1.125rem;
-    line-height: 1.75;
-
-    & :where(h1, h2, h3, h4) {
-      font-family: var(--font-heading);
-      letter-spacing: -0.015em;
-      scroll-margin-top: calc(var(--header-h) + 16px);
-    }
-
-    & :where(h2) {
-      font-size: 1.75rem;
-      margin-top: 2.2em;
-    }
-
-    & :where(h3) {
-      font-size: 1.375rem;
-    }
-
-    & :where(a) {
-      text-decoration-thickness: 1px;
-      text-underline-offset: 0.2em;
-      font-weight: 500;
-    }
-
-    & :where(a:hover) {
-      color: var(--color-accent-alt);
-      text-decoration-thickness: 2px;
-    }
-
-    & :where(blockquote) {
-      font-family: var(--font-heading);
-      font-size: 1.375rem;
-      line-height: 1.5;
-      font-weight: 400;
-      border-left-width: 3px;
-      padding-left: 1.25em;
-    }
-
-    & :where(img) {
-      border-radius: 12px;
-    }
-
-    & :where(code):not(:where(pre code)) {
-      padding: 0.15em 0.4em;
-      border-radius: 6px;
-      background: var(--color-muted-bg);
-      border: 1px solid var(--color-border);
-      font-weight: 500;
-    }
-
-    & :where(code):not(:where(pre code))::before,
-    & :where(code):not(:where(pre code))::after {
-      content: none;
-    }
-
-    & :where(pre) {
-      border-radius: 12px;
-      border: 1px solid var(--color-border);
-    }
-  }
-
   .lead {
     color: var(--color-text-secondary);
     font-size: clamp(1.1875rem, 1.05rem + 0.5vw, 1.375rem);
@@ -1160,6 +1080,18 @@
     border: 1px solid var(--color-border);
     border-top: 3px solid var(--color-accent);
     text-align: center;
+    min-width: 0;
+    container-type: inline-size;
+
+    /* Values range from "20+" to "New Markets": size them to the card,
+       not the viewport, and let multi-word values wrap. */
+    & .metric-value {
+      font-size: clamp(1.75rem, 15cqi, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
+      overflow-wrap: break-word;
+    }
   }
 
   /* ---------- Forms ---------- */
@@ -1203,6 +1135,97 @@
         color: var(--color-accent);
         text-decoration: underline;
       }
+    }
+  }
+}
+
+/* Prose overrides live in the utilities layer: the typography plugin
+   emits .prose there, and a later layer beats an earlier one no matter
+   the specificity. Inside the same layer .prose.prose-site wins. */
+@layer utilities {
+  /* ---------- Prose (articles & pages) ---------- */
+  .prose.prose-site {
+    --tw-prose-body: var(--color-text-primary);
+    --tw-prose-headings: var(--color-text-primary);
+    --tw-prose-lead: var(--color-text-secondary);
+    --tw-prose-links: var(--color-accent);
+    --tw-prose-bold: var(--color-text-primary);
+    --tw-prose-counters: var(--color-text-secondary);
+    --tw-prose-bullets: color-mix(in srgb, var(--color-accent) 60%, var(--color-border));
+    --tw-prose-hr: var(--color-border);
+    --tw-prose-quotes: var(--color-text-primary);
+    --tw-prose-quote-borders: var(--color-accent);
+    --tw-prose-captions: var(--color-text-secondary);
+    --tw-prose-kbd: var(--color-text-primary);
+    --tw-prose-code: var(--color-text-primary);
+    --tw-prose-pre-code: #e6edf3;
+    --tw-prose-pre-bg: #0d1117;
+    --tw-prose-th-borders: var(--color-border);
+    --tw-prose-td-borders: var(--color-border);
+    max-width: var(--container-reading);
+    font-size: 1.125rem;
+    line-height: 1.75;
+
+    & :where(h1, h2, h3, h4) {
+      font-family: var(--font-heading);
+      letter-spacing: -0.015em;
+      scroll-margin-top: calc(var(--header-h) + 16px);
+    }
+
+    & :where(h1) {
+      font-size: clamp(1.75rem, 1.3rem + 2vw, 2.25rem);
+      line-height: 1.15;
+    }
+
+    & :where(h2) {
+      font-size: 1.75rem;
+      margin-top: 2.2em;
+    }
+
+    & :where(h3) {
+      font-size: 1.375rem;
+    }
+
+    & :where(a) {
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.2em;
+      font-weight: 500;
+    }
+
+    & :where(a:hover) {
+      color: var(--color-accent-alt);
+      text-decoration-thickness: 2px;
+    }
+
+    & :where(blockquote) {
+      font-family: var(--font-heading);
+      font-size: 1.375rem;
+      line-height: 1.5;
+      font-weight: 400;
+      border-left-width: 3px;
+      padding-left: 1.25em;
+    }
+
+    & :where(img) {
+      border-radius: 12px;
+    }
+
+    & :where(code):not(:where(pre code)) {
+      padding: 0.15em 0.4em;
+      border-radius: 6px;
+      background: var(--color-muted-bg);
+      border: 1px solid var(--color-border);
+      font-weight: 500;
+    }
+
+    & :where(code):not(:where(pre code))::before,
+    & :where(code):not(:where(pre code))::after {
+      content: none;
+    }
+
+    & :where(pre) {
+      border-radius: 12px;
+      border: 1px solid var(--color-border);
     }
   }
 }

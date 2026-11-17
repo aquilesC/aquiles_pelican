@@ -108,7 +108,7 @@
           {% set parts = metric.split(':') %}
           {% if parts|length == 2 %}
           <div class="metric-card">
-            <div class="text-display font-heading font-bold text-accent mb-xs">{{ parts[0].strip() }}</div>
+            <div class="metric-value font-heading font-bold text-accent mb-xs">{{ parts[0].strip() }}</div>
             <div class="text-body text-text-secondary font-medium">{{ parts[1].strip() }}</div>
           </div>
           {% endif %}
