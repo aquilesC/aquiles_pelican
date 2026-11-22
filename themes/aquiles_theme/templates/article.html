@@ -6,68 +6,100 @@
 
 {% block description %}{{ article.summary|striptags|truncate(160) }}{% endblock %}
 
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ article.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ article.title }}{% endblock %}
+{% block og_description %}{{ article.summary|striptags|truncate(200) }}{% endblock %}
+{% block og_image %}{% if article.hero_image %}{{ CANONICAL_SITEURL }}/{{ article.hero_image }}{% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}{{ CANONICAL_SITEURL }}/images/og/{{ article.slug }}.png{% else %}{{ CANONICAL_SITEURL }}/{{ DEFAULT_OG_IMAGE }}{% endif %}{% endblock %}
+
 {% block extra_head %}
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}" />
-  <meta property="og:title" content="{{ article.title }}" />
-  <meta property="og:description" content="{{ article.summary|striptags|truncate(200) }}" />
-  {% if article.hero_image %}
-  <meta property="og:image" content="{{ SITEURL }}/{{ article.hero_image }}" />
-  {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
-  <meta property="og:image" content="{{ SITEURL }}/images/og/{{ article.slug }}.png" />
-  {% endif %}
-  <meta property="og:site_name" content="{{ SITENAME }}" />
   {% if article.author %}
   <meta property="article:author" content="{{ article.author }}" />
   {% endif %}
   {% if article.date %}
   <meta property="article:published_time" content="{{ article.date.isoformat() }}" />
   {% endif %}
+  {% if article.modified %}
+  <meta property="article:modified_time" content="{{ article.modified.isoformat() }}" />
+  {% endif %}
   {% if article.tags %}
   {% for tag in article.tags %}
   <meta property="article:tag" content="{{ tag.name }}" />
   {% endfor %}
   {% endif %}
+{% endblock %}
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="{{ article.title }}" />
-  <meta name="twitter:description" content="{{ article.summary|striptags|truncate(200) }}" />
-  {% if article.hero_image %}
-  <meta name="twitter:image" content="{{ SITEURL }}/{{ article.hero_image }}" />
-  {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
-  <meta name="twitter:image" content="{{ SITEURL }}/images/og/{{ article.slug }}.png" />
-  {% endif %}
-
-  <!-- Schema.org structured data -->
+{% block structured_data %}
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": "{{ article.title|e }}",
-    "description": "{{ article.summary|striptags|truncate(200)|e }}",
-    {% if article.hero_image %}
-    "image": "{{ SITEURL }}/{{ article.hero_image }}",
-    {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
-    "image": "{{ SITEURL }}/images/og/{{ article.slug }}.png",
-    {% endif %}
-    "datePublished": "{{ article.date.isoformat() }}",
-    {% if article.modified %}"dateModified": "{{ article.modified.isoformat() }}",{% else %}"dateModified": "{{ article.date.isoformat() }}",{% endif %}
-    "author": {
-      "@type": "Person",
-      "name": "{{ article.author|default(AUTHOR)|e }}"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "{{ SITENAME|e }}"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": "{{ SITEURL }}/{{ article.url }}"
-    }{% if article.category %},
-    "articleSection": "{{ article.category.name|e }}"{% endif %}{% if article.tags %},
-    "keywords": "{{ article.tags|map(attribute='name')|join(', ')|e }}"{% endif %}
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "headline": "{{ article.title|e }}",
+        "description": "{{ article.summary|striptags|truncate(200)|e }}",
+        "url": "{{ CANONICAL_SITEURL }}/{{ article.url }}",
+        {% if article.hero_image %}
+        "image": "{{ CANONICAL_SITEURL }}/{{ article.hero_image }}",
+        {% elif OG_IMAGES is defined and article.slug in OG_IMAGES %}
+        "image": "{{ CANONICAL_SITEURL }}/images/og/{{ article.slug }}.png",
+        {% else %}
+        "image": "{{ CANONICAL_SITEURL }}/{{ DEFAULT_OG_IMAGE }}",
+        {% endif %}
+        "datePublished": "{{ article.date.isoformat() }}",
+        {% if article.modified %}"dateModified": "{{ article.modified.isoformat() }}",{% else %}"dateModified": "{{ article.date.isoformat() }}",{% endif %}
+        "author": {
+          "@type": "Person",
+          "@id": "{{ CANONICAL_SITEURL }}/#person",
+          "name": "{{ article.author|default(AUTHOR)|e }}",
+          "url": "{{ CANONICAL_SITEURL }}/"
+        },
+        "publisher": {
+          "@id": "{{ CANONICAL_SITEURL }}/#person"
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "{{ CANONICAL_SITEURL }}/{{ article.url }}"
+        }{% if article.category %},
+        "articleSection": "{{ article.category.name|e }}"{% endif %}{% if article.tags %},
+        "keywords": "{{ article.tags|map(attribute='name')|join(', ')|e }}"{% endif %}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "{{ CANONICAL_SITEURL }}/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Writing",
+            "item": "{{ CANONICAL_SITEURL }}/articles/"
+          }{% if article.category %},
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ article.category.name|e }}",
+            "item": "{{ CANONICAL_SITEURL }}/{{ article.category.url }}"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "{{ article.title|e }}",
+            "item": "{{ CANONICAL_SITEURL }}/{{ article.url }}"
+          }{% else %},
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ article.title|e }}",
+            "item": "{{ CANONICAL_SITEURL }}/{{ article.url }}"
+          }{% endif %}
+        ]
+      }
+    ]
   }
   </script>
 {% endblock %}
@@ -85,7 +117,7 @@
           <ol class="flex items-center gap-xs text-meta text-text-secondary">
             <li><a href="{{ SITEURL }}/" class="hover:text-accent">Home</a></li>
             <li aria-hidden="true">/</li>
-            <li><a href="{{ SITEURL }}/articles/" class="hover:text-accent">Articles</a></li>
+            <li><a href="{{ SITEURL }}/articles/" class="hover:text-accent">Writing</a></li>
             {% if article.category %}
             <li aria-hidden="true">/</li>
             <li><a href="{{ SITEURL }}/{{ article.category.url }}" class="hover:text-accent">{{ article.category.name }}</a></li>
@@ -105,13 +137,13 @@
         <h1 class="text-h1 md:text-5xl font-heading mb-md">
           {{ article.title }}
         </h1>
-        
+
         {% if article.summary %}
         <p class="lead mb-lg">
           {{ article.summary|striptags }}
         </p>
         {% endif %}
-        
+
         <!-- Metadata Row -->
         <div class="flex flex-wrap items-center gap-md pt-md border-t border-border text-meta text-text-secondary">
           <time datetime="{{ article.date.isoformat() }}" class="flex items-center gap-xs">
@@ -136,10 +168,10 @@
       <!-- Hero Image (if provided) -->
       {% if article.hero_image %}
       <figure class="max-w-reading mx-auto mb-2xl">
-        <img src="{{ SITEURL }}/{{ article.hero_image }}" 
-             alt="{{ article.title }}" 
-             class="w-full h-auto rounded-xl shadow-lg border border-border" 
-             loading="eager" />
+        <img src="{{ SITEURL }}/{{ article.hero_image }}"
+             alt="{{ article.title }}"
+             class="w-full h-auto rounded-xl shadow-lg border border-border"
+             fetchpriority="high" />
         {% if article.hero_caption %}
         <figcaption class="text-meta text-text-secondary text-center mt-sm italic">
           {{ article.hero_caption }}
@@ -172,12 +204,12 @@
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-md">
             <div>
               <h2 class="text-h4 font-heading font-semibold text-text-primary mb-xs">Share this essay</h2>
-              <p class="text-meta text-text-secondary">If you found this insightful, share it with fellow scipreneurs.</p>
+              <p class="text-meta text-text-secondary">Found this useful? Pass it along to colleagues and peers.</p>
             </div>
-            
+
             <div class="flex flex-wrap items-center gap-sm">
-              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ SITEURL }}/{{ article.url|urlencode }}" 
-                 target="_blank" 
+              <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ CANONICAL_SITEURL }}/{{ article.url|urlencode }}"
+                 target="_blank"
                  rel="noopener noreferrer"
                  class="share-btn"
                  aria-label="Share on LinkedIn">
@@ -185,8 +217,8 @@
                 <span>LinkedIn</span>
               </a>
 
-              <a href="https://twitter.com/intent/tweet?url={{ SITEURL }}/{{ article.url|urlencode }}&text={{ article.title|urlencode }}" 
-                 target="_blank" 
+              <a href="https://twitter.com/intent/tweet?url={{ CANONICAL_SITEURL }}/{{ article.url|urlencode }}&text={{ article.title|urlencode }}"
+                 target="_blank"
                  rel="noopener noreferrer"
                  class="share-btn"
                  aria-label="Share on X">
@@ -194,9 +226,9 @@
                 <span>Post</span>
               </a>
 
-              <button type="button" 
+              <button type="button"
                       id="copy-link-btn"
-                      data-url="{{ SITEURL }}/{{ article.url }}"
+                      data-url="{{ CANONICAL_SITEURL }}/{{ article.url }}"
                       class="share-btn"
                       aria-label="Copy link to article">
                 <span id="copy-icon">{{ icon('copy', 'w-4 h-4') }}</span>
@@ -208,26 +240,27 @@
 
         <!-- Author Box -->
         <div class="author-box mb-3xl">
-          <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-               alt="{{ AUTHOR }}" 
-               width="72" 
+          <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
+               alt="{{ AUTHOR }}"
+               width="72"
                height="72"
-               loading="lazy" />
+               loading="lazy"
+               decoding="async" />
           <div>
-            <span class="kicker text-accent mb-xxs">Author</span>
+            <span class="kicker text-accent mb-xxs">About the Author</span>
             <h3 class="text-h4 font-heading font-bold text-text-primary mb-xs">{{ AUTHOR }}</h3>
             <p class="text-small text-text-secondary mb-md">
-              Founder, scientist, and deep-tech advisor. Helping academic researchers and startup teams translate hard tech into successful commercial products.
+              Team Lead, Product Development at Orange Quantum Systems in Delft. Physicist, former startup co-founder, and author of Python for the Lab, writing about deep-tech product leadership and lab-to-market execution.
             </p>
             <div class="flex flex-wrap items-center gap-md">
               {% if LINKEDIN_USERNAME %}
-              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
-                {{ icon('linkedin', 'w-4 h-4 text-[#0a66c2]') }}
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" target="_blank" rel="me noopener noreferrer" class="btn btn-primary btn-sm">
+                {{ icon('linkedin', 'w-4 h-4') }}
                 <span>Connect on LinkedIn</span>
               </a>
               {% endif %}
-              <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary btn-sm">
-                <span>Book a Free Chat</span>
+              <a href="{{ SITEURL }}/work/" class="btn btn-secondary btn-sm">
+                <span>View Experience</span>
                 {{ icon('arrow-right', 'icon icon-arrow') }}
               </a>
             </div>
@@ -236,7 +269,7 @@
 
         <!-- Next / Previous Article Navigation -->
         {% if article.prev_article or article.next_article %}
-        <nav class="grid grid-cols-1 md:grid-cols-2 gap-md pt-xl border-t border-border" aria-label="Article navigation">
+        <nav class="grid grid-cols-1 md:grid-cols-2 gap-md pt-xl border-t border-border" aria-label="Adjacent articles">
           {% if article.prev_article %}
           <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="card p-md group">
             <span class="text-meta text-text-secondary flex items-center gap-xs mb-xs">

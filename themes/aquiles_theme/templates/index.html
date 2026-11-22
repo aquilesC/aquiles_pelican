@@ -2,10 +2,92 @@
 {% from 'includes/card.html' import render_card %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}Aquiles Carattino | Deep Tech Entrepreneurship Advisor{% endblock %}
+{% block title %}Aquiles Carattino | Deep-Tech Product &amp; Engineering Leader{% endblock %}
 
-{% block meta %}
-<meta name="description" content="Aquiles Carattino helps technical founders and scientists transition from academia to entrepreneurship. Actionable advice on deep tech strategy, product management, and commercializing science." />
+{% block description %}Aquiles Carattino leads Product Development at Orange Quantum Systems (OrangeQS) in Delft. Over 10 years bringing quantum, semiconductor, and scientific instrumentation products from lab to market.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "{{ CANONICAL_SITEURL }}/#website",
+      "url": "{{ CANONICAL_SITEURL }}/",
+      "name": "{{ SITENAME|e }}",
+      "description": "{{ SITE_DESCRIPTION|e }}",
+      "inLanguage": "en",
+      "publisher": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ CANONICAL_SITEURL }}/#profilepage",
+      "url": "{{ CANONICAL_SITEURL }}/",
+      "name": "Aquiles Carattino | Deep-Tech Product & Engineering Leader",
+      "description": "{{ SITE_DESCRIPTION|e }}",
+      "dateModified": "{{ BUILD_DATE }}",
+      "isPartOf": {
+        "@id": "{{ CANONICAL_SITEURL }}/#website"
+      },
+      "mainEntity": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    },
+    {
+      "@type": "Person",
+      "@id": "{{ CANONICAL_SITEURL }}/#person",
+      "name": "{{ PERSON_PROFILE.name|e }}",
+      "alternateName": "{{ PERSON_PROFILE.alternate_name|e }}",
+      "url": "{{ CANONICAL_SITEURL }}/",
+      "image": "{{ CANONICAL_SITEURL }}/images/aquiles_carattino_bw.jpeg",
+      "jobTitle": "{{ PERSON_PROFILE.job_title|e }}",
+      "description": "{{ SITE_DESCRIPTION|e }}",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "{{ PERSON_PROFILE.employer|e }}",
+        "alternateName": "{{ PERSON_PROFILE.employer_short|e }}",
+        "url": "{{ PERSON_PROFILE.employer_url }}"
+      },
+      "homeLocation": {
+        "@type": "Place",
+        "name": "{{ PERSON_PROFILE.location|e }}"
+      },
+      "alumniOf": [
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "Leiden University",
+          "sameAs": "https://www.universiteitleiden.nl/"
+        },
+        {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Buenos Aires",
+          "sameAs": "https://www.uba.ar/"
+        }
+      ],
+      "knowsAbout": [
+        {% for topic in PERSON_PROFILE.knows_about %}
+        "{{ topic|e }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ],
+      "knowsLanguage": [
+        {% for lang in PERSON_PROFILE.languages %}
+        "{{ lang.name|e }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ],
+      "sameAs": [
+        {% for link in PERSON_PROFILE.same_as %}
+        "{{ link }}"{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+  ]
+}
+</script>
 {% endblock %}
 
 {% block body_class %}has-dark-hero{% endblock %}
@@ -14,75 +96,77 @@
   <!-- Full-Screen Hero Section with 3D Particles -->
   <section class="hero-section relative overflow-hidden bg-[#0a0a0a] flex items-center justify-center">
     <canvas id="particle-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
-    
+
     <div class="relative z-10 container-site text-center pt-24 pb-16">
       <span class="kicker text-[#6ab4f8] mb-md inline-flex">
-        {{ icon('sparkles', 'w-4 h-4') }}
-        <span>The Scipreneur's Journey</span>
+        <span>Delft, Netherlands · Quantum &amp; Deep-Tech Instrumentation</span>
       </span>
       <h1 class="text-display font-heading text-white mb-lg max-w-4xl mx-auto drop-shadow-md">
-        Aquiles Carattino: Deep Tech Advisor
+        Aquiles Carattino
       </h1>
       <p class="text-body md:text-xl text-gray-300 mb-2xl max-w-2xl mx-auto drop-shadow-sm">
-        Helping scientists and technical founders transition from lab research to scalable commercial ventures.
+        Leading Product Development at Orange Quantum Systems. Over 10 years bringing complex quantum, semiconductor, and scientific instrumentation from lab to market.
       </p>
-      
+
       <div class="flex flex-wrap items-center justify-center gap-md">
-        {% if articles %}
-          {% set featured = articles[0] %}
-          <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary">
-            <span>Read Latest Article</span>
-            {{ icon('arrow-right', 'icon icon-arrow') }}
-          </a>
-        {% endif %}
-        <a href="{{ SITEURL }}/services/" class="btn btn-on-dark">
-          <span>Advisory Services</span>
+        <a href="{{ SITEURL }}/work/" class="btn btn-primary">
+          <span>Experience &amp; Track Record</span>
+          {{ icon('arrow-right', 'icon icon-arrow') }}
         </a>
+        {% if LINKEDIN_USERNAME %}
+        <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/"
+           target="_blank"
+           rel="me noopener noreferrer"
+           class="btn btn-on-dark">
+          {{ icon('linkedin', 'w-4 h-4') }}
+          <span>Connect on LinkedIn</span>
+        </a>
+        {% endif %}
       </div>
     </div>
 
     <!-- Scroll down indicator -->
-    <a href="#about" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/60 hover:text-white transition-colors" aria-label="Scroll to content">
+    <a href="#about" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 text-white/60 hover:text-white transition-colors" aria-label="Scroll to profile overview">
       {{ icon('chevron-down', 'w-7 h-7 animate-bounce') }}
     </a>
   </section>
 
-  <!-- About Me Section -->
+  <!-- About / Executive Overview Section -->
   <section id="about" class="about-section section border-b border-border">
     <div class="container-site">
       <div class="grid grid-cols-1 md:grid-cols-12 gap-xl md:gap-3xl items-center">
         <!-- Photo Column -->
         <div class="md:col-span-5 order-2 md:order-1">
           <div class="portrait">
-            <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-                 alt="{{ AUTHOR }}" 
+            <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
+                 alt="Aquiles Carattino, Team Lead of Product Development at Orange Quantum Systems"
                  width="420"
                  height="420"
                  loading="lazy"
                  decoding="async">
           </div>
         </div>
-        
+
         <!-- Text Column -->
         <div class="md:col-span-7 order-1 md:order-2">
-          <span class="kicker mb-xs">About Me</span>
-          <h2 class="section-title mb-md">Scientist & Entrepreneur</h2>
-          
+          <span class="kicker mb-xs">Profile</span>
+          <h2 class="section-title mb-md">Deep-Tech Product &amp; Engineering Leader</h2>
+
           <div class="space-y-md text-body text-text-secondary mb-xl">
             <p>
-              I am an entrepreneurial scientist, or a scientist entrepreneur, depending on the day. I am passionate about solving complex challenges, understanding customers, markets, and opportunities.
+              I lead the 14-person Product Development team at <a href="{{ SITEURL }}/orange-quantum-systems/" class="font-medium text-accent hover:underline">Orange Quantum Systems (OrangeQS)</a> in Delft, where our engineers and physicists build, deploy, and operate automated testing and characterization systems for quantum processing units (QPUs).
             </p>
             <p>
-              My background spans building precision instrumentation during my PhD, co-founding <a href="{{ SITEURL }}/dispertech/" class="font-medium text-accent hover:underline">Dispertech</a>, and serving as Product Manager at VSParticle. I write to systematize what I learn at the intersection of deep tech and venture building.
+              Over the past decade, my work has spanned the full lifecycle of technically complex hardware and instrumentation: managing product roadmaps and semiconductor business development at <a href="{{ SITEURL }}/vsparticle/" class="font-medium text-accent hover:underline">VSParticle</a>, co-founding <a href="{{ SITEURL }}/dispertech/" class="font-medium text-accent hover:underline">Dispertech</a> through pre-seed and seed funding, authoring <a href="{{ SITEURL }}/python-for-the-lab/" class="font-medium text-accent hover:underline">Python for the Lab</a>, and earning a <a href="{{ SITEURL }}/phd/" class="font-medium text-accent hover:underline">PhD in Physics at Leiden University</a>.
             </p>
             <p>
-              These thoughts are complemented with raw notes in my <a href="https://notes.aquiles.me/digital_garden" target="_blank" rel="noopener noreferrer" class="font-medium text-accent hover:underline">digital garden {{ icon('external', 'w-3.5 h-3.5 inline') }}</a>.
+              I write here to organize lessons on deep-tech product strategy, leadership, and science commercialization, complemented by working notes in my <a href="{{ DIGITAL_GARDEN_URL }}" target="_blank" rel="me noopener noreferrer" class="font-medium text-accent hover:underline">digital garden {{ icon('external', 'w-3.5 h-3.5 inline') }}</a>.
             </p>
           </div>
 
           <div class="flex flex-wrap items-center gap-md">
             <a href="{{ SITEURL }}/work/" class="btn btn-primary">
-              <span>View Career Journey</span>
+              <span>Full Career &amp; Publications</span>
               {{ icon('arrow-right', 'icon icon-arrow') }}
             </a>
             <a href="{{ SITEURL }}/contact/" class="btn btn-secondary">
@@ -94,15 +178,59 @@
     </div>
   </section>
 
-  <!-- Featured Story Section -->
+  <!-- Career & Leadership Highlights Section -->
+  {% if CAREER_HIGHLIGHTS %}
+  <section class="section bg-muted-bg border-b border-border">
+    <div class="container-site">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-2xl">
+        <div>
+          <span class="kicker mb-xs">Track Record</span>
+          <h2 class="section-title">Selected Roles &amp; Impact</h2>
+        </div>
+        <a href="{{ SITEURL }}/work/" class="btn btn-secondary btn-sm">
+          <span>Full Timeline &amp; Publications</span>
+          {{ icon('arrow-right', 'icon icon-arrow') }}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-xl">
+        {% for item in CAREER_HIGHLIGHTS %}
+        <article class="service-card">
+          <div class="flex flex-wrap items-center justify-between gap-xs">
+            <span class="kicker text-accent">{{ item.period }}</span>
+            <span class="text-meta text-text-secondary">{{ item.location }}</span>
+          </div>
+          <h3 class="card-title text-h4">
+            <a href="{{ SITEURL }}{{ item.url }}" class="card-link">
+              {{ item.company }}
+            </a>
+          </h3>
+          <p class="text-meta font-semibold text-text-primary">{{ item.role }}</p>
+          <p class="text-small text-text-secondary grow">
+            {{ item.summary }}
+          </p>
+          <div class="pt-md border-t border-border mt-auto">
+            <span class="card-cta" aria-hidden="true">
+              <span>{{ item.cta }}</span>
+              {{ icon('arrow-right', 'icon icon-arrow') }}
+            </span>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+  <!-- Featured Essay Section -->
   {% if articles %}
     {% set featured = articles[0] %}
     {% set has_og = (OG_IMAGES is defined and featured.slug in OG_IMAGES) %}
-    <section class="section bg-muted-bg border-b border-border">
+    <section class="section border-b border-border">
       <div class="container-site">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl items-center">
           <div class="lg:col-span-7">
-            <span class="kicker mb-xs">Featured Story</span>
+            <span class="kicker mb-xs">Featured Essay</span>
             <h2 class="text-h1 mb-md">
               <a href="{{ SITEURL }}/{{ featured.url }}" class="hover:text-accent transition-colors">
                 {{ featured.title }}
@@ -113,7 +241,7 @@
               {{ featured.summary }}
             </p>
             {% endif %}
-            
+
             <div class="meta mb-xl">
               <time datetime="{{ featured.date.isoformat() }}">
                 {{ icon('calendar', 'icon text-accent/80') }}
@@ -128,7 +256,7 @@
             </div>
 
             <a href="{{ SITEURL }}/{{ featured.url }}" class="btn btn-primary">
-              <span>Read Full Story</span>
+              <span>Read Essay</span>
               {{ icon('arrow-right', 'icon icon-arrow') }}
             </a>
           </div>
@@ -142,7 +270,7 @@
                   </div>
                 {% elif has_og %}
                   <div class="relative overflow-hidden bg-muted-bg" style="aspect-ratio: 1200 / 630;">
-                    <img src="{{ SITEURL }}/images/og/{{ featured.slug }}.png" alt="{{ featured.title }}" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                    <img src="{{ SITEURL }}/images/og/{{ featured.slug }}.png" alt="" width="1200" height="630" loading="lazy" decoding="async" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
                   </div>
                 {% else %}
                   <div class="cover cover-tall" style="--hue: 250;">
@@ -157,71 +285,24 @@
     </section>
   {% endif %}
 
-  <!-- Recent Articles Grid -->
+  <!-- Recent Essays Grid -->
   {% if articles %}
-  <section class="section">
+  <section class="section bg-muted-bg">
     <div class="container-site">
       <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-2xl">
         <div>
-          <span class="kicker mb-xs">Latest Writing</span>
+          <span class="kicker mb-xs">Writing &amp; Essays</span>
           <h2 class="section-title">Recent Articles</h2>
         </div>
         <a href="{{ SITEURL }}/articles/" class="btn btn-secondary btn-sm">
-          <span>All Articles ({{ articles|length }})</span>
+          <span>All Writing ({{ articles|length }})</span>
           {{ icon('arrow-right', 'icon icon-arrow') }}
         </a>
       </div>
 
-      <!-- Articles Grid with proper gap and equal heights -->
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
         {% for article in articles[1:7] %}
           {{ render_card(article) }}
-        {% endfor %}
-      </div>
-    </div>
-  </section>
-  {% endif %}
-
-  <!-- Services Advisory Teaser Section -->
-  {% if SERVICES_DATA %}
-  <section class="section bg-muted-bg border-t border-border">
-    <div class="container-site">
-      <div class="text-center max-w-2xl mx-auto mb-2xl">
-        <span class="kicker mb-xs">How I Can Help</span>
-        <h2 class="section-title mb-md">Advisory for Technical Founders</h2>
-        <p class="text-body text-text-secondary">
-          From first feasibility check to scaling commercial operations, I advise scientists navigating deep tech ventures.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
-        {% for service in SERVICES_DATA %}
-        <div class="service-card">
-          <div class="service-icon mb-xs">
-            {% if loop.index == 1 %}
-              {{ icon('sparkles', 'w-6 h-6') }}
-            {% elif loop.index == 2 %}
-              {{ icon('share', 'w-6 h-6') }}
-            {% else %}
-              {{ icon('user', 'w-6 h-6') }}
-            {% endif %}
-          </div>
-          <span class="kicker text-accent">{{ service.details }}</span>
-          <h3 class="card-title text-h4">
-            <a href="{{ SITEURL }}{{ service.link_url }}" class="card-link">
-              {{ service.title }}
-            </a>
-          </h3>
-          <p class="text-small text-text-secondary grow">
-            {{ service.summary }}
-          </p>
-          <div class="pt-md border-t border-border mt-auto">
-            <span class="card-cta">
-              <span>{{ service.link_text }}</span>
-              {{ icon('arrow-right', 'icon icon-arrow') }}
-            </span>
-          </div>
-        </div>
         {% endfor %}
       </div>
     </div>

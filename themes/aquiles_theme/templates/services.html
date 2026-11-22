@@ -1,10 +1,33 @@
 {% extends "base.html" %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}{{ page.title|default('Advisory Services') }} | {{ SITENAME }}{% endblock %}
+{% block title %}{{ page.title|default('Speaking & Advisory') }} | {{ SITENAME }}{% endblock %}
 
-{% block meta %}
-<meta name="description" content="Deep tech advisory services for technical founders and researchers: Golden Hour, Deep Dive, and Entrepreneurship Workshops." />
+{% block description %}Selective speaking engagements, university workshops, and founder sparring conversations with Aquiles Carattino alongside his full-time leadership role at Orange Quantum Systems.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/services/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Home",
+      "item": "{{ CANONICAL_SITEURL }}/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Speaking & Advisory",
+      "item": "{{ CANONICAL_SITEURL }}/services/"
+    }
+  ]
+}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -12,12 +35,11 @@
 <section class="page-hero">
   <div class="container-site text-center max-w-3xl mx-auto">
     <span class="kicker mb-xs">
-      {{ icon('sparkles', 'w-4 h-4') }}
-      <span>Advisory & Mentorship</span>
+      <span>Beyond the Day Role</span>
     </span>
-    <h1 class="font-heading mb-md">Services</h1>
+    <h1 class="font-heading mb-md">{{ page.title|default('Speaking & Advisory') }}</h1>
     <p class="page-hero-lead max-w-2xl mx-auto">
-      Helping scientists and deep tech founders navigate the complex journey from lab bench to market.
+      Selective talks, university workshops, and occasional 1:1 conversations on deep-tech product development and lab-to-market commercialization.
     </p>
   </div>
 
@@ -27,50 +49,47 @@
   </svg>
 </section>
 
-<!-- Services Grid -->
+<!-- Offerings Section -->
 <section class="section">
   <div class="container-site">
-    {% if SERVICES_DATA %}
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-xl mb-3xl">
-      {% for service in SERVICES_DATA %}
+    {% if page and page.content %}
+    <div class="prose prose-site max-w-reading mx-auto mb-2xl">
+      {{ page.content }}
+    </div>
+    {% endif %}
+
+    {% if ADVISORY_OFFERINGS %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-xl max-w-4xl mx-auto mb-3xl">
+      {% for item in ADVISORY_OFFERINGS %}
       <div class="service-card">
         <div class="service-icon mb-xs">
           {% if loop.index == 1 %}
-            {{ icon('sparkles', 'w-6 h-6') }}
-          {% elif loop.index == 2 %}
-            {{ icon('share', 'w-6 h-6') }}
-          {% else %}
             {{ icon('user', 'w-6 h-6') }}
+          {% else %}
+            {{ icon('sparkles', 'w-6 h-6') }}
           {% endif %}
         </div>
-        {% if service.details %}
-        <span class="kicker text-accent">{{ service.details }}</span>
+        {% if item.details %}
+        <span class="kicker text-accent">{{ item.details }}</span>
         {% endif %}
         <h2 class="card-title text-h3">
-          <a href="{{ SITEURL }}{{ service.link_url }}" class="card-link">
-            {{ service.title }}
+          <a href="{{ SITEURL }}{{ item.link_url }}" class="card-link">
+            {{ item.title }}
           </a>
         </h2>
-        {% if service.summary %}
+        {% if item.summary %}
         <p class="text-body text-text-secondary grow">
-          {{ service.summary }}
+          {{ item.summary }}
         </p>
         {% endif %}
         <div class="pt-md border-t border-border mt-auto">
-          <span class="card-cta">
-            <span>{{ service.link_text }}</span>
+          <span class="card-cta" aria-hidden="true">
+            <span>{{ item.link_text }}</span>
             {{ icon('arrow-right', 'icon icon-arrow') }}
           </span>
         </div>
       </div>
       {% endfor %}
-    </div>
-    {% endif %}
-
-    <!-- Page Content (if any) -->
-    {% if page and page.content %}
-    <div class="prose prose-site max-w-reading mx-auto mb-3xl">
-      {{ page.content }}
     </div>
     {% endif %}
   </div>
@@ -83,7 +102,7 @@
       <span class="kicker mb-xs">Get in Touch</span>
       <h2 class="section-title mb-md">Start a Conversation</h2>
       <p class="text-body text-text-secondary">
-        Have a question or want to explore how we can collaborate? Send a message and I'll respond within two business days.
+        Planning a conference talk, university session, or want to exchange notes? Share a few details below.
       </p>
     </div>
 

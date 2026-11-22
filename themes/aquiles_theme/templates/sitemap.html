@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>{{ CANONICAL_SITEURL }}/</loc>
+    <lastmod>{{ BUILD_DATE }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>{{ CANONICAL_SITEURL }}/articles/</loc>
+    <lastmod>{{ BUILD_DATE }}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% for p in pages|sort(attribute='url') %}
+  {% if p.slug not in ['privacy', 'terms'] %}
+  <url>
+    <loc>{{ CANONICAL_SITEURL }}/{{ p.url }}</loc>
+    {% if p.modified %}
+    <lastmod>{{ p.modified.strftime('%Y-%m-%d') }}</lastmod>
+    {% elif p.date %}
+    <lastmod>{{ p.date.strftime('%Y-%m-%d') }}</lastmod>
+    {% endif %}
+    <changefreq>{% if p.slug == 'work' %}monthly{% else %}yearly{% endif %}</changefreq>
+    <priority>{% if p.slug == 'work' %}0.95{% elif p.template == 'work-page' %}0.85{% elif p.slug == 'contact' %}0.75{% else %}0.6{% endif %}</priority>
+  </url>
+  {% endif %}
+  {% endfor %}
+  {% for article in articles %}
+  <url>
+    <loc>{{ CANONICAL_SITEURL }}/{{ article.url }}</loc>
+    {% if article.modified %}
+    <lastmod>{{ article.modified.strftime('%Y-%m-%d') }}</lastmod>
+    {% elif article.date %}
+    <lastmod>{{ article.date.strftime('%Y-%m-%d') }}</lastmod>
+    {% endif %}
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  {% endfor %}
+  {% for cat, cat_articles in categories|sort(attribute='0.name') %}
+  <url>
+    <loc>{{ CANONICAL_SITEURL }}/{{ cat.url }}</loc>
+    <lastmod>{{ BUILD_DATE }}</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  {% endfor %}
+</urlset>

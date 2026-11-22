@@ -1,10 +1,59 @@
 {% extends "base.html" %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}Work & Experience | {{ SITENAME }}{% endblock %}
+{% block title %}Experience, Leadership &amp; Publications | {{ SITENAME }}{% endblock %}
 
-{% block meta %}
-<meta name="description" content="Career journey, portfolio, and deep-tech projects by Aquiles Carattino: Dispertech, Python for the Lab, and VSParticle." />
+{% block description %}Career track record, engineering leadership, book, and peer-reviewed publications of Aquiles Carattino: Orange Quantum Systems, VSParticle, Dispertech, Python for the Lab, and Leiden University PhD.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/work/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ProfilePage",
+      "@id": "{{ CANONICAL_SITEURL }}/work/#profilepage",
+      "url": "{{ CANONICAL_SITEURL }}/work/",
+      "name": "Experience, Leadership & Publications | {{ SITENAME|e }}",
+      "dateModified": "{{ BUILD_DATE }}",
+      "mainEntity": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ CANONICAL_SITEURL }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": "{{ CANONICAL_SITEURL }}/work/"
+        }
+      ]
+    },
+    {% for pub in PUBLICATIONS_LIST %}
+    {
+      "@type": "{{ pub.type }}",
+      "name": "{{ pub.title|e }}",
+      "url": "{{ pub.url }}",
+      "datePublished": "{{ pub.date_iso }}",
+      "description": "{{ pub.description|e }}",
+      "author": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    }{% if not loop.last %},{% endif %}
+    {% endfor %}
+  ]
+}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -12,12 +61,11 @@
   <section class="page-hero">
     <div class="container-site text-center max-w-3xl mx-auto">
       <span class="kicker mb-xs">
-        {{ icon('sparkles', 'w-4 h-4') }}
-        <span>Career & Ventures</span>
+        <span>Career Track Record &amp; Publications</span>
       </span>
-      <h1 class="font-heading mb-md">Work Experience</h1>
+      <h1 class="font-heading mb-md">Experience &amp; Leadership</h1>
       <p class="page-hero-lead max-w-2xl mx-auto">
-        A collection of what I have built, ventures I've co-founded, and hard lessons learned along the way.
+        Over 10 years taking quantum computing, semiconductor, and scientific instrumentation products from lab prototypes to deployed systems.
       </p>
     </div>
 
@@ -29,79 +77,117 @@
 
   <div class="section pt-8">
     <div class="container-site">
-      <!-- Introduction Narrative Content (from content/pages/work.md) -->
+      <!-- Executive Narrative Intro (from content/pages/work.md) -->
       {% if page and page.content %}
-      <div class="prose prose-site max-w-reading mx-auto mb-3xl">
+      <div class="prose prose-site max-w-reading mx-auto mb-2xl">
         {{ page.content }}
       </div>
       {% endif %}
 
-      <!-- Work Portfolio Grid -->
+      <!-- Core Competencies -->
+      {% if PERSON_PROFILE and PERSON_PROFILE.knows_about %}
+      <section class="max-w-reading mx-auto mb-3xl" aria-labelledby="competencies-heading">
+        <h2 id="competencies-heading" class="text-h3 font-heading font-bold mb-md">Core Competencies</h2>
+        <div class="flex flex-wrap gap-xs">
+          {% for skill in PERSON_PROFILE.knows_about %}
+          <span class="chip chip-neutral text-meta">{{ skill }}</span>
+          {% endfor %}
+        </div>
+      </section>
+      {% endif %}
+
+      <!-- Chronological Career Timeline -->
+      {% if EXPERIENCE_TIMELINE %}
+      <section id="timeline" class="max-w-4xl mx-auto mb-3xl" aria-labelledby="timeline-heading">
+        <div class="mb-2xl">
+          <span class="kicker mb-xs">Career History</span>
+          <h2 id="timeline-heading" class="section-title">Experience Timeline</h2>
+        </div>
+
+        <ol class="space-y-lg border-l-2 border-border pl-lg">
+          {% for item in EXPERIENCE_TIMELINE %}
+          <li class="card p-lg md:p-xl">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-xs mb-xs">
+              <h3 class="text-h4 font-heading font-bold text-text-primary">{{ item.role }}</h3>
+              <span class="text-meta font-semibold text-accent">{{ item.period }}</span>
+            </div>
+            <p class="text-small font-medium text-text-secondary mb-md">
+              {{ item.company }} · {{ item.location }}
+            </p>
+            <p class="text-body text-text-secondary mb-md">
+              {{ item.summary }}
+            </p>
+            <div class="flex flex-wrap items-center justify-between gap-md pt-sm border-t border-border">
+              <div class="flex flex-wrap gap-xs">
+                {% for skill in item.skills %}
+                <span class="chip chip-neutral text-overline">{{ skill }}</span>
+                {% endfor %}
+              </div>
+              {% if item.case_study_url %}
+              <a href="{{ SITEURL }}{{ item.case_study_url }}" class="card-cta">
+                <span>Case Study</span>
+                {{ icon('arrow-right', 'icon icon-arrow') }}
+              </a>
+              {% endif %}
+            </div>
+          </li>
+          {% endfor %}
+        </ol>
+      </section>
+      {% endif %}
+
+      <!-- Case Studies Grid -->
       {% set work_pages = [] %}
       {% for p in pages %}
         {% if p.slug != 'work' and p.slug != 'contact' %}
-          {% set is_work_page = False %}
           {% if p.template == 'work-page' %}
-            {% set is_work_page = True %}
-          {% elif p.work == 'true' or p.work == True %}
-            {% set is_work_page = True %}
-          {% elif p.category and p.category.name == 'work' %}
-            {% set is_work_page = True %}
-          {% endif %}
-          {% if is_work_page %}
             {% set _ = work_pages.append(p) %}
           {% endif %}
         {% endif %}
       {% endfor %}
 
       {% if work_pages|length > 0 %}
-      <section class="mb-3xl">
+      <section id="case-studies" class="mb-3xl" aria-labelledby="case-studies-heading">
         <div class="text-center max-w-2xl mx-auto mb-2xl">
-          <span class="kicker mb-xs">Portfolio</span>
-          <h2 class="section-title">Featured Ventures & Projects</h2>
+          <span class="kicker mb-xs">Deep Dives</span>
+          <h2 id="case-studies-heading" class="section-title">Selected Case Studies</h2>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
           {% for work_page in work_pages|sort(attribute='date', reverse=True) %}
           <article class="card">
-            <!-- Cover image or visual fallback -->
-            <div class="cover" style="--hue: 210;">
+            <div class="cover" style="--hue: {{ work_page.cover_hue|default(220) }};">
               {% if work_page.hero_image %}
-              <img src="{{ SITEURL }}/{{ work_page.hero_image }}" 
-                   alt="" 
-                   loading="lazy" 
+              <img src="{{ SITEURL }}/{{ work_page.hero_image }}"
+                   alt=""
+                   loading="lazy"
                    decoding="async" />
               {% else %}
               <span class="cover-label" aria-hidden="true">{{ work_page.company|default(work_page.title) }}</span>
               {% endif %}
             </div>
-            
+
             <div class="card-body">
-              {% if work_page.category or work_page.work_type %}
+              {% if work_page.category %}
               <div>
                 <span class="kicker">
-                  {{ work_page.category|default(work_page.work_type) }}
+                  {{ work_page.category }}
                 </span>
               </div>
               {% endif %}
-              
+
               <h3 class="card-title">
                 <a href="{{ SITEURL }}/{{ work_page.url }}" class="card-link">
                   {{ work_page.title }}
                 </a>
               </h3>
-              
+
               {% if work_page.summary %}
               <p class="card-summary">
                 {{ work_page.summary }}
               </p>
-              {% elif work_page.content %}
-              <p class="card-summary">
-                {{ work_page.content|striptags }}
-              </p>
               {% endif %}
-              
-              <!-- Company & Role -->
+
               {% if work_page.company or work_page.role %}
               <div class="meta">
                 {% if work_page.company %}
@@ -114,33 +200,26 @@
               </div>
               {% endif %}
 
-              <!-- Technology / Tags chips -->
-              {% if work_page.technologies or work_page.tags %}
+              {% if work_page.technologies %}
               <div class="flex flex-wrap gap-xs pt-xs">
-                {% if work_page.technologies %}
-                  {% for tech in work_page.technologies.split(',')[:3] %}
-                  <span class="chip chip-neutral text-overline">
-                    {{ tech.strip() }}
-                  </span>
-                  {% endfor %}
-                {% elif work_page.tags %}
-                  {% for tag in work_page.tags[:3] %}
-                  <span class="chip chip-neutral text-overline">
-                    {{ tag.name }}
-                  </span>
-                  {% endfor %}
-                {% endif %}
+                {% for tech in work_page.technologies.split(',')[:3] %}
+                <span class="chip chip-neutral text-overline">
+                  {{ tech.strip() }}
+                </span>
+                {% endfor %}
               </div>
               {% endif %}
-              
+
               <div class="card-footer">
                 <span class="meta">
-                  {% if work_page.date %}
+                  {% if work_page.period %}
+                  <span>{{ work_page.period }}</span>
+                  {% elif work_page.date %}
                   <time datetime="{{ work_page.date.isoformat() }}">{{ work_page.locale_date }}</time>
                   {% endif %}
                 </span>
-                <span class="card-cta">
-                  <span>View Details</span>
+                <span class="card-cta" aria-hidden="true">
+                  <span>Read Details</span>
                   {{ icon('arrow-right', 'icon icon-arrow') }}
                 </span>
               </div>
@@ -151,27 +230,92 @@
       </section>
       {% endif %}
 
+      <!-- Publications & Book Section -->
+      {% if PUBLICATIONS_LIST %}
+      <section id="publications" class="max-w-4xl mx-auto mb-3xl" aria-labelledby="publications-heading">
+        <div class="mb-2xl">
+          <span class="kicker mb-xs">Book &amp; Peer-Reviewed Research</span>
+          <h2 id="publications-heading" class="section-title">Publications</h2>
+        </div>
+
+        <ul class="space-y-md">
+          {% for pub in PUBLICATIONS_LIST %}
+          <li class="card p-lg">
+            <div class="flex flex-col sm:flex-row sm:items-baseline justify-between gap-xs mb-xs">
+              <span class="kicker text-accent">{{ pub.venue }}</span>
+              <time datetime="{{ pub.date_iso }}" class="text-meta text-text-secondary">{{ pub.year }}</time>
+            </div>
+            <h3 class="text-h4 font-heading font-bold text-text-primary mb-xs">
+              <a href="{{ pub.url }}" target="_blank" rel="noopener noreferrer" class="hover:text-accent transition-colors">
+                {{ pub.title }}
+                {{ icon('external', 'w-3.5 h-3.5 inline ml-1') }}
+              </a>
+            </h3>
+            <p class="text-small text-text-secondary">{{ pub.description }}</p>
+          </li>
+          {% endfor %}
+        </ul>
+      </section>
+      {% endif %}
+
+      <!-- Education & Languages -->
+      <section id="education" class="max-w-4xl mx-auto mb-3xl" aria-labelledby="education-heading">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+          <div class="md:col-span-7">
+            <span class="kicker mb-xs">Academic Foundation</span>
+            <h2 id="education-heading" class="section-title mb-lg">Education</h2>
+            <ul class="space-y-md">
+              {% for edu in EDUCATION_LIST %}
+              <li class="card p-lg">
+                <div class="flex flex-wrap items-baseline justify-between gap-xs mb-xxs">
+                  <h3 class="text-h4 font-heading font-bold text-text-primary">{{ edu.institution }}</h3>
+                  <span class="text-meta text-accent font-semibold">{{ edu.period }}</span>
+                </div>
+                <p class="text-small font-medium text-text-primary mb-xs">{{ edu.degree }}</p>
+                <p class="text-small text-text-secondary">{{ edu.details }}</p>
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+
+          <div class="md:col-span-5">
+            <span class="kicker mb-xs">International Teams</span>
+            <h2 class="section-title mb-lg">Languages</h2>
+            <div class="card p-lg">
+              <ul class="space-y-sm">
+                {% for lang in PERSON_PROFILE.languages %}
+                <li class="flex items-baseline justify-between gap-sm pb-xs border-b border-border last:border-b-0 last:pb-0">
+                  <span class="font-medium text-text-primary">{{ lang.name }}</span>
+                  <span class="text-meta text-text-secondary text-right">{{ lang.level }}</span>
+                </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- Connect Section -->
       <section class="bg-muted-bg p-xl md:p-2xl rounded-2xl border border-border text-center max-w-3xl mx-auto">
-        <span class="kicker mb-xs">Collaboration</span>
-        <h2 class="text-h2 font-heading font-bold mb-md">Interested in collaborating?</h2>
+        <span class="kicker mb-xs">Connect</span>
+        <h2 class="text-h2 font-heading font-bold mb-md">Let's Stay in Touch</h2>
         <p class="text-body text-text-secondary max-w-xl mx-auto mb-xl">
-          Whether you're developing high-precision instrumentation or spinning out a university venture, I'd love to chat.
+          Always glad to connect with peers working in quantum hardware, semiconductor instrumentation, and deep-tech product leadership.
         </p>
         <div class="flex flex-wrap justify-center gap-md">
-          <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
+          {% if LINKEDIN_USERNAME %}
+          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/"
+             target="_blank"
+             rel="me noopener noreferrer"
+             class="btn btn-primary">
+            {{ icon('linkedin', 'w-4 h-4') }}
+            <span>Connect on LinkedIn</span>
+          </a>
+          {% endif %}
+          <a href="{{ SITEURL }}/contact/" class="btn btn-secondary">
             <span>Send a Message</span>
             {{ icon('arrow-right', 'icon icon-arrow') }}
           </a>
-          {% if LINKEDIN_USERNAME %}
-          <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" 
-             target="_blank" 
-             rel="noopener noreferrer" 
-             class="btn btn-secondary">
-            {{ icon('linkedin', 'w-4 h-4 text-[#0a66c2]') }}
-            <span>LinkedIn Profile</span>
-          </a>
-          {% endif %}
         </div>
       </section>
     </div>

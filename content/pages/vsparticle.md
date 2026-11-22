@@ -1,77 +1,40 @@
-Title: VSParticle: Product Management & Business Development
+Title: VSParticle: Product Management & Semiconductor Business Development
 Slug: vsparticle
-Date: 2026-01-01
+Date: 2026-01-15
 Template: work-page
 Category: Nanotechnology & Semiconductor
-Summary: Bridging engineering and commercial strategy for advanced nanoparticle generation and nanoprinting technologies (P1 & G1), expanding into the semiconductor sector.
+Summary: Built customer-centered product roadmaps for the P1 nanoprinter and G1 generator using Jobs Theory, then led semiconductor business development for Spark Ablation nanoparticle calibration.
 Company: VSParticle
 Role: Product Manager & Business Developer
-Technologies: Nanoprinting, Aerosol Deposition, Semiconductor, Product Roadmapping, Go-To-Market, B2B Commercialization
-Hero_image: images/aquiles_carattino_bw.jpeg
-Metrics: 2 Roles:PM & Business Developer|2 Flagships:P1 Printer & G1 Generator|New Markets:Semiconductor expansion
-Highlights: First Product Manager::Joined as the company's first PM, bridging the gap between engineering R&D and commercial sales teams::|Product Roadmapping::Defined feature roadmaps and customer-driven priorities for the P1 and G1 nanoprinting platforms::|Semiconductor Market Exploration::Identified and validated early traction in semiconductor manufacturing to open high-value commercial pipelines::
+Period: Jan 2025 – Jun 2026
+Location: Delft, Netherlands
+Cover_hue: 195
+Technologies: Product Management, Jobs to be Done (JTBD), Business Development, Semiconductor Calibration, Spark Ablation, Nanoprinting, Market Analysis
+Metrics: 2 Roles:Product Manager & Business Developer|2 Platforms:P1 Nanoprinter & G1 Generator|Semiconductor:New calibration & process market
+Highlights: Jobs Theory Opportunity Mapping::Introduced the Jobs to be Done framework to map underserved customer needs and anchor product roadmaps and sales messaging::|Data-Driven Market Intelligence::Combined customer interviews with citation, co-authorship, and patent network analysis to prioritize high-value applications::|Semiconductor Expansion::Led commercial exploration of Spark Ablation single-nanoparticle generation for semiconductor process development and tool calibration::
 Project_url: https://www.vsparticle.com
 
-# Nanotechnology from Lab to Industry
+## Spark Ablation from Materials Research to Industry
 
-<!--
-TODO: Introduce VSParticle and its core technology.
-- What does VSParticle do? (Spark ablation technology for generating nanoparticles and printing nanostructured materials on demand).
-- What make their solutions unique in materials research and advanced manufacturing?
--->
+[VSParticle](https://www.vsparticle.com) builds instruments based on spark ablation that generate inorganic nanoparticles on demand and deposit nanostructured layers directly onto substrates. For materials labs and industrial R&D teams, that turns months of wet-chemistry preparation into repeatable, dry deposition workflows.
 
-VSParticle develops revolutionary tools that enable researchers and industrial manufacturers to produce and deposit nanoparticles on demand. By leveraging spark ablation, their platforms allow precise generation of inorganic nanoparticles and direct nanoprinting onto substrates, dramatically shortening the materials development cycle from months to hours.
+Over 18 months in Delft, I worked across both product management and commercial development to align VSParticle's technology with concrete customer demand.
 
-## Role 1: Product Manager (Jan 2025 – Dec 2025)
+## Product Manager (Jan 2025 – Jan 2026)
 
-<!--
-TODO: Detail your role and contributions as the company's first Product Manager.
-- Bridging the gap between engineering / R&D and the commercial / sales teams.
-- Overseeing the product roadmap for core platforms: P1 (nanoprinter) and G1 (nanoparticle generator).
-- Prioritizing customer feedback, establishing release cadences, and managing trade-offs.
--->
+I joined to establish a customer-centered approach to product innovation, bridging R&D engineers, leadership, marketing, and sales across different timelines and priorities.
 
-I joined VSParticle as the company's first dedicated Product Manager with a dual focus: aligning technical development with customer needs and structuring the product lifecycle:
+- **Business & Market Intelligence:** Conducted structured customer interviews alongside quantitative network analysis (scientific paper citations, co-authorship graphs, and patent landscapes) to identify where spark ablation solved urgent problems.
+- **Jobs Theory (JTBD) & Roadmapping:** Introduced the Jobs to be Done framework to map underserved needs across existing products (the **P1** nanoprinter and **G1** nanoparticle generator) and future platforms.
+- **Value Propositions for Go-to-Market:** Translated customer insights into clear value propositions adopted directly in marketing collateral and commercial sales pitches.
 
-- **Bridging Engineering & Sales:** Acted as the connective tissue translating complex customer feedback from sales discussions into clear, prioritized technical requirements for the R&D team.
-- **Product Roadmaps for P1 & G1:** Defined the strategic direction and release roadmaps for the flagship nano printer (P1) and nanoparticle generator (G1).
-- **Voice of Customer:** Established feedback loops with academic and industrial research labs to understand usability bottlenecks, reliability expectations, and new application areas.
+## Business Developer (Jan 2026 – Jun 2026)
 
-## Role 2: Business Developer (November 2026 – June 2026)
+After early commercial signals emerged in the semiconductor ecosystem, I moved into a focused Business Development role to test and expand that opportunity.
 
-<!--
-TODO: Detail your pivot into Business Development.
-- Initial traction identified in the semiconductor space.
-- Building the network: engaging KOLs, potential customers, and ecosystem partners.
-- Defining the value proposition for semiconductor applications.
-- Driving revenue growth ahead of dedicated product development cycles.
--->
+- **Semiconductor Calibration & Process Development:** Led efforts introducing single-nanoparticle generation via spark ablation for semiconductor equipment calibration and process development.
+- **Discovery & Solution Framing:** Worked directly with technical stakeholders to understand yield, accuracy, and reliability constraints and shape a solution portfolio grounded in real fab and R&D needs.
 
-After identifying emerging traction from key players in the semiconductor ecosystem, I transitioned into a dedicated Business Development role to lead exploration in this domain:
+## Key Takeaway
 
-- **Ecosystem Discovery:** Cultivating relationships with semiconductor researchers, device engineers, and process development managers who require precise nanomaterial deposition.
-- **Value Proposition Design:** Identifying the high-impact problems where VSParticle's unique capabilities provide decisive advantages over conventional lithography or vacuum deposition techniques.
-- **Pipeline & Pre-development Revenue:** Securing commercial pilot opportunities and proof-of-concept projects to validate demand and de-risk future product engineering cycles.
-
-## Navigating Deep-Tech Commercialization
-
-<!--
-TODO: Discuss the unique challenges of marketing and selling advanced hardware / nanotechnology tools.
-- Complex B2B sales cycles with scientific and industrial decision makers.
-- Education-driven selling vs. commodity procurement.
-- Managing long proof-of-concept cycles and high-capital equipment decisions.
--->
-
-Commercializing deep-tech hardware requires navigating distinct complexities:
-
-- Customers are sophisticated technical experts who require rigorous scientific data and reproducibility before committing.
-- Bridging the gap between academic exploration and industrial semiconductor manufacturing standards.
-- Ensuring that customer promises match hardware development realities.
-
-## Strategic Takeaways & Looking Ahead
-
-<!--
-TODO: Add your concluding thoughts and reflections on your journey at VSParticle.
--->
-
-Working across both product management and commercial development at VSParticle reinforced my conviction that deep-tech success depends on tight synchronization between engineering feasibility, market timing, and customer trust.
+Working on both sides of the product-commercial boundary at VSParticle reinforced a lesson I carry into every hardware organization: strong technical differentiation only turns into revenue when engineering roadmaps, customer discovery, and sales narratives share the same vocabulary.

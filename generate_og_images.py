@@ -187,6 +187,57 @@ def generate_og_image(article_file: Path, output_dir: Path, force: bool = False)
         print(f"❌ Error generating {output_file}: {e}")
 
 
+def generate_default_og_image(output_dir: Path, force: bool = False):
+    """Generate default sitewide Open Graph card (1200x630)."""
+    output_file = output_dir / "default.png"
+    if output_file.exists() and not force:
+        print(f"⏭️  Skipping default OG image: already exists (use --force to regenerate)")
+        return
+
+    svg = f'''<?xml version="1.0" encoding="UTF-8"?>
+<svg width="{OG_WIDTH}" height="{OG_HEIGHT}" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#071a36"/>
+      <stop offset="50%" stop-color="#0d2f5c"/>
+      <stop offset="100%" stop-color="#154a8a"/>
+    </linearGradient>
+  </defs>
+  <rect width="{OG_WIDTH}" height="{OG_HEIGHT}" fill="url(#bg)"/>
+  <rect x="0" y="0" width="12" height="{OG_HEIGHT}" fill="#6ab4f8"/>
+  <text x="88" y="150" font-family="system-ui, -apple-system, sans-serif" font-size="24" font-weight="600" letter-spacing="3" fill="#6ab4f8">
+    DELFT, NETHERLANDS · DEEP-TECH LEADERSHIP
+  </text>
+  <text x="88" y="255" font-family="Georgia, serif" font-size="76" font-weight="700" fill="#ffffff">
+    Aquiles Carattino
+  </text>
+  <text x="88" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="34" font-weight="500" fill="#e2e8f0">
+    Team Lead, Product Development @ Orange Quantum Systems
+  </text>
+  <text x="88" y="405" font-family="system-ui, -apple-system, sans-serif" font-size="28" fill="#cbd5e1">
+    Quantum Chip Testing · Scientific Instrumentation · Ex-Founder &amp; Author
+  </text>
+  <line x1="88" y1="490" x2="1112" y2="490" stroke="#6ab4f8" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="88" y="548" font-family="system-ui, -apple-system, sans-serif" font-size="26" font-weight="600" fill="#ffffff">
+    www.aquiles.me
+  </text>
+  <text x="1112" y="548" text-anchor="end" font-family="system-ui, -apple-system, sans-serif" font-size="24" fill="#94a3b8">
+    linkedin.com/in/aquic
+  </text>
+</svg>
+'''
+    try:
+        cairosvg.svg2png(
+            bytestring=svg.encode('utf-8'),
+            write_to=str(output_file),
+            output_width=OG_WIDTH,
+            output_height=OG_HEIGHT
+        )
+        print(f"✅ Generated default OG image: {output_file}")
+    except Exception as e:
+        print(f"❌ Error generating {output_file}: {e}")
+
+
 def main():
     """Main function to generate OG images for all articles."""
     # Parse command-line arguments
@@ -202,6 +253,7 @@ def main():
     
     # Create output directory if it doesn't exist
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    generate_default_og_image(OUTPUT_DIR, force=args.force)
     
     # Find all markdown files in articles directory
     article_files = list(ARTICLES_DIR.glob("*.md"))

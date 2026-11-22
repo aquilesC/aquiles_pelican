@@ -4,6 +4,10 @@
 
 {% block title %}404 - Page Not Found | {{ SITENAME }}{% endblock %}
 
+{% block robots %}<meta name="robots" content="noindex, follow" />{% endblock %}
+{% block canonical %}{% endblock %}
+{% block description %}The requested page could not be found on aquiles.me.{% endblock %}
+
 {% block content %}
   <div class="section">
     <div class="container-site">
@@ -12,15 +16,18 @@
         <span class="text-display font-heading font-bold text-accent block mb-xs">404</span>
         <h1 class="text-h1 mb-md">Page Not Found</h1>
         <p class="text-body text-text-secondary mb-xl">
-          The page you're looking for doesn't exist or has moved. Here are some of the latest articles instead.
+          The page you're looking for doesn't exist or has moved. You can explore my experience or recent essays below.
         </p>
         <div class="flex flex-wrap justify-center gap-md">
           <a href="{{ SITEURL }}/" class="btn btn-primary">
             <span>Back to Home</span>
             {{ icon('arrow-right', 'icon icon-arrow') }}
           </a>
+          <a href="{{ SITEURL }}/work/" class="btn btn-secondary">
+            <span>Experience</span>
+          </a>
           <a href="{{ SITEURL }}/articles/" class="btn btn-secondary">
-            <span>Browse All Articles</span>
+            <span>Browse Writing</span>
           </a>
         </div>
       </div>
@@ -28,7 +35,7 @@
       <!-- Latest Articles Section -->
       {% if articles %}
       <div class="pt-2xl border-t border-border">
-        <h2 class="section-title text-center mb-2xl">Recent Articles</h2>
+        <h2 class="section-title text-center mb-2xl">Recent Writing</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-xl">
           {% for article in articles[:3] %}
             {{ render_card(article) }}

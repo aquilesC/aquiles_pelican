@@ -1,28 +1,28 @@
-Title: Golden Hour
+Title: Founder & Product Sparring
 Slug: services/golden-hour
-Date: 2024-01-05 10:00
+Date: 2026-11-22
 Status: published
 Template: service_page
-Summary: Strategy, Clarity, and a "Sanity Check" for your Roadmap.
+Summary: Selective 1-hour conversations with technical founders, researchers, and deep-tech product leaders navigating a specific lab-to-market decision.
 
-## Strategy, Clarity, and a "Sanity Check" for your Roadmap.
+## A Focused Second Pair of Eyes
 
-You don’t always need a long-term consultant. Sometimes, you just need someone who has walked the path to look at your map and tell you where the cliffs are. This is a high-intensity, 60-minute strategy session designed to unblock specific hurdles in your deep tech journey.
+Sometimes you need an honest outside perspective from someone who has been on both sides of the table: building optical hardware in the lab, raising pre-seed and seed capital as a founder, owning product roadmaps, and leading multidisciplinary engineering teams.
 
-### Who this is for
+Alongside my full-time role at Orange Quantum Systems, I keep a limited number of monthly slots for focused 60-minute sparring conversations.
 
-Early-stage founders, Post-docs exploring a spin-out, or technical leaders facing a specific "Make or Break" decision (e.g., Should we pivot? Is this investor term sheet fair? How do I hire my first salesperson?).
+### Who This Fits Best
+
+Technical founders, researchers weighing a university spinout, or product and engineering leads working through a concrete decision around hardware-software roadmaps, customer discovery, or commercial positioning.
 
 <div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
-    <img src="/theme/images/GoldenHour.webp" width="1600" height="873" loading="lazy" decoding="async" alt="Golden Hour Strategy Visualization" style="width: 100%; height: auto; border-radius: 8px;">
+    <img src="/theme/images/GoldenHour.webp" width="1600" height="873" loading="lazy" decoding="async" alt="Structured product strategy and roadmap review" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
-### What we tackle
+### Common Discussion Topics
 
--   **Validation:** brutally honest feedback on your Value Proposition before you build it.
--   **The "Story" Audit:** Translating your technical pitch into an investor-ready narrative.
--   **Commercial Triage:** Identifying the one bottleneck stopping you from revenue.
+- **Value Proposition & Positioning:** Pressure-testing whether your technical differentiation solves a problem customers will actually switch for.
+- **Roadmap & Engineering Trade-offs:** Aligning R&D priorities with commercial milestones and customer feedback loops.
+- **Spinout & Career Decisions:** Navigating the transition from academia to deep-tech product leadership or founding a hardware venture.
 
-### The Deliverable
-
-60 minutes of video consultation + a recording + a 1-page summary of Actionable Next Steps.
+Share brief context on what you are working on below, and I will let you know if I can help.

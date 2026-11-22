@@ -1,3 +1,5 @@
-# Allow unrestricted access to all search engines and AI models
+# Allow unrestricted access to all search engines and AI crawlers
 User-agent: *
 Allow: /
+
+Sitemap: https://www.aquiles.me/sitemap.xml

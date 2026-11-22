@@ -2,10 +2,46 @@
 {% from 'includes/card.html' import render_card %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}Articles | {{ SITENAME }}{% endblock %}
+{% block title %}Writing &amp; Essays | {{ SITENAME }}{% endblock %}
 
-{% block meta %}
-<meta name="description" content="Essays, reflections, and frameworks on deep tech entrepreneurship, science commercialization, and the transition from academic researcher to venture founder." />
+{% block description %}Essays and reflections by Aquiles Carattino on deep-tech product strategy, science commercialization, scientific instrumentation, and building technical ventures.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/articles/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "CollectionPage",
+      "name": "Writing & Essays | {{ SITENAME|e }}",
+      "url": "{{ CANONICAL_SITEURL }}/articles/",
+      "description": "Essays and reflections by Aquiles Carattino on deep-tech product strategy, science commercialization, and building technical ventures.",
+      "author": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ CANONICAL_SITEURL }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Writing",
+          "item": "{{ CANONICAL_SITEURL }}/articles/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -13,12 +49,11 @@
   <section class="page-hero">
     <div class="container-site text-center max-w-3xl mx-auto">
       <span class="kicker mb-xs">
-        {{ icon('sparkles', 'w-4 h-4') }}
-        <span>Essays & Frameworks</span>
+        <span>Essays &amp; Frameworks</span>
       </span>
-      <h1 class="font-heading mb-md">Articles</h1>
+      <h1 class="font-heading mb-md">Writing</h1>
       <p class="page-hero-lead max-w-2xl mx-auto">
-        Reflections and learnings on deep tech, science commercialization, and the entrepreneurial journey.
+        Reflections and lessons on deep-tech product strategy, science commercialization, and leading technical teams.
       </p>
     </div>
 
@@ -33,7 +68,7 @@
     <div class="container-site">
       <!-- Category Filter Chips -->
       {% if categories %}
-      <div class="flex flex-wrap items-center justify-center gap-xs md:gap-sm mb-2xl" role="navigation" aria-label="Article categories">
+      <nav class="flex flex-wrap items-center justify-center gap-xs md:gap-sm mb-2xl" aria-label="Article topics">
         <span class="text-meta font-medium text-text-secondary mr-xs">Topics:</span>
         <a href="{{ SITEURL }}/articles/" class="chip" aria-current="page">
           All ({{ dates|length }})
@@ -44,7 +79,7 @@
           <span class="opacity-60 text-overline">({{ cat_articles|length }})</span>
         </a>
         {% endfor %}
-      </div>
+      </nav>
       {% endif %}
 
       <!-- Articles Grid -->
@@ -56,7 +91,7 @@
       </div>
       {% else %}
       <div class="text-center py-2xl text-text-secondary">
-        <p>No articles published yet. Check back soon!</p>
+        <p>No articles published yet. Check back soon.</p>
       </div>
       {% endif %}
     </div>

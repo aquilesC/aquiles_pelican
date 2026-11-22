@@ -1,79 +1,41 @@
-Title: Python for the Lab
+Title: Python for the Lab: Book, Workshops & Instrumentation Software
 Slug: python-for-the-lab
-Date: 2024-12-01
+Date: 2025-01-01
 Template: work-page
-Category: Software & Education
-Summary: Empowering scientists and laboratory engineers to automate experimental setups, build modular measurement software, and master Python for scientific instrumentation.
+Category: Software & Instrumentation
+Summary: Authored the book Python for the Lab, trained research and engineering teams across Europe, and advised instrumentation companies on software architecture and technical hiring.
 Company: Python for the Lab
-Role: Founder & Author
-Technologies: Python, PyQt / Qt, Scientific Instrumentation, Lab Automation, Data Acquisition, Open Source
-Hero_image: images/aquiles_carattino_bw.jpeg
-Metrics: 1 Book:Published on lab automation|20+:Hands-on workshops delivered|100s:Researchers trained across Europe
-Highlights: Published Author::Wrote and published the definitive guide to building laboratory instrumentation software with Python::https://www.pythonforthelab.com|Hands-on European Workshops::Delivered intensive 3-day bootcamps at leading universities and research institutes::|Open-Source Ecosystem::Created open-source tools and frameworks for modular experiment control::
+Role: Founder, Author & Instrumentation Software Specialist
+Period: Jan 2017 – Jan 2025
+Location: Netherlands, Paris & Europe
+Cover_hue: 160
+Technologies: Python, MVC Architecture, Scientific Instrumentation, PyQt / Qt, Lab Automation, Data Acquisition, Technical Training
+Metrics: 1 Book:Published on lab automation|3-Day:Workshops across Europe|#1 Google:Organic reach on core queries
+Highlights: Published Book::Authored Python for the Lab (2020), introducing Model-View-Controller architecture, instrument drivers, and reproducible experiment workflows::https://www.pythonforthelab.com/books/|European Workshops (2017–2020)::Delivered hands-on 3-day instrumentation programming courses at top European universities and deep-tech startups::https://www.pythonforthelab.com|Industry Advisory (2023–2025)::Supported instrumentation companies with developer training, code reviews, technical hiring decisions, and software product strategy::
 Project_url: https://www.pythonforthelab.com
 
-# Why Python for the Lab?
+## Bringing Software Engineering Discipline to Scientific Labs
 
-<!--
-TODO: Detail the origin story and mission of Python for the Lab.
-- What was the core problem in scientific laboratories that you observed? (e.g., proprietary legacy software like LabVIEW, brittle scripts, lack of software engineering best practices).
-- Why Python became the ideal tool to solve this gap.
--->
+[Python for the Lab](https://www.pythonforthelab.com) grew out of a recurring gap I saw across both academic and industrial laboratories: experimentalists invest months building custom optical, electronic, or cryogenic setups, yet rely on fragile scripts or expensive proprietary tools to control them.
 
-[Python for the Lab](https://www.pythonforthelab.com) started as an effort to solve a pervasive problem across academia and industrial research labs: experimentalists spend months building sophisticated hardware setups, only to struggle with brittle, unmaintainable, or expensive proprietary software.
+My goal was to support the first wave of instrumentation specialists adopting modern open-source software stacks for automation, long-term reliability, and maintainability.
 
-My goal was simple: bring modern software engineering practices—modular code architecture, clean separation of concerns, testability, and intuitive user interfaces—into scientific labs using Python.
+## The Book & Open Knowledge Hub
 
-## The Book: Writing the Blueprint for Experimentalists
+In October 2020, I published the book [*Python for the Lab*](https://www.pythonforthelab.com/books/), offering a hands-on workflow from environment setup through production instrument control:
 
-<!--
-TODO: Describe the book you authored.
-- What topics does the book cover? (Architecture, instrument communication via VISA/serial, threading, PyQt GUIs, data acquisition pipelines).
-- Target audience: PhDs, postdocs, instrumentation engineers, lab technicians.
-- Feedback and reception from the scientific community.
--->
+- **Model-View-Controller (MVC) for Science:** Separating hardware drivers, experiment logic, and user interfaces so codebases survive team transitions and hardware swaps.
+- **Hardware Interfacing & Concurrency:** Talking to lasers, stages, sensors, and microcontrollers over VISA, serial, and USB while keeping acquisition threads responsive.
+- **Reproducibility & Metadata:** Structuring experiments so acquired data and measurement parameters stay paired from day one.
 
-To provide a structured learning path, I wrote and self-published the book *Python for the Lab*:
+Alongside the book, [pythonforthelab.com](https://www.pythonforthelab.com) grew into a widely used reference, reaching the top Google position across core queries for Python laboratory instrumentation.
 
-- **Instrument communication:** Interfacing with serial devices, VISA, USB, and custom microcontrollers.
-- **Multithreading & Concurrency:** Keeping measurement loops responsive and separating acquisition from the UI.
-- **User Interfaces:** Building clean, robust graphical interfaces with PyQt/Qt tailored for experimental control.
-- **Maintainable Architecture:** Designing modular code that colleagues can easily understand and extend when projects transition.
+## Workshops Across Europe (2017–2020) & Industry Services (2023–2025)
 
-## Hands-on Workshops Across Europe
+Between 2017 and 2020, I developed and taught intensive 3-day workshops across leading European universities and deep-tech startups, guiding physicists, chemists, and engineers from basic scripts to structured control software on real hardware. In parallel through **Uetke** (2017–2018), I built custom MVC-based control applications that remained in daily laboratory operation for more than seven years.
 
-<!--
-TODO: Share experiences from running your 3-day intensive bootcamps.
-- Where were they held? (Universities, research centers, corporate labs across the Netherlands, Germany, Switzerland, etc.).
-- Workshop format: live coding, working with real hardware setups, immediate practical application.
-- The impact on researchers who attended.
--->
+From October 2023 to January 2025, I refocused Python for the Lab on companies building hardware-software products—delivering onboarding and advanced developer trainings, architecture and code reviews, support for hiring and promotion decisions, and strategic product development input.
 
-Between 2017 and 2024, I traveled across Europe delivering intensive 3-day in-person workshops at top universities, research institutes, and technology companies:
+## Lasting Impact
 
-- Live coding with actual hardware: connecting lasers, sensors, spectrometers, and stages.
-- Guiding participants from simple scripts to full-fledged measurement suites.
-- Helping labs modernize their legacy codebases and eliminate single-point-of-failure scripts.
-
-## Open Source & Community Engagement
-
-<!--
-TODO: Mention the open-source projects, community articles, and discussions.
-- Articles on pythonforthelab.com, tutorials, newsletters.
-- Contributions to open-source libraries or tooling.
--->
-
-Beyond workshops and the book, Python for the Lab became an open knowledge hub:
-
-- Comprehensive guides on instrument drivers, continuous integration for hardware, and best practices.
-- Active discussions on forums, Reddit, and social media helping researchers unblock hardware challenges.
-- Advocating for open science, open hardware, and reproducible research workflows.
-
-## Reflections & Key Takeaways
-
-<!--
-TODO: Share personal lessons learned from running Python for the Lab as an independent business and educational platform.
-- What did you learn about productizing knowledge, running independent workshops, and teaching complex technical skills?
--->
-
-Running Python for the Lab taught me how to distill complex technical abstractions into accessible, practical lessons. Teaching hundreds of researchers also gave me a deep understanding of the diverse instrumentation challenges across optics, materials science, chemistry, and biotech—insights that continue to inform my work in product management and deep-tech commercialization.
+Teaching and advising dozens of instrumentation teams gave me a rare cross-sector view of how optics, biotech, materials, and quantum engineering groups actually build software. Those patterns directly inform how I lead multidisciplinary software and hardware teams today.

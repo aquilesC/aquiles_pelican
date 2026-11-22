@@ -2,7 +2,13 @@
 {% from 'includes/card.html' import render_card %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}#{{ tag.name }} | {{ SITENAME }}{% endblock %}
+{% block title %}#{{ tag.name }} | Writing | {{ SITENAME }}{% endblock %}
+
+{% block robots %}<meta name="robots" content="noindex, follow" />{% endblock %}
+
+{% block description %}Essays by Aquiles Carattino tagged #{{ tag.name }}.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ tag.url }}{% endblock %}
 
 {% block content %}
   <!-- Page Hero -->
@@ -12,7 +18,7 @@
         <ol class="inline-flex items-center gap-xs text-meta text-white/80">
           <li><a href="{{ SITEURL }}/" class="hover:underline">Home</a></li>
           <li aria-hidden="true">/</li>
-          <li><a href="{{ SITEURL }}/articles/" class="hover:underline">Articles</a></li>
+          <li><a href="{{ SITEURL }}/articles/" class="hover:underline">Writing</a></li>
           <li aria-hidden="true">/</li>
           <li class="text-white">#{{ tag.name }}</li>
         </ol>

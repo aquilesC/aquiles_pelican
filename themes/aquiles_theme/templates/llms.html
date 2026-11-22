@@ -1,0 +1,52 @@
+# Aquiles Carattino
+
+> Team Lead, Product Development at Orange Quantum Systems (OrangeQS) in Delft, Netherlands. Deep-tech product and engineering leader with over 10 years of experience bringing quantum computing, semiconductor, and scientific instrumentation products from laboratory research to market.
+
+## Summary
+
+- **Current Role:** Team Lead, Product Development at [Orange Quantum Systems](https://orangeqs.com) (Jun 2026 – Present), leading a 14-person multidisciplinary team across Software Engineering, Instrumentation, Quantum Testing, and Systems Engineering building automated testing and characterization systems for quantum processing units (QPUs).
+- **Location:** Delft / The Randstad, Netherlands
+- **Previous Leadership & Product Roles:**
+  - Business Developer & Product Manager at [VSParticle](https://www.vsparticle.com) (Jan 2025 – Jun 2026): Jobs to be Done (JTBD) roadmapping for P1/G1 nanoprinting platforms and semiconductor business development for Spark Ablation calibration.
+  - Instrumentation Software Specialist & Deep-Tech Product Advisor (Jul 2023 – Jan 2025): Software architecture, technical hiring, code reviews, training, and product strategy via Python for the Lab and Scipreneurs.
+  - Co-Founder at Dispertech (Aug 2018 – Jun 2023): University spinout building nanoparticle and exosome characterization instruments (NanoCET, NanoQNT); raised NWO Take-Off, VC pre-seed, and seed funding.
+  - Author & Instructor at [Python for the Lab](https://www.pythonforthelab.com) (2017 – 2025): Published the book *Python for the Lab* (2020) and delivered 3-day European instrumentation software workshops.
+  - Scientific Software Developer at Uetke (2017 – 2018).
+  - Doctoral Researcher (PhD, Physics) at Leiden University (2012 – 2016): Gold nanorod photoluminescence, anti-Stokes background-free imaging, and calibration-free optical nano-thermometry.
+  - Research Assistant at Tenaris (2011 – 2012).
+- **Education:** PhD in Physics (Leiden University, 2012–2016); Licenciatura en Ciencias Físicas (University of Buenos Aires, 2004–2010); Physics Exchange (UNICAMP, 2008).
+- **Languages:** English, Spanish, Portuguese, Italian, French.
+- **Core Expertise:** {{ PERSON_PROFILE.knows_about|join(', ') }}.
+
+## Canonical Profiles
+
+- Website: {{ CANONICAL_SITEURL }}/
+- LinkedIn (Source of Truth): https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/
+- GitHub: https://github.com/{{ GITHUB_USERNAME }}
+- Python for the Lab: {{ PYTHON_FOR_THE_LAB_URL }}
+- Digital Garden: {{ DIGITAL_GARDEN_URL }}
+
+## Key Pages
+
+- [Home]({{ CANONICAL_SITEURL }}/)
+- [Experience, Timeline & Publications]({{ CANONICAL_SITEURL }}/work/)
+- [Orange Quantum Systems Case Study]({{ CANONICAL_SITEURL }}/orange-quantum-systems/)
+- [VSParticle Case Study]({{ CANONICAL_SITEURL }}/vsparticle/)
+- [Dispertech Case Study]({{ CANONICAL_SITEURL }}/dispertech/)
+- [Python for the Lab Case Study]({{ CANONICAL_SITEURL }}/python-for-the-lab/)
+- [Leiden University PhD Research]({{ CANONICAL_SITEURL }}/phd/)
+- [Writing & Essays Archive]({{ CANONICAL_SITEURL }}/articles/)
+- [Speaking & Advisory]({{ CANONICAL_SITEURL }}/services/)
+- [Contact]({{ CANONICAL_SITEURL }}/contact/)
+
+## Book & Peer-Reviewed Publications
+
+{% for pub in PUBLICATIONS_LIST %}
+- [{{ pub.title }}]({{ pub.url }}) ({{ pub.venue }}, {{ pub.year }}): {{ pub.description }}
+{% endfor %}
+
+## Selected Writing & Essays
+
+{% for article in articles %}
+- [{{ article.title }}]({{ CANONICAL_SITEURL }}/{{ article.url }}){% if article.category %} [{{ article.category.name }}]{% endif %}: {{ article.summary|striptags|replace('\n', ' ') }}
+{% endfor %}

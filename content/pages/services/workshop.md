@@ -1,32 +1,32 @@
-Title: Workshop
+Title: Guest Talks & Workshops
 Slug: services/workshop
-Date: 2024-01-05 10:00
+Date: 2026-11-22
 Status: published
 Template: service_page
-Summary: Training the Next Generation of Scipreneurs.
+Summary: Practical sessions for universities, research institutes, incubators, and deep-tech events on moving scientific technology from lab prototype to commercial product.
 
-## Training the Next Generation of Scipreneurs.
+## Moving from Research to Product
 
-Most scientists are trained to be skeptical, thorough, and risk-averse—traits that make great researchers but hesitant entrepreneurs. I help universities, incubators, and TTOs flip the script. This is not a theoretical lecture; it is a hands-on bootcamp on the realities of deep tech entrepreneurship.
-
-<div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
-    <img src="/theme/images/WorkshopMindset.webp" width="1376" height="768" loading="lazy" decoding="async" alt="Mindset Shift: Scientist vs. Entrepreneur" style="width: 100%; height: auto; border-radius: 8px;">
-</div>
-
-### Who this is for: 
-University Tech Transfer Offices (TTOs), PhD Cohorts, Incubators, and Research Institutes.
-
-### The Curriculum:
-
-*   **Mindset Shift:** Effectual reasoning vs. Causal reasoning (Scientist vs. Entrepreneur).
-*   **The Toolkit:** Practical application of Lean Startup methodology in a Deep Tech context.
-*   **The Pitch:** How to communicate complex science to non-experts without "dumbing it down."
+Scientists are trained to minimize uncertainty before acting. Product development and entrepreneurship require making structured decisions before all the evidence exists. I run practical sessions for universities, Tech Transfer Offices, PhD cohorts, and deep-tech incubators built on real hardware commercialization experience.
 
 <div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
-    <img src="/theme/images/WorkshopToolkit.webp" width="1376" height="768" loading="lazy" decoding="async" alt="Lean Startup Toolkit in Deep Tech" style="width: 100%; height: auto; border-radius: 8px;">
+    <img src="/theme/images/WorkshopMindset.webp" width="1376" height="768" loading="lazy" decoding="async" alt="Mindset shift between academic research and product commercialization" style="width: 100%; height: auto; border-radius: 8px;">
 </div>
 
-### Format: 
-Available as a half-day seminar or a multi-day immersive bootcamp.
+### Typical Audiences
 
-Want to bring this workshop to your university or institute? Contact me below.
+University Tech Transfer Offices (TTOs), doctoral and postdoc cohorts, deep-tech incubators, and scientific instrumentation conferences.
+
+### Core Topics
+
+- **Effectual vs. Causal Reasoning:** How scientific decision-making differs from early-stage market discovery, and when to apply each.
+- **Customer Discovery & Jobs to be Done:** Translating complex technical capabilities into clear value propositions for industrial and research buyers.
+- **Hardware-Software Product Execution:** Lessons from co-founding a spinout, managing nanotechnology product roadmaps, and leading multidisciplinary engineering teams.
+
+<div class="graph-placeholder" style="background: transparent; border: none; padding: 0;">
+    <img src="/theme/images/WorkshopToolkit.webp" width="1376" height="768" loading="lazy" decoding="async" alt="Toolkit for validating deep-tech product assumptions" style="width: 100%; height: auto; border-radius: 8px;">
+</div>
+
+### Format
+
+Available selectively as a keynote, guest lecture, or half-day interactive workshop depending on schedule availability alongside my full-time role at OrangeQS. Reach out below with dates and audience details.

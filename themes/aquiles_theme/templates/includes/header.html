@@ -1,6 +1,6 @@
 {% from 'includes/icons.html' import icon %}
 
-<header id="header" class="site-header" role="banner">
+<header id="header" class="site-header">
   <div class="container-site h-full flex items-center justify-between gap-md">
     <!-- Logo -->
     <a href="{{ SITEURL }}/" class="site-logo" aria-label="{{ SITENAME }} - Home">
@@ -9,35 +9,35 @@
     </a>
 
     <!-- Primary Desktop Navigation -->
-    <nav class="hidden md:flex items-center gap-lg" aria-label="Primary navigation">
-      <a href="{{ SITEURL }}/work/" 
-         class="nav-link" 
+    <nav class="hidden md:flex items-center gap-lg" aria-label="Primary">
+      <a href="{{ SITEURL }}/work/"
+         class="nav-link"
          {% if (page and page.slug == 'work') or (page and page.template == 'work-page') %}aria-current="page"{% endif %}>
         Experience
       </a>
-      <a href="{{ SITEURL }}/services/" 
-         class="nav-link" 
-         {% if (page and (page.slug == 'services' or page.template == 'service_page')) %}aria-current="page"{% endif %}>
-        Services
-      </a>
-      <a href="{{ SITEURL }}/articles/" 
-         class="nav-link" 
+      <a href="{{ SITEURL }}/articles/"
+         class="nav-link"
          {% if (output_file and 'articles/' in output_file) or (article is defined) or (category is defined) or (tag is defined) %}aria-current="page"{% endif %}>
-        Articles
+        Writing
       </a>
-      <a href="{{ SITEURL }}/contact/" 
-         class="nav-link" 
+      <a href="{{ SITEURL }}/contact/"
+         class="nav-link"
          {% if page and page.slug == 'contact' %}aria-current="page"{% endif %}>
         Contact
       </a>
     </nav>
 
-    <!-- Desktop Utilities / CTA -->
+    <!-- Desktop Utilities / LinkedIn CTA -->
     <div class="hidden md:flex items-center gap-md">
-      <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary btn-sm">
-        <span>Book a Call</span>
-        {{ icon('arrow-right', 'icon icon-arrow') }}
+      {% if LINKEDIN_USERNAME %}
+      <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/"
+         target="_blank"
+         rel="me noopener noreferrer"
+         class="btn btn-primary btn-sm">
+        {{ icon('linkedin', 'w-4 h-4') }}
+        <span>LinkedIn</span>
       </a>
+      {% endif %}
     </div>
 
     <!-- Mobile Menu Button -->
@@ -54,39 +54,39 @@
 
   <!-- Mobile Menu (Native Popover with JS fallback) -->
   <div id="mobile-menu" popover class="mobile-menu md:hidden">
-    <nav class="flex flex-col mb-lg" aria-label="Mobile navigation">
-      <a href="{{ SITEURL }}/" 
+    <nav class="flex flex-col mb-lg" aria-label="Mobile">
+      <a href="{{ SITEURL }}/"
          class="nav-link"
          {% if output_file == 'index.html' %}aria-current="page"{% endif %}>
         Home
       </a>
-      <a href="{{ SITEURL }}/work/" 
+      <a href="{{ SITEURL }}/work/"
          class="nav-link"
          {% if (page and page.slug == 'work') or (page and page.template == 'work-page') %}aria-current="page"{% endif %}>
         Experience
       </a>
-      <a href="{{ SITEURL }}/services/" 
-         class="nav-link"
-         {% if (page and (page.slug == 'services' or page.template == 'service_page')) %}aria-current="page"{% endif %}>
-        Services
-      </a>
-      <a href="{{ SITEURL }}/articles/" 
+      <a href="{{ SITEURL }}/articles/"
          class="nav-link"
          {% if (output_file and 'articles/' in output_file) or (article is defined) or (category is defined) or (tag is defined) %}aria-current="page"{% endif %}>
-        Articles
+        Writing
       </a>
-      <a href="{{ SITEURL }}/contact/" 
+      <a href="{{ SITEURL }}/contact/"
          class="nav-link"
          {% if page and page.slug == 'contact' %}aria-current="page"{% endif %}>
         Contact
       </a>
     </nav>
+    {% if LINKEDIN_USERNAME %}
     <div class="pt-sm">
-      <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-primary w-full text-center">
-        <span>Book a Call</span>
-        {{ icon('arrow-right', 'icon icon-arrow') }}
+      <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/"
+         target="_blank"
+         rel="me noopener noreferrer"
+         class="btn btn-primary w-full text-center">
+        {{ icon('linkedin', 'w-4 h-4') }}
+        <span>Connect on LinkedIn</span>
       </a>
     </div>
+    {% endif %}
   </div>
 </header>
 

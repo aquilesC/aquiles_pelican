@@ -5,23 +5,54 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="color-scheme" content="light dark" />
   <meta name="generator" content="Pelican" />
-  
-  <title>{% block title %}{{ SITENAME }}{% endblock %}</title>
-  
+
+  <title>{% block title %}{{ SITENAME }} | Deep-Tech Product &amp; Engineering Leader{% endblock %}</title>
+
+  {% block robots %}{% endblock %}
+
   {% block meta %}
-  <meta name="description" content="{% block description %}{{ SITESUBTITLE }}{% endblock %}" />
+  <meta name="description" content="{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}" />
   {% endblock %}
-  
+  <meta name="author" content="{{ AUTHOR }}" />
+
+  {% block canonical %}
+  <link rel="canonical" href="{% block canonical_url %}{{ CANONICAL_SITEURL }}/{% endblock %}" />
+  {% endblock %}
+
+  <!-- Open Graph / Social -->
+  {% block social_meta %}
+  <meta property="og:type" content="{% block og_type %}website{% endblock %}" />
+  <meta property="og:site_name" content="{{ SITENAME }}" />
+  <meta property="og:url" content="{{ self.canonical_url() }}" />
+  <meta property="og:title" content="{% block og_title %}{{ self.title() }}{% endblock %}" />
+  <meta property="og:description" content="{% block og_description %}{{ self.description() }}{% endblock %}" />
+  <meta property="og:image" content="{% block og_image %}{{ CANONICAL_SITEURL }}/{{ DEFAULT_OG_IMAGE }}{% endblock %}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="{{ self.og_title() }}" />
+  <meta name="twitter:description" content="{{ self.og_description() }}" />
+  <meta name="twitter:image" content="{{ self.og_image() }}" />
+  {% endblock %}
+
   <!-- Preload core variable fonts for fast, visually stable typography -->
   <link rel="preload" href="{{ SITEURL }}/theme/fonts/source-serif-4-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
   <link rel="preload" href="{{ SITEURL }}/theme/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="{{ SITEURL }}/theme/css/style.css?v={{ CSS_VERSION }}" />
-  
-  <!-- Feeds -->
+
+  <!-- Feeds & Identity -->
   {% if FEED_ALL_RSS %}
-  <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }} - RSS Feed" href="{{ SITEURL }}/{{ FEED_ALL_RSS }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ SITENAME }} - RSS Feed" href="{{ CANONICAL_SITEURL }}/{{ FEED_ALL_RSS }}" />
+  {% endif %}
+  {% if LINKEDIN_USERNAME %}
+  <link rel="me" href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" />
+  {% endif %}
+  {% if GITHUB_USERNAME %}
+  <link rel="me" href="https://github.com/{{ GITHUB_USERNAME }}" />
   {% endif %}
 
   <!-- Google tag (gtag.js) -->
@@ -33,6 +64,7 @@
     gtag('config', 'G-BBEN060376');
   </script>
 
+  {% block structured_data %}{% endblock %}
   {% block extra_head %}{% endblock %}
 </head>
 
@@ -40,13 +72,13 @@
   <a href="#main" class="skip-link">Skip to main content</a>
 
   {% include 'includes/header.html' %}
-  
+
   <main id="main" tabindex="-1">
     {% block content %}{% endblock %}
   </main>
-  
+
   {% include 'includes/footer.html' %}
-  
+
   {% block extra_scripts %}{% endblock %}
 </body>
 </html>

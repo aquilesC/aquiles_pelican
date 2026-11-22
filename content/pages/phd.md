@@ -1,74 +1,38 @@
-Title: PhD Research: Optics & Single-Molecule Biophysics
+Title: PhD in Physics: Gold Nanorod Photoluminescence & Nano-Thermometry
 Slug: phd
-Date: 2017-01-01
+Date: 2016-12-01
 Template: work-page
-Category: Academia & Research
-Summary: Experimental physics PhD at Leiden University focused on building novel optical setups and instrumentation to investigate single molecules and nanoscale physical phenomena.
+Category: Experimental Physics & Optics
+Summary: Experimental physics PhD at Leiden University investigating gold nanorod photoluminescence, anti-Stokes background-free imaging, and calibration-free optical nano-thermometry.
 Company: Leiden University
-Role: PhD Researcher
-Technologies: Optics, Single-Molecule Spectroscopy, Instrumentation, Python, Nanophotonics, Lasers
-Hero_image: images/aquiles_carattino_bw.jpeg
-Metrics: 4 Years:Doctoral research|Multiple:Peer-reviewed papers|100%:Custom instrumentation
-Highlights: Optical Setup Development::Designed and built custom microscopy setups combining single-molecule sensitivity and microsecond time resolution::|Python for Setup Control::Authored modular Python software to synchronize lasers, detectors, and piezo stages in real time::|Thesis Defense::Completed and defended doctoral dissertation at Huygens-Kamerlingh Onnes Laboratory::
+Role: Doctoral Researcher (PhD, Physics)
+Period: Sep 2012 – Dec 2016
+Location: Leiden, Netherlands
+Cover_hue: 280
+Technologies: Experimental Physics, Single-Molecule Optics, Gold Nanorods, Microscopy, Photoluminescence, Python, Nanophotonics
+Metrics: 4+ Years:Leiden University PhD|5 Papers:Peer-reviewed publications|1st-Principles:Custom automated optics
+Highlights: Automated Optical Setup::Built and automated single-particle microscopy instrumentation to track real-time plasmon shifts during oxidative cyanide etching::https://pubs.rsc.org/en/content/articlehtml/2016/cp/c6cp01679k|Anti-Stokes Background Suppression::Developed an anti-Stokes imaging strategy for gold nanorods enabling high-contrast detection in complex biological samples::https://www.sciencedirect.com/science/article/pii/S0006349516309948|Absolute Nano-Thermometry::Demonstrated calibration-free nanoscale temperature measurement published in Nano Letters, helping shape the field of optical nano-thermometry::https://pubs.acs.org/doi/abs/10.1021/acs.nanolett.7b04145
 Project_url: https://notes.aquiles.me/my_phd/
 
-# The Research & The Big Picture
+## Research Focus: Light-Matter Interactions at the Nanoscale
 
-<!--
-TODO: Introduce the scientific context of your doctoral research at Leiden University (Huygens-Kamerlingh Onnes Laboratory / Michel Orrit's group).
-- What was the core scientific question or phenomenon you investigated?
-- Why was existing technology or commercially available equipment insufficient?
--->
+I completed my PhD in experimental physics at Leiden University's Huygens-Kamerlingh Onnes Laboratory (2012–2016), defending my dissertation *Gold nanorod photoluminescence: applications to imaging and temperature sensing*.
 
-I pursued my PhD in experimental physics in the Single-Molecule Optics group at Leiden University. My research centered around developing novel optical instrumentation and measurement techniques to observe physical and photophysical phenomena at the single-molecule scale.
+My research explored how individual gold nanorods—elongated metallic nanoparticles—interact with light, and how those physical signatures can be turned into practical optical measurement techniques.
 
-## Building the Experimental Setups
+## Custom Instrumentation & Lab Automation
 
-<!--
-TODO: Detail the hardware, optical design, and engineering challenges you tackled.
-- Optical layout: lasers, confocal/widefield configurations, detectors (APDs, EMCCDs), cryogenics or fluidics.
-- Alignment, laser coupling, mechanical stability, noise reduction.
--->
+Commercial microscopes could not perform the high-throughput single-particle spectroscopy required for this work. I designed, aligned, and automated custom optical setups from scratch:
 
-A major part of my PhD was learning how to *make* things from scratch. Rather than relying on turnkey systems, we built custom setups on optical tables:
+- **In-situ Etching Spectroscopy:** Automated multi-particle spectral acquisition to monitor minute shape changes as gold nanorods underwent oxidative cyanide etching (*Phys. Chem. Chem. Phys.*, 2016).
+- **Python Control Software:** Built modular Python acquisition software synchronizing lasers, detectors, spectrometers, and piezo stages—laying the foundation for what later became [Python for the Lab]({filename}python-for-the-lab.md).
 
-- **Laser alignment and coupling:** Achieving stability and precise beam control.
-- **Detector integration:** Coordinating sensitive avalanche photodiodes (APDs) and spectrometers.
-- **Sub-nanometer positioning:** Controlling piezo scanners and sample holders with high reproducibility.
+## Key Scientific Contributions
 
-## Software as the Catalyst: Controlling the Lab with Python
+- **Anti-Stokes Background-Free Imaging:** Investigated anti-Stokes emission—where photo-excited nanoparticles re-emit photons at higher energy than the excitation laser—and applied it to image metallic nanoparticles with high background rejection in complex biological samples (*Biophysical Journal*, 2016).
+- **Calibration-Free Nano-Thermometry:** Showed that the anti-Stokes emission spectrum of single gold nanorods yields local nanoscale temperature directly through a physical model of electron-hole pairs coupled to the plasmon resonance, without requiring a-priori calibration (*Nano Letters*, 2017). Subsequent research groups have built on this approach across optical nano-thermometry.
+- **Single-Molecule Polymer Dynamics:** Earlier doctoral work probed rotational dynamics of single dye molecules in thin polymer films near the glass transition (*Journal of Physical Chemistry A*, 2014).
 
-<!--
-TODO: Explain how the need for lab automation led you to Python.
-- Moving away from slow/rigid legacy tools (LabVIEW, vendor software).
-- Building modular drivers and acquisition software.
-- How this sparked the foundation for Python for the Lab and future projects like PyNTA / PyMoDAQ.
--->
+## Foundation for Deep-Tech Leadership
 
-One of the earliest and most impactful bottlenecks I faced was setup control. Commercial software was either too rigid, proprietary, or closed off. I turned to Python to build flexible, modular software that synchronized hardware in real time:
-
-- Coordinating multiple instruments (stages, lasers, counters) through clear interfaces.
-- Real-time data streaming, visualization, and reduction.
-- Laying the groundwork for software patterns that would later inspire [Python for the Lab]({filename}python-for-the-lab.md) and open-source packages.
-
-## Key Scientific Discoveries & Contributions
-
-<!--
-TODO: Summarize your key papers, findings, and thesis highlights.
-- Key findings or publications.
-- Novel observations or methodologies developed.
--->
-
-Through these custom-built setups, we were able to observe:
-
-- Dynamics and photophysics of individual emitters.
-- High-precision localization and tracking with microsecond-level temporal resolution.
-- Novel insights into nano-optics and light-matter interactions at nanoscale dimensions.
-
-## Lessons from the Lab: Transitioning to Entrepreneurship
-
-<!--
-TODO: Share personal reflections on how your PhD shaped your career, problem-solving mindset, and the transition into founding Dispertech.
--->
-
-Doing a PhD taught me how to embrace ambiguity, troubleshoot problems methodically from first principles, and push beyond existing limitations. More importantly, it gave me the confidence that any instrument can be broken down, understood, and rebuilt. That mindset ultimately paved the way for my transition from academic research to deep-tech entrepreneurship and founding [Dispertech]({filename}dispertech.md).
+Four years of building optical instruments from first principles—and serving on the doctoral council LEO (Leids Promovendi Overleg)—taught me how to diagnose complex physical systems methodically, work through ambiguity, and bridge experimental physics with dependable software engineering.

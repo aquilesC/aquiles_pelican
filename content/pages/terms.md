@@ -2,8 +2,7 @@ Title: Terms of Use
 Slug: terms
 Date: 2026-02-16
 Status: published
-
-# Terms of Use
+Summary: Terms governing the use of content and materials published on aquiles.me.
 
 **Effective Date:** February 16, 2026
 

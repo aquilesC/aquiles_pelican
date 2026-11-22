@@ -3,17 +3,56 @@
 
 {% block title %}Contact | {{ SITENAME }}{% endblock %}
 
+{% block description %}Get in touch with Aquiles Carattino, Team Lead of Product Development at Orange Quantum Systems in Delft. Connect on LinkedIn, GitHub, or send a direct message.{% endblock %}
+
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/contact/{% endblock %}
+
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "name": "Contact | {{ SITENAME|e }}",
+      "url": "{{ CANONICAL_SITEURL }}/contact/",
+      "mainEntity": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ CANONICAL_SITEURL }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": "{{ CANONICAL_SITEURL }}/contact/"
+        }
+      ]
+    }
+  ]
+}
+</script>
+{% endblock %}
+
 {% block body_class %}has-dark-hero{% endblock %}
 
 {% block content %}
   <section class="relative h-screen contact-hero" style="background: radial-gradient(circle at top, rgba(14, 18, 28, 0.85), #080a10 70%);">
-    <canvas id="orbit-canvas" class="absolute inset-0 w-full h-full"></canvas>
+    <canvas id="orbit-canvas" class="absolute inset-0 w-full h-full" aria-hidden="true"></canvas>
     <div class="relative z-10 h-full flex items-center justify-center">
       <div class="max-w-content mx-auto px-lg text-center text-white">
-        <span class="text-overline uppercase tracking-widest text-accent inline-block mb-sm">Let's orbit ideas</span>
-        <h1 class="text-h1 md:text-6xl lg:text-7xl font-heading mb-lg drop-shadow-lg">Gravity Meets Conversations</h1>
+        <span class="text-overline uppercase tracking-widest text-accent inline-block mb-sm">Delft, Netherlands</span>
+        <h1 class="text-h1 md:text-6xl lg:text-7xl font-heading mb-lg drop-shadow-lg">Get in Touch</h1>
         <p class="text-body md:text-xl text-gray-300 max-w-2xl mx-auto drop-shadow-md">
-          Reach out and let’s explore how our worlds can align. Move your cursor to nudge the planets toward new possibilities.
+          Happy to connect on quantum hardware, deep-tech product leadership, speaking invitations, or anything I have written about. Move your cursor to nudge the orbits.
         </p>
       </div>
     </div>
@@ -29,10 +68,10 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl md:gap-3xl">
         <!-- Form Column -->
         <div class="lg:col-span-7">
-          <span class="kicker mb-xs">Direct Inquiry</span>
-          <h2 class="text-h1 mb-md">Get in Touch</h2>
+          <span class="kicker mb-xs">Direct Message</span>
+          <h2 class="text-h1 mb-md">Send a Note</h2>
           <p class="text-body text-text-secondary mb-xl">
-            Have a question, venture idea, or want to explore advisory collaboration? Send me a message below.
+            Whether you are reaching out about product leadership, quantum and scientific instrumentation, or a speaking invitation, send a message below.
           </p>
 
           {% include 'includes/contact_form.html' %}
@@ -43,12 +82,12 @@
           <div class="bg-muted-bg p-xl rounded-2xl border border-border">
             <h3 class="text-h3 font-heading font-bold mb-md">Connect Directly</h3>
             <p class="text-small text-text-secondary mb-lg">
-              I'm actively engaged with deep tech startups, university incubators, and researchers considering their spinout strategy.
+              I am based in Delft, leading Product Development at Orange Quantum Systems. LinkedIn is the fastest way to connect professionally.
             </p>
 
             <div class="space-y-sm mb-xl">
               {% if LINKEDIN_USERNAME %}
-              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}" target="_blank" rel="noopener noreferrer" class="card p-md flex items-center gap-md group">
+              <a href="https://www.linkedin.com/in/{{ LINKEDIN_USERNAME }}/" target="_blank" rel="me noopener noreferrer" class="card p-md flex items-center gap-md group">
                 <span class="icon-btn bg-white">
                   {{ icon('linkedin', 'w-5 h-5 text-[#0a66c2]') }}
                 </span>
@@ -60,7 +99,7 @@
               {% endif %}
 
               {% if GITHUB_USERNAME %}
-              <a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="noopener noreferrer" class="card p-md flex items-center gap-md group">
+              <a href="https://github.com/{{ GITHUB_USERNAME }}" target="_blank" rel="me noopener noreferrer" class="card p-md flex items-center gap-md group">
                 <span class="icon-btn bg-white">
                   {{ icon('github', 'w-5 h-5') }}
                 </span>
@@ -73,13 +112,13 @@
             </div>
 
             <div class="p-md rounded-xl bg-surface border border-border">
-              <span class="kicker text-accent mb-xxs">Free Consultation</span>
-              <h4 class="text-h4 font-heading font-semibold mb-xs">The Golden Hour</h4>
+              <span class="kicker text-accent mb-xxs">Selective Engagements</span>
+              <h4 class="text-h4 font-heading font-semibold mb-xs">Speaking &amp; Advisory</h4>
               <p class="text-meta text-text-secondary mb-md">
-                1-hour no-obligation strategy session to analyze your current challenges.
+                Occasional talks, university workshops, and 1:1 product sparring conversations outside my full-time role at OrangeQS.
               </p>
-              <a href="{{ SITEURL }}/services/golden-hour/" class="btn btn-secondary btn-sm w-full">
-                <span>Book Free Session</span>
+              <a href="{{ SITEURL }}/services/" class="btn btn-secondary btn-sm w-full">
+                <span>View Details</span>
                 {{ icon('arrow-right', 'icon icon-arrow') }}
               </a>
             </div>

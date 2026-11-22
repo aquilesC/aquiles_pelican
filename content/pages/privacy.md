@@ -2,8 +2,7 @@ Title: Privacy Policy
 Slug: privacy
 Date: 2026-02-16
 Status: published
-
-# Privacy Policy
+Summary: How information is collected, used, and protected on aquiles.me.
 
 **Effective Date:** February 16, 2026
 

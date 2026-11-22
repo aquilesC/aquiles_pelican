@@ -5,32 +5,62 @@
 
 {% block description %}{{ page.summary|default(page.title)|striptags|truncate(160) }}{% endblock %}
 
-{% block extra_head %}
-  <!-- Open Graph / Facebook -->
-  <meta property="og:type" content="article" />
-  <meta property="og:url" content="{{ SITEURL }}/{{ page.url }}" />
-  <meta property="og:title" content="{{ page.title }}" />
-  <meta property="og:description" content="{{ page.summary|default(page.title)|striptags|truncate(200) }}" />
-  {% if page.hero_image %}
-  <meta property="og:image" content="{{ SITEURL }}/{{ page.hero_image }}" />
-  {% endif %}
-  <meta property="og:site_name" content="{{ SITENAME }}" />
+{% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ page.url }}{% endblock %}
+{% block og_type %}article{% endblock %}
+{% block og_title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+{% block og_description %}{{ page.summary|default(page.title)|striptags|truncate(200) }}{% endblock %}
+{% block og_image %}{% if page.hero_image %}{{ CANONICAL_SITEURL }}/{{ page.hero_image }}{% else %}{{ CANONICAL_SITEURL }}/{{ DEFAULT_OG_IMAGE }}{% endif %}{% endblock %}
 
-  <!-- Schema.org structured data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    "name": "{{ page.title|e }}",
-    "description": "{{ page.summary|default(page.title)|striptags|truncate(200)|e }}",
-    {% if page.hero_image %}"image": "{{ SITEURL }}/{{ page.hero_image }}",{% endif %}
-    {% if page.date %}"datePublished": "{{ page.date.isoformat() }}",{% endif %}
-    "author": {
-      "@type": "Person",
-      "name": "{{ AUTHOR|e }}"
+{% block structured_data %}
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "headline": "{{ page.title|e }}",
+      "description": "{{ page.summary|default(page.title)|striptags|truncate(200)|e }}",
+      "url": "{{ CANONICAL_SITEURL }}/{{ page.url }}",
+      "image": "{% if page.hero_image %}{{ CANONICAL_SITEURL }}/{{ page.hero_image }}{% else %}{{ CANONICAL_SITEURL }}/{{ DEFAULT_OG_IMAGE }}{% endif %}",
+      {% if page.date %}"datePublished": "{{ page.date.isoformat() }}",{% endif %}
+      "dateModified": "{{ (page.modified if page.modified else page.date).isoformat() if page.date else BUILD_DATE }}",
+      "author": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      },
+      "publisher": {
+        "@id": "{{ CANONICAL_SITEURL }}/#person"
+      },
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ CANONICAL_SITEURL }}/{{ page.url }}"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "{{ CANONICAL_SITEURL }}/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Experience",
+          "item": "{{ CANONICAL_SITEURL }}/work/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "{{ page.company|default(page.title)|e }}",
+          "item": "{{ CANONICAL_SITEURL }}/{{ page.url }}"
+        }
+      ]
     }
-  }
-  </script>
+  ]
+}
+</script>
 {% endblock %}
 
 {% block content %}
@@ -40,7 +70,7 @@
       <div class="mb-md">
         <a href="{{ SITEURL }}/work/" class="inline-flex items-center gap-xs text-white/80 hover:text-white transition-colors text-meta font-medium">
           {{ icon('arrow-left', 'w-3.5 h-3.5') }}
-          <span>Back to Work Portfolio</span>
+          <span>Back to Experience</span>
         </a>
       </div>
 
@@ -51,7 +81,7 @@
       {% endif %}
 
       <h1 class="font-heading mb-md text-white">{{ page.title }}</h1>
-      
+
       {% if page.summary %}
       <p class="page-hero-lead mb-lg text-white/90">
         {{ page.summary }}
@@ -61,15 +91,22 @@
       <!-- Metadata & Role -->
       <div class="flex flex-wrap items-center gap-md text-meta text-white/80 pt-md border-t border-white/20">
         {% if page.company %}
-        <span><strong>Company:</strong> {{ page.company }}</span>
+        <span><strong>Organization:</strong> {{ page.company }}</span>
         {% endif %}
         {% if page.role %}
         <span>•</span>
         <span><strong>Role:</strong> {{ page.role }}</span>
         {% endif %}
-        {% if page.date %}
+        {% if page.period %}
+        <span>•</span>
+        <span>{{ page.period }}</span>
+        {% elif page.date %}
         <span>•</span>
         <time datetime="{{ page.date.isoformat() }}">{{ page.locale_date }}</time>
+        {% endif %}
+        {% if page.location %}
+        <span>•</span>
+        <span>{{ page.location }}</span>
         {% endif %}
       </div>
 
@@ -125,7 +162,7 @@
         {{ page.content }}
       </div>
 
-      <!-- Project Highlights / Case Studies -->
+      <!-- Key Milestones -->
       {% if page.highlights %}
       <div class="max-w-reading mx-auto mb-3xl">
         <h2 class="text-h2 font-heading font-bold mb-xl">Key Milestones</h2>
@@ -142,7 +179,7 @@
               </p>
               {% if parts|length > 2 and parts[2].strip() %}
               <a href="{{ parts[2].strip() }}" class="card-cta mt-sm inline-flex" target="_blank" rel="noopener noreferrer">
-                <span>Learn more</span>
+                <span>View Reference</span>
                 {{ icon('external', 'w-3.5 h-3.5') }}
               </a>
               {% endif %}
@@ -155,8 +192,8 @@
 
       <!-- Bottom CTAs -->
       <div class="max-w-reading mx-auto p-xl bg-muted-bg rounded-2xl border border-border text-center">
-        <h2 class="text-h3 font-heading font-bold mb-xs">Want to discuss this project?</h2>
-        <p class="text-small text-text-secondary mb-lg">I'm always open to discussing commercialization strategies and hard-tech hardware challenges.</p>
+        <h2 class="text-h3 font-heading font-bold mb-xs">Want to discuss this work?</h2>
+        <p class="text-small text-text-secondary mb-lg">Happy to exchange notes on product development, engineering leadership, and scientific instrumentation.</p>
         <div class="flex flex-wrap justify-center gap-md">
           <a href="{{ SITEURL }}/contact/" class="btn btn-primary">
             <span>Get in Touch</span>
@@ -164,7 +201,7 @@
           </a>
           {% if page.project_url %}
           <a href="{{ page.project_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-            <span>Visit Website</span>
+            <span>Visit {{ page.company|default('Website') }}</span>
             {{ icon('external', 'w-4 h-4') }}
           </a>
           {% endif %}
