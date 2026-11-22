@@ -1,5 +1,6 @@
 ---
 Title: Exciting Vesicles – the field where biology meets technology
+SEO_Title: "Extracellular Vesicles: Where Biology Meets Technology"
 Slug: exciting-vesicles-the-field-where-biology-meets-technology
 Date: 2025-11-04
 Category: Science

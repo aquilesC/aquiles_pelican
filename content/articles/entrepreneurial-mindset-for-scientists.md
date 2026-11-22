@@ -14,7 +14,7 @@ When I started my first company, I brought with me my scientifically oriented wa
 Our accumulated set of experiences are almost as important as the formal skills we have developed.
 
 Embracing different ways of perceiving the world is fundamental to understanding what it means to become an entrepreneur. Being able to understand processes at a technical but also emotional level is what I call the **scipreneurial mindset**. It’s the framework I developed over time to process inputs from many different sources.
-### Definition and Importance in Business
+## Definition and Importance in Business
 
 An entrepreneurial mindset is not just a fancy term. It’s a way of thinking that can help us decide which challenges are worth tackling head-on, making decisive choices, and owning the outcomes, whether they’re good or bad.
 
@@ -56,7 +56,7 @@ It’s about not waiting for someone to hand you opportunities on a silver platt
 
 The mind of an entrepreneur is always in tension between what the future could look like and what the present allows. We’ll take another look at this when we discuss about **effectual reasoning**. 
 
-### Contrast with the Typical Mindset in Academia
+## Contrast with the Typical Mindset in Academia
 
 Understanding the mindset of an entrepreneur also requires acknowledging and overcoming the patterns developed in an academic environment.
 

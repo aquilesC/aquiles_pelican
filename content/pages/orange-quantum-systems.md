@@ -1,4 +1,5 @@
 Title: Orange Quantum Systems: Product Development Leadership
+SEO_Title: Orange Quantum Systems: QPU Product Leadership | Aquiles
 Slug: orange-quantum-systems
 Date: 2026-06-01
 Template: work-page

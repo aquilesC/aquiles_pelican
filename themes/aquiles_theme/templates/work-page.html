@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}{{ page.title }} | {{ SITENAME }}{% endblock %}
+{% block title %}{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }} | {{ SITENAME }}{% endif %}{% endblock %}
 
-{% block description %}{{ page.summary|default(page.title)|striptags|truncate(160) }}{% endblock %}
+{% block description %}{{ page.seo_description|default(page.summary)|default(page.title)|striptags|truncate(160) }}{% endblock %}
 
 {% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ page.url }}{% endblock %}
 {% block og_type %}article{% endblock %}

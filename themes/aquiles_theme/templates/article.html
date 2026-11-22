@@ -2,9 +2,9 @@
 {% from 'includes/card.html' import render_card %}
 {% from 'includes/icons.html' import icon %}
 
-{% block title %}{{ article.title }} | {{ SITENAME }}{% endblock %}
+{% block title %}{% if article.seo_title %}{{ article.seo_title }}{% else %}{{ article.title }} | {{ SITENAME }}{% endif %}{% endblock %}
 
-{% block description %}{{ article.summary|striptags|truncate(160) }}{% endblock %}
+{% block description %}{{ article.seo_description|default(article.summary)|striptags|truncate(160) }}{% endblock %}
 
 {% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ article.url }}{% endblock %}
 {% block og_type %}article{% endblock %}
@@ -240,12 +240,15 @@
 
         <!-- Author Box -->
         <div class="author-box mb-3xl">
-          <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
-               alt="{{ AUTHOR }}"
-               width="72"
-               height="72"
-               loading="lazy"
-               decoding="async" />
+          <picture>
+            <source srcset="{{ SITEURL }}/images/aquiles_carattino_bw.webp" type="image/webp" />
+            <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
+                 alt="{{ AUTHOR }}"
+                 width="72"
+                 height="72"
+                 loading="lazy"
+                 decoding="async" />
+          </picture>
           <div>
             <span class="kicker text-accent mb-xxs">About the Author</span>
             <h3 class="text-h4 font-heading font-bold text-text-primary mb-xs">{{ AUTHOR }}</h3>

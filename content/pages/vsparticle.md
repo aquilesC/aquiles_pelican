@@ -1,4 +1,5 @@
 Title: VSParticle: Product Management & Semiconductor Business Development
+SEO_Title: VSParticle: Product Management & Semicon BD | Aquiles
 Slug: vsparticle
 Date: 2026-01-15
 Template: work-page

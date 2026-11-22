@@ -6,3 +6,6 @@
 /solbion/ /work/ 301
 /services/deep-dive /services/ 301
 /services/deep-dive/ /services/ 301
+/index2.html / 301
+/articles/index2.html /articles/ 301
+/author/* /work/ 301

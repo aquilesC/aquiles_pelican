@@ -38,12 +38,4 @@
     <priority>0.8</priority>
   </url>
   {% endfor %}
-  {% for cat, cat_articles in categories|sort(attribute='0.name') %}
-  <url>
-    <loc>{{ CANONICAL_SITEURL }}/{{ cat.url }}</loc>
-    <lastmod>{{ BUILD_DATE }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  {% endfor %}
 </urlset>

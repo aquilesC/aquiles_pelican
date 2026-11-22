@@ -4,7 +4,9 @@
 
 {% block title %}{{ category.name }} | Writing | {{ SITENAME }}{% endblock %}
 
-{% block description %}Essays and reflections by Aquiles Carattino on {{ category.name }}.{% endblock %}
+{% block robots %}<meta name="robots" content="noindex, follow" />{% endblock %}
+
+{% block description %}Essays by Aquiles Carattino on {{ category.name }}, deep-tech product leadership, and moving scientific technology from lab to market.{% endblock %}
 
 {% block canonical_url %}{{ CANONICAL_SITEURL }}/{{ category.url }}{% endblock %}
 

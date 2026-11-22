@@ -1,5 +1,6 @@
 ---
 Title: "Mentor, Consultant, Coach, Partner: Who Do You Need Right Now?"
+SEO_Title: "Mentor, Consultant, Coach, or Partner: Who Do You Need?"
 Slug: mentor-consultant-coach-partner-who-do-you-need-right-now
 Date: 2025-11-04
 Category: Entrepreneurship

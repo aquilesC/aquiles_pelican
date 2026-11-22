@@ -1,5 +1,6 @@
 ---
 Title: "My Story as an Entrepreneur: From Scientist to Founder"
+SEO_Title: "From Scientist to Startup Founder: My Story | Aquiles"
 Slug: my-story-as-a-founder-from-scientist-to-entrepreneur
 Date: 2025-11-04
 Category: Science Commercialization

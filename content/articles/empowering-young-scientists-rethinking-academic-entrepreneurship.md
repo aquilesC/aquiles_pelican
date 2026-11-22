@@ -1,5 +1,6 @@
 ---
 Title: "Empowering Young Scientists: Rethinking ‘Academic’ Entrepreneurship"
+SEO_Title: "Rethinking Academic Entrepreneurship for Young Scientists"
 Slug: empowering-young-scientists-rethinking-academic-entrepreneurship
 Date: 2025-11-04
 Category: Science Commercialization

@@ -26,10 +26,12 @@ THEME = 'themes/aquiles_theme'
 
 # Template settings
 DIRECT_TEMPLATES = ['index', 'archives', '404', 'sitemap', 'llms']
-PAGINATED_TEMPLATES = {'index': None, 'tag': 10, 'category': 10, 'author': None, 'archives': None}
-DEFAULT_PAGINATION = 10
+PAGINATED_TEMPLATES = {}
+DEFAULT_PAGINATION = False
 ARCHIVES_SAVE_AS = 'articles/index.html'
 ARCHIVES_URL = 'articles/'
+AUTHOR_SAVE_AS = ''
+AUTHORS_SAVE_AS = ''
 SITEMAP_SAVE_AS = 'sitemap.xml'
 LLMS_SAVE_AS = 'llms.txt'
 
@@ -50,6 +52,8 @@ STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/robots.txt': {'path': 'robots.txt'},
     'extra/favicon.ico': {'path': 'favicon.ico'},
+    'extra/favicon.svg': {'path': 'favicon.svg'},
+    'extra/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
     'extra/_headers': {'path': '_headers'},
     'extra/_redirects': {'path': '_redirects'},
 }
@@ -85,8 +89,8 @@ DEFAULT_DATE_FORMAT = '%B %d, %Y'
 SITESUBTITLE = 'Deep-Tech Product & Engineering Leader | Quantum Computing & Scientific Instrumentation'
 SITE_TITLE = 'Aquiles Carattino'
 SITE_DESCRIPTION = (
-    'Aquiles Carattino leads Product Development at Orange Quantum Systems (OrangeQS) in Delft. '
-    'Over 10 years bringing quantum, semiconductor, and scientific instrumentation products from lab to market.'
+    'Aquiles Carattino leads Product Development at Orange Quantum Systems in Delft. '
+    '10+ years taking quantum and scientific instrumentation from lab to market.'
 )
 DEFAULT_OG_IMAGE = 'images/og/default.png'
 TWITTER_USERNAME = None

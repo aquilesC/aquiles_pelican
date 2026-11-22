@@ -1,5 +1,6 @@
 ---
 Title: What does the creation of Altos Labs mean
+SEO_Title: "What Does the Creation of Altos Labs Mean? | Aquiles"
 Slug: what-does-the-creation-of-altos-labs-mean
 Date: 2025-11-04
 Category: Deep Tech Strategy

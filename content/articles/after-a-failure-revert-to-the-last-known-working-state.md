@@ -1,5 +1,6 @@
 ---
 Title: After a Failure, Revert to the Last Known Working State
+SEO_Title: "After a Failure, Revert to the Last Known Working State"
 Slug: after-a-failure-revert-to-the-last-known-working-state
 Date: 2025-11-04
 Category: Personal
@@ -59,7 +60,7 @@ Even if we find a moment when we took a failed approach, we must be sure it is t
 
 After a period of introspection, we would gain confidence about the moment in which things derailed. Ideally, we would go back in time to the moment we identified and make a different choice. However, it is impossible to revert ourselves, our history. The new decision will be based on what we already know, on what we learned. Our resources are not going to be the same now than in the past. The temporal and budgetary constraints are not going to be the same as the context in which we were.
 
-If we are lucky, we can revert some of the choices without invalidating the rest of the project. In our case, for example, we decided to revert the decision of working with cartridges. It didn’t mean we had to change the rest of the design, nor the electronics. It just required some geometric adjustments to the optical path. After some tweaking, things started working [better than ever](https://dispertech.com/publications/).
+If we are lucky, we can revert some of the choices without invalidating the rest of the project. In our case, for example, we decided to revert the decision of working with cartridges. It didn’t mean we had to change the rest of the design, nor the electronics. It just required some geometric adjustments to the optical path. After some tweaking, things started working better than ever.
 
 ## Dealing with failure is more complicated when alone
 

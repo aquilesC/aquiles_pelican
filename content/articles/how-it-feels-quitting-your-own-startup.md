@@ -1,5 +1,6 @@
 ---
 Title: How I feel about quitting my own startup
+SEO_Description: "Leaving my deep-tech startup Dispertech after nearly five years: candid reflections on founder burnout, identity, and knowing when to step away."
 Slug: how-it-feels-quitting-your-own-startup
 Date: 2025-11-04
 Category: Personal

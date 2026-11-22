@@ -12,12 +12,15 @@
           <!-- Photo Column -->
           <div class="md:col-span-5 order-2 md:order-1">
             <div class="portrait">
-              <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg" 
-                   alt="{{ AUTHOR }}" 
-                   width="420"
-                   height="420"
-                   loading="lazy"
-                   decoding="async">
+              <picture>
+                <source srcset="{{ SITEURL }}/images/aquiles_carattino_bw.webp" type="image/webp" />
+                <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
+                     alt="{{ AUTHOR }}"
+                     width="420"
+                     height="420"
+                     loading="lazy"
+                     decoding="async">
+              </picture>
             </div>
           </div>
           

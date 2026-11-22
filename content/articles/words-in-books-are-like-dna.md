@@ -1,5 +1,6 @@
 ---
 Title: Words in books are like the DNA that describes our ancient history
+SEO_Title: "How Words in Books Evolve Like DNA | Aquiles Carattino"
 Slug: words-in-books-are-like-dna
 Date: 2026-02-18
 Category: Science

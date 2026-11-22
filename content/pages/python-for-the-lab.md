@@ -1,4 +1,5 @@
 Title: Python for the Lab: Book, Workshops & Instrumentation Software
+SEO_Title: Python for the Lab: Book & Lab Automation | Aquiles
 Slug: python-for-the-lab
 Date: 2025-01-01
 Template: work-page

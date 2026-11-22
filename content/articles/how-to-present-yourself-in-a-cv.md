@@ -1,5 +1,7 @@
 ---
 Title: How can students, PhDs and postdocs present themselves efficiently in their CVs while looking for a job
+SEO_Title: "How PhDs & Postdocs Can Write a Strong CV | Aquiles"
+SEO_Description: "Practical CV advice for students, PhDs, and postdocs moving from academia to industry: how to frame technical achievements clearly for hiring managers."
 Slug: how-to-present-yourself-in-a-cv
 Date: 2025-11-04
 Category: Personal

@@ -1,5 +1,6 @@
 ---
 Title: The things I miss the most from my time as a PhD
+SEO_Title: "What I Miss Most From My PhD | Aquiles Carattino"
 Slug: the-things-i-miss-the-most-from-my-time-as-a-phd
 Date: 2025-11-04
 Category: Personal

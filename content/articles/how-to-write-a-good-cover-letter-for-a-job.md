@@ -1,5 +1,7 @@
 ---
 Title: How to write a good cover letter for a job
+SEO_Title: "How to Write a Good Cover Letter for a Job | Aquiles"
+SEO_Description: "How to write a cover letter that actually gets read by hiring managers: structure, specific examples, and common mistakes scientists and engineers make."
 Slug: how-to-write-a-good-cover-letter-for-a-job
 Date: 2025-11-04
 Category: Personal

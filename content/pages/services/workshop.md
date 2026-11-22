@@ -3,7 +3,7 @@ Slug: services/workshop
 Date: 2026-11-22
 Status: published
 Template: service_page
-Summary: Practical sessions for universities, research institutes, incubators, and deep-tech events on moving scientific technology from lab prototype to commercial product.
+Summary: Practical talks and workshops for universities, incubators, and deep-tech events on moving scientific technology from lab prototype to market.
 
 ## Moving from Research to Product
 

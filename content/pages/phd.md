@@ -1,4 +1,5 @@
 Title: PhD in Physics: Gold Nanorod Photoluminescence & Nano-Thermometry
+SEO_Title: Leiden PhD: Gold Nanorod Optics & Thermometry | Aquiles
 Slug: phd
 Date: 2016-12-01
 Template: work-page

@@ -1,5 +1,6 @@
 ---
 Title: Effectual reasoning, a framework for aspiring scipreneurs
+SEO_Title: "Effectual Reasoning for Science Entrepreneurs | Aquiles"
 Slug: effectual-reasoning-a-framework-for-aspiring-scipreneurs
 Date: 2025-11-04
 Category: Science Commercialization
@@ -18,7 +19,7 @@ I’m not convinced you can _learn_ how to become effectual, but it definitely h
 
 Once you identify who are the effectual thinkers in your team, bring them closer to you, they are going to be a fantastic asset in the early days of the company.
 
-### Why effectual reasoning is so important for entrepreneurship
+## Why effectual reasoning is so important for entrepreneurship
 
 Let’s dive into effectual reasoning, a concept that’s a game-changer in the entrepreneurial world.
 
@@ -42,7 +43,7 @@ That’s where true innovation happens. It’s not just filling a need; it’s *
 
 So, in a nutshell, effectual reasoning in entrepreneurship is about starting with your means, embracing uncertainty, being resourceful, learning by doing, and creating opportunities. It’s a mindset that says, “Let’s see what we can make happen with what we have.” And honestly, that’s a pretty exciting way to look at the business world.
 
-### Contrast with Causal Reasoning in Academic Research
+## Contrast with Causal Reasoning in Academic Research
 
 Let’s flip the script and compare effectual reasoning with causal reasoning, which is the bread and butter of academic research.
 
@@ -70,7 +71,7 @@ So, while causal reasoning is about prediction and control, effectual reasoning 
 
 It’s a shift from a world where problems have clear-cut solutions to one where you’re writing the problem statement as you go along. In that gray area is where the magic happens!
 
-### Practical Examples of Effectual Thinking in Business Decisions
+## Practical Examples of Effectual Thinking in Business Decisions
 
 Let’s get real and see how effectual thinking plays out in the wild, unpredictable world of business. It’s one thing to talk theory; it’s another to see it in action.
 
@@ -111,6 +112,6 @@ Fortunately, many funding bodies have grants and options specifically tailored t
 
 Early customers are within reach if you look at collaborators. Probably you are starting from research you performed, tools you got good at building or using. If you ask around there is a large chance you’ll find someone who is willing to get your help. If you structure it as selling a “product” and not just “your time”, you are already way ahead compared to many other entrepreneurs.
 
-#### Know more
+### Know more
 
 To learn more about effectual reasoning for entrepreneurs, I strongly suggest you to read this pivotal work: Sarasvathy, S.; Kumar, K.; York, J. G.; Bhagavatula, S. An Effectual Approach to International Entrepreneurship: Overlaps, Challenges, and Provocative Possibilities. _Entrepreneurship Theory and Practice_ **2014**, _38_ (1), 71–93. [https://doi.org/10.1111/etap.12088](https://doi.org/10.1111/etap.12088).

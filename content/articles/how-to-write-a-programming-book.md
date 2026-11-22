@@ -1,5 +1,6 @@
 ---
 Title: How to write a programming book
+SEO_Description: "Lessons from writing and self-publishing Python for the Lab: finding motivation, structuring chapters, managing code examples, and shipping a technical book."
 Slug: how-to-write-a-programming-book
 Date: 2025-11-04
 Category: Personal

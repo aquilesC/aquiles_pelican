@@ -4,9 +4,13 @@
 
 {% block title %}Aquiles Carattino | Deep-Tech Product &amp; Engineering Leader{% endblock %}
 
-{% block description %}Aquiles Carattino leads Product Development at Orange Quantum Systems (OrangeQS) in Delft. Over 10 years bringing quantum, semiconductor, and scientific instrumentation products from lab to market.{% endblock %}
+{% block description %}{{ SITE_DESCRIPTION }}{% endblock %}
 
 {% block canonical_url %}{{ CANONICAL_SITEURL }}/{% endblock %}
+
+{% block extra_head %}
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+{% endblock %}
 
 {% block structured_data %}
 <script type="application/ld+json">
@@ -138,12 +142,15 @@
         <!-- Photo Column -->
         <div class="md:col-span-5 order-2 md:order-1">
           <div class="portrait">
-            <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
-                 alt="Aquiles Carattino, Team Lead of Product Development at Orange Quantum Systems"
-                 width="420"
-                 height="420"
-                 loading="lazy"
-                 decoding="async">
+            <picture>
+              <source srcset="{{ SITEURL }}/images/aquiles_carattino_bw.webp" type="image/webp" />
+              <img src="{{ SITEURL }}/images/aquiles_carattino_bw.jpeg"
+                   alt="Aquiles Carattino, Team Lead of Product Development at Orange Quantum Systems"
+                   width="420"
+                   height="420"
+                   loading="lazy"
+                   decoding="async">
+            </picture>
           </div>
         </div>
 

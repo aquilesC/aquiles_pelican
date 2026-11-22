@@ -1,5 +1,6 @@
 ---
 Title: The path to Surface Enhanced Raman for exosome characterization
+SEO_Title: "Surface-Enhanced Raman (SERS) for Exosome Characterization"
 Slug: the-path-to-surface-enhanced-raman-for-exosome-characterization
 Date: 2025-11-04
 Category: Science
