@@ -59,6 +59,9 @@
   {% if GITHUB_USERNAME %}
   <link rel="me" href="https://github.com/{{ GITHUB_USERNAME }}" />
   {% endif %}
+  {% if ORCID_URL %}
+  <link rel="me" href="{{ ORCID_URL }}" />
+  {% endif %}
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BBEN060376"></script>

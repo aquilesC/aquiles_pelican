@@ -98,6 +98,7 @@ GITHUB_USERNAME = 'aquilesC'
 LINKEDIN_USERNAME = 'aquic'
 DIGITAL_GARDEN_URL = 'https://notes.aquiles.me/digital_garden'
 PYTHON_FOR_THE_LAB_URL = 'https://www.pythonforthelab.com'
+ORCID_URL = 'https://orcid.org/0000-0002-1781-7565'
 DISPLAY_PAGES_ON_MENU = True
 DISPLAY_CATEGORIES_ON_MENU = False
 DISPLAY_TAGS_ON_MENU = False
@@ -117,6 +118,7 @@ PERSON_PROFILE = {
         'https://github.com/aquilesC',
         'https://www.pythonforthelab.com',
         'https://notes.aquiles.me/digital_garden',
+        'https://orcid.org/0000-0002-1781-7565',
     ],
     'knows_about': [
         'Quantum Computing',
@@ -398,7 +400,9 @@ import datetime as _dt
 from pathlib import Path as _Path
 
 CURRENT_YEAR = _dt.date.today().year
-BUILD_DATE = _dt.date.today().isoformat()
+# Full ISO 8601 datetime with timezone: Google rejects a bare date for
+# structured-data dateModified. Also valid for sitemap <lastmod>.
+BUILD_DATE = _dt.datetime.now(_dt.timezone.utc).replace(microsecond=0).isoformat()
 
 import hashlib as _hashlib
 import time as _time

@@ -233,9 +233,17 @@
       <!-- Publications & Book Section -->
       {% if PUBLICATIONS_LIST %}
       <section id="publications" class="max-w-4xl mx-auto mb-3xl" aria-labelledby="publications-heading">
-        <div class="mb-2xl">
-          <span class="kicker mb-xs">Book &amp; Peer-Reviewed Research</span>
-          <h2 id="publications-heading" class="section-title">Publications</h2>
+        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-md mb-2xl">
+          <div>
+            <span class="kicker mb-xs">Book &amp; Peer-Reviewed Research</span>
+            <h2 id="publications-heading" class="section-title">Publications</h2>
+          </div>
+          {% if ORCID_URL %}
+          <a href="{{ ORCID_URL }}" target="_blank" rel="me noopener noreferrer" class="btn btn-secondary btn-sm">
+            <span>ORCID Record</span>
+            {{ icon('external', 'w-3.5 h-3.5') }}
+          </a>
+          {% endif %}
         </div>
 
         <ul class="space-y-md">
